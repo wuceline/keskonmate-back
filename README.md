@@ -1,3 +1,3 @@
 # Liste de lecture
 
-Infos du projet
+Infos du projet.
