@@ -23,7 +23,7 @@
 | updated_at | timestamp | NULL, DEFAULT CURRENT_TIMESTAMP | Date of last  update |
 
 
-# SERIE
+# SERIES
 
 | Field | Type | Specificity | Description | 
 | :----: |:------:|:---------:|:----:|
