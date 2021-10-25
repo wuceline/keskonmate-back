@@ -63,6 +63,6 @@
 | Field | Type | Specificity | Description | 
 | :----: |:------:|:---------:|:----:|	
 | id | INT | PRIMARY KEY, UNSIGNED, NOT NULL, AUTO_INCREMENT | Category ID |
-| title | varchar(128) | NOT NULL | Category title |
+| name | varchar(128) | NOT NULL | Category name |
 | created_at | timestamp | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Categories date of creation |
 | updated_at | timestamp |	NULL, DEFAULT CURRENT_TIMESTAMP | Date of last update |
