@@ -50,11 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
-
-    /**
-     * @ORM\OneToOne(targetEntity=UserList::class, inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $userlist;
     
     public function getId(): ?int
     {
@@ -172,18 +167,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getUserlist(): ?UserList
-    {
-        return $this->userlist;
-    }
-
-    public function setUserlist(?UserList $userlist): self
-    {
-        $this->userlist = $userlist;
 
         return $this;
     }
