@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20211026134415 extends AbstractMigration
+final class Version20211026152459 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -27,8 +27,8 @@ final class Version20211026134415 extends AbstractMigration
         $this->addSql('CREATE TABLE series_user_list (series_id INT NOT NULL, user_list_id INT NOT NULL, INDEX IDX_AEA542D85278319C (series_id), INDEX IDX_AEA542D865A30881 (user_list_id), PRIMARY KEY(series_id, user_list_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE series_genre (series_id INT NOT NULL, genre_id INT NOT NULL, INDEX IDX_F6DFD7E55278319C (series_id), INDEX IDX_F6DFD7E54296D31F (genre_id), PRIMARY KEY(series_id, genre_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE series_actor (series_id INT NOT NULL, actor_id INT NOT NULL, INDEX IDX_31FAB2E45278319C (series_id), INDEX IDX_31FAB2E410DAF24A (actor_id), PRIMARY KEY(series_id, actor_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE `user` (id INT AUTO_INCREMENT NOT NULL, userlist_id INT DEFAULT NULL, email VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, username VARCHAR(128) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), UNIQUE INDEX UNIQ_8D93D649A1CFEA35 (userlist_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user_list (id INT AUTO_INCREMENT NOT NULL, season_nb INT DEFAULT NULL, series_nb INT DEFAULT NULL, episode_nb INT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', type SMALLINT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE `user` (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, username VARCHAR(128) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user_list (id INT AUTO_INCREMENT NOT NULL, users_id INT DEFAULT NULL, season_nb INT DEFAULT NULL, series_nb INT DEFAULT NULL, episode_nb INT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', type SMALLINT NOT NULL, INDEX IDX_3E49B4D167B3B43D (users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE season ADD CONSTRAINT FK_F0E45BA95278319C FOREIGN KEY (series_id) REFERENCES series (id)');
         $this->addSql('ALTER TABLE series_user_list ADD CONSTRAINT FK_AEA542D85278319C FOREIGN KEY (series_id) REFERENCES series (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE series_user_list ADD CONSTRAINT FK_AEA542D865A30881 FOREIGN KEY (user_list_id) REFERENCES user_list (id) ON DELETE CASCADE');
@@ -36,7 +36,7 @@ final class Version20211026134415 extends AbstractMigration
         $this->addSql('ALTER TABLE series_genre ADD CONSTRAINT FK_F6DFD7E54296D31F FOREIGN KEY (genre_id) REFERENCES genre (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE series_actor ADD CONSTRAINT FK_31FAB2E45278319C FOREIGN KEY (series_id) REFERENCES series (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE series_actor ADD CONSTRAINT FK_31FAB2E410DAF24A FOREIGN KEY (actor_id) REFERENCES actor (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE `user` ADD CONSTRAINT FK_8D93D649A1CFEA35 FOREIGN KEY (userlist_id) REFERENCES user_list (id)');
+        $this->addSql('ALTER TABLE user_list ADD CONSTRAINT FK_3E49B4D167B3B43D FOREIGN KEY (users_id) REFERENCES `user` (id)');
     }
 
     public function down(Schema $schema): void
@@ -48,8 +48,8 @@ final class Version20211026134415 extends AbstractMigration
         $this->addSql('ALTER TABLE series_user_list DROP FOREIGN KEY FK_AEA542D85278319C');
         $this->addSql('ALTER TABLE series_genre DROP FOREIGN KEY FK_F6DFD7E55278319C');
         $this->addSql('ALTER TABLE series_actor DROP FOREIGN KEY FK_31FAB2E45278319C');
+        $this->addSql('ALTER TABLE user_list DROP FOREIGN KEY FK_3E49B4D167B3B43D');
         $this->addSql('ALTER TABLE series_user_list DROP FOREIGN KEY FK_AEA542D865A30881');
-        $this->addSql('ALTER TABLE `user` DROP FOREIGN KEY FK_8D93D649A1CFEA35');
         $this->addSql('DROP TABLE actor');
         $this->addSql('DROP TABLE genre');
         $this->addSql('DROP TABLE season');

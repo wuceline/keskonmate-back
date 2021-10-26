@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,6 +52,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserList::class, mappedBy="users")
+     */
+    private $userlist;
+
+    public function __construct()
+    {
+        $this->userlist = new ArrayCollection();
+    }
     
     public function getId(): ?int
     {
@@ -167,6 +179,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserList[]
+     */
+    public function getUserlist(): Collection
+    {
+        return $this->userlist;
+    }
+
+    public function addUserlist(UserList $userlist): self
+    {
+        if (!$this->userlist->contains($userlist)) {
+            $this->userlist[] = $userlist;
+            $userlist->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserlist(UserList $userlist): self
+    {
+        if ($this->userlist->removeElement($userlist)) {
+            // set the owning side to null (unless already changed)
+            if ($userlist->getUsers() === $this) {
+                $userlist->setUsers(null);
+            }
+        }
 
         return $this;
     }

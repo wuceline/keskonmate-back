@@ -55,6 +55,12 @@ class UserList
      */
     private $series;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userlist")
+
+     */
+    private $users;
+
     public function __construct()
     {
         $this->series = new ArrayCollection();
@@ -135,7 +141,7 @@ class UserList
         $this->type = $type;
 
         return $this;
-    }   
+    }     
 
     /**
      * @return Collection|Series[]
@@ -160,6 +166,18 @@ class UserList
         if ($this->series->removeElement($series)) {
             $series->removeUserlist($this);
         }
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }
