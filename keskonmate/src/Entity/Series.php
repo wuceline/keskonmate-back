@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SeriesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,34 @@ class Series
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=UserList::class, inversedBy="series")
+     */
+    private $userlist;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series")
+     */
+    private $genre;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Season::class, mappedBy="series")
+     */
+    private $season;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="series")
+     */
+    private $actor;
+
+    public function __construct()
+    {
+        $this->userlist = new ArrayCollection();
+        $this->genre = new ArrayCollection();
+        $this->season = new ArrayCollection();
+        $this->actor = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +184,108 @@ class Series
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserList[]
+     */
+    public function getUserlist(): Collection
+    {
+        return $this->userlist;
+    }
+
+    public function addUserlist(UserList $userlist): self
+    {
+        if (!$this->userlist->contains($userlist)) {
+            $this->userlist[] = $userlist;
+        }
+
+        return $this;
+    }
+
+    public function removeUserlist(UserList $userlist): self
+    {
+        $this->userlist->removeElement($userlist);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Genre[]
+     */
+    public function getGenre(): Collection
+    {
+        return $this->genre;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genre->contains($genre)) {
+            $this->genre[] = $genre;
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        $this->genre->removeElement($genre);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Season[]
+     */
+    public function getSeason(): Collection
+    {
+        return $this->season;
+    }
+
+    public function addSeason(Season $season): self
+    {
+        if (!$this->season->contains($season)) {
+            $this->season[] = $season;
+            $season->setSeries($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeason(Season $season): self
+    {
+        if ($this->season->removeElement($season)) {
+            // set the owning side to null (unless already changed)
+            if ($season->getSeries() === $this) {
+                $season->setSeries(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Actor[]
+     */
+    public function getActor(): Collection
+    {
+        return $this->actor;
+    }
+
+    public function addActor(Actor $actor): self
+    {
+        if (!$this->actor->contains($actor)) {
+            $this->actor[] = $actor;
+        }
+
+        return $this;
+    }
+
+    public function removeActor(Actor $actor): self
+    {
+        $this->actor->removeElement($actor);
 
         return $this;
     }

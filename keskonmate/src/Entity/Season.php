@@ -37,6 +37,11 @@ class Season
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="season")
+     */
+    private $series;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Season
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getSeries(): ?Series
+    {
+        return $this->series;
+    }
+
+    public function setSeries(?Series $series): self
+    {
+        $this->series = $series;
 
         return $this;
     }

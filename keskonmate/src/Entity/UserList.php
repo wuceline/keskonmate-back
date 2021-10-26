@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserListRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,21 @@ class UserList
      * @ORM\Column(type="smallint")
      */
     private $type;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="userlist", cascade={"persist", "remove"})
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="userlist")
+     */
+    private $series;
+
+    public function __construct()
+    {
+        $this->series = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +138,55 @@ class UserList
     public function setType(int $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setUserlist(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getUserlist() !== $this) {
+            $user->setUserlist($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Series[]
+     */
+    public function getSeries(): Collection
+    {
+        return $this->series;
+    }
+
+    public function addSeries(Series $series): self
+    {
+        if (!$this->series->contains($series)) {
+            $this->series[] = $series;
+            $series->addUserlist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeries(Series $series): self
+    {
+        if ($this->series->removeElement($series)) {
+            $series->removeUserlist($this);
+        }
 
         return $this;
     }
