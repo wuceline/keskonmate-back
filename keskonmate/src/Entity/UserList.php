@@ -57,6 +57,7 @@ class UserList
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userlist")
+
      */
     private $users;
 
@@ -140,7 +141,7 @@ class UserList
         $this->type = $type;
 
         return $this;
-    }
+    }     
 
     /**
      * @return Collection|Series[]
