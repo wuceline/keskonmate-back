@@ -51,14 +51,14 @@ class UserList
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="userlist", cascade={"persist", "remove"})
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="userlist")
      */
     private $series;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userlist")
+     */
+    private $users;
 
     public function __construct()
     {
@@ -142,28 +142,6 @@ class UserList
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setUserlist(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getUserlist() !== $this) {
-            $user->setUserlist($this);
-        }
-
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Series[]
      */
@@ -187,6 +165,18 @@ class UserList
         if ($this->series->removeElement($series)) {
             $series->removeUserlist($this);
         }
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }

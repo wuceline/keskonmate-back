@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -52,9 +54,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=UserList::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=UserList::class, mappedBy="users")
      */
     private $userlist;
+
+    public function __construct()
+    {
+        $this->userlist = new ArrayCollection();
+    }
     
     public function getId(): ?int
     {
@@ -176,14 +183,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUserlist(): ?UserList
+    /**
+     * @return Collection|UserList[]
+     */
+    public function getUserlist(): Collection
     {
         return $this->userlist;
     }
 
-    public function setUserlist(?UserList $userlist): self
+    public function addUserlist(UserList $userlist): self
     {
-        $this->userlist = $userlist;
+        if (!$this->userlist->contains($userlist)) {
+            $this->userlist[] = $userlist;
+            $userlist->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserlist(UserList $userlist): self
+    {
+        if ($this->userlist->removeElement($userlist)) {
+            // set the owning side to null (unless already changed)
+            if ($userlist->getUsers() === $this) {
+                $userlist->setUsers(null);
+            }
+        }
 
         return $this;
     }
