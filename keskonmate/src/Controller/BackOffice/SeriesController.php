@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class SeriesController extends AbstractController
 {
     /**
-     * @Route("/back/office/series", name="back_office_series")
+     * @Route("/backoffice/series", name="_browse")
      */
-    public function index(): Response
+    public function browse(): Response
     {
-        return $this->render('back_office/series/index.html.twig', [
+        return $this->render('backoffice/series/browse.html.twig', [
             'controller_name' => 'SeriesController',
         ]);
     }

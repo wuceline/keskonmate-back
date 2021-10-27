@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/back/office/user", name="back_office_user")
+     * @Route("/backoffice/user", name="_browse")
      */
-    public function index(): Response
+    public function browse(): Response
     {
-        return $this->render('back_office/user/index.html.twig', [
+        return $this->render('backoffice/user/browse.html.twig', [
             'controller_name' => 'UserController',
         ]);
     }

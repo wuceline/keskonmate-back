@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class GenreController extends AbstractController
 {
     /**
-     * @Route("/back/office/genre", name="back_office_genre")
+     * @Route("/backoffice/genre", name="_browse")
      */
-    public function index(): Response
+    public function browse(): Response
     {
-        return $this->render('back_office/genre/index.html.twig', [
+        return $this->render('backoffice/genre/browse.html.twig', [
             'controller_name' => 'GenreController',
         ]);
     }

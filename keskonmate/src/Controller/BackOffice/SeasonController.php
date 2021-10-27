@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class SeasonController extends AbstractController
 {
     /**
-     * @Route("/back/office/season", name="back_office_season")
+     * @Route("/backoffice/season", name="_browse")
      */
-    public function index(): Response
+    public function browse(): Response
     {
-        return $this->render('back_office/season/index.html.twig', [
+        return $this->render('backoffice/season/browse.html.twig', [
             'controller_name' => 'SeasonController',
         ]);
     }
