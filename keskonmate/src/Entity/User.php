@@ -22,6 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
      */
     private $id;
@@ -29,6 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
      */
     private $email;
@@ -47,6 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=128)
      * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
      */
     private $username;
@@ -54,6 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="datetime_immutable")
      * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
      */
     private $createdAt;
@@ -61,6 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
      */
     private $updatedAt;
@@ -68,6 +73,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=UserList::class, mappedBy="users")
      * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
      */
     private $userlist;

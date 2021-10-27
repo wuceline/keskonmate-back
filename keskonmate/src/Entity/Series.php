@@ -72,6 +72,7 @@ class Series
 
     /**
      * @ORM\ManyToMany(targetEntity=UserList::class, inversedBy="series")
+     * @Groups("api_user_read")
      */
     private $userlist;
 

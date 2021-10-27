@@ -14,13 +14,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * @Route("", name="browse", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function browse(UserRepository $userRepository): Response
+    {
+        $allUsers = $userRepository->findAll();
+        // dd($allUsers);        
+        
+        return $this->json($allUsers, Response::HTTP_OK, [], ['groups' => 'api_user_read']);
+    }
+
+    /**
      * @Route("/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(int $id, UserRepository $userRepository): Response
     {
-        $allUsers = $userRepository->findOneSafely($id);
+        $user = $userRepository->find($id);
         // dd($allUsers);        
         
-        return $this->json($allUsers, Response::HTTP_OK, [], ['groups' => 'api_user_read']);
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'api_user_read']);
     }
 }
