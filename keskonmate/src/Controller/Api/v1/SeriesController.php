@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\FrontOffice;
+namespace App\Controller\Api\v1;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class SeriesController extends AbstractController
 {
     /**
-     * @Route("/front/office/series", name="front_office_series")
+     * @Route("/api/v1/series", name="api_v1_series")
      */
     public function index(): Response
     {
-        return $this->render('front_office/series/index.html.twig', [
+        return $this->render('api/v1/series/index.html.twig', [
             'controller_name' => 'SeriesController',
         ]);
     }

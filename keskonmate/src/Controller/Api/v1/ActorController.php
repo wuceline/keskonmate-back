@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\FrontOffice;
+namespace App\Controller\Api\v1;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActorController extends AbstractController
 {
     /**
-     * @Route("/front/office/actor", name="front_office_actor")
+     * @Route("/api/v1/actor", name="api_v1_actor")
      */
     public function index(): Response
     {
-        return $this->render('front_office/actor/index.html.twig', [
+        return $this->render('api/v1/actor/index.html.twig', [
             'controller_name' => 'ActorController',
         ]);
     }
