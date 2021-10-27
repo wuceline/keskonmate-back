@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GenreController extends AbstractController
 {
     /**
-     * @Route("/backoffice/actor", name="browse", methods={"GET"})
+     * @Route("/backoffice/genre", name="browse", methods={"GET"})
      */
     public function browse(GenreRepository $genreRepository): Response
     {

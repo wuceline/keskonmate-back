@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SeriesController extends AbstractController
 {
     /**
-     * @Route("/backoffice/actor", name="browse", methods={"GET"})
+     * @Route("/backoffice/series", name="browse", methods={"GET"})
      */
     public function browse(SeriesRepository $seriesRepository): Response
     {

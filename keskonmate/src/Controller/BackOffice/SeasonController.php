@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SeasonController extends AbstractController
 {
     /**
-     * @Route("/backoffice/actor", name="browse", methods={"GET"})
+     * @Route("/backoffice/season", name="browse", methods={"GET"})
      */
     public function browse(SeasonRepository $seasonRepository): Response
     {

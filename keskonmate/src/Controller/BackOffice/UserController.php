@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/backoffice/actor", name="browse", methods={"GET"})
+     * @Route("/backoffice/user", name="browse", methods={"GET"})
      */
     public function browse(UserRepository $userRepository): Response
     {
@@ -77,7 +77,7 @@ class UserController extends AbstractController
     {
         $user = new User();
 
-        $userForm = $this->createForm(Userype::class, $user);
+        $userForm = $this->createForm(UserType::class, $user);
         $userForm->handleRequest($request);
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {
