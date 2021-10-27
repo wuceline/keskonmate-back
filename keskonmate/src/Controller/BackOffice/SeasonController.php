@@ -93,7 +93,7 @@ class SeasonController extends AbstractController
             return $this->redirectToRoute('backoffice_season_browse');
         }
 
-        return $this->render('backoffice/genre/add.html.twig', [
+        return $this->render('backoffice/season/add.html.twig', [
             'season_form' => $seasonForm->createView(),
             'page' => 'create',
         ]);
