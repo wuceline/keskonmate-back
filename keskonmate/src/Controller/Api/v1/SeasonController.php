@@ -2,19 +2,24 @@
 
 namespace App\Controller\Api\v1;
 
+use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/api/v1/season", name="api_v1_genres")
+ */
 class SeasonController extends AbstractController
 {
     /**
-     * @Route("/api/v1/season", name="api_v1_season")
+     * @Route("", name="browse", methods={"GET"})
      */
-    public function index(): Response
+    public function browse(SeasonRepository $seasonRepository): Response
     {
-        return $this->render('api/v1/season/index.html.twig', [
-            'controller_name' => 'SeasonController',
-        ]);
+        $allSeasons = $seasonRepository->findAll();
+        // dd($allActors);
+        
+        return $this->json($allSeasons);
     }
 }

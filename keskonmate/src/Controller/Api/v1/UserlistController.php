@@ -2,19 +2,24 @@
 
 namespace App\Controller\Api\v1;
 
+use App\Repository\UserListRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/api/v1/userlist", name="api_v1_userlist")
+ */
 class UserlistController extends AbstractController
 {
     /**
-     * @Route("/api/v1/userlist", name="api_v1_userlist")
+     * @Route("", name="browse", methods={"GET"})
      */
-    public function index(): Response
+    public function browse(UserListRepository $userlistRepository): Response
     {
-        return $this->render('api/v1/userlist/index.html.twig', [
-            'controller_name' => 'UserlistController',
-        ]);
+        $allUserlists = $userlistRepository->findAll();
+        // dd($allActors);
+        
+        return $this->json($allUserlists);
     }
 }
