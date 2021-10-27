@@ -22,4 +22,14 @@ class GenreController extends AbstractController
         
         return $this->json($allGenres, Response::HTTP_OK);
     }
+
+    /**
+     * @Route("/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function read(int $id, GenreRepository $genreRepository): Response
+    {
+        $genre = $genreRepository->find($id);
+
+        return $this->json($genre, Response::HTTP_OK);
+    }
 }

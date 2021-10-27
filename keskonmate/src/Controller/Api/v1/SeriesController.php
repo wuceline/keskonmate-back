@@ -22,5 +22,15 @@ class SeriesController extends AbstractController
         
         return $this->json($allSeries, Response::HTTP_OK);
     }
+
+    /**
+     * @Route("/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function read(int $id, SeriesRepository $seriesRepository): Response
+    {
+        $series = $seriesRepository->find($id);
+
+        return $this->json($series, Response::HTTP_OK);
+    }
 }
 
