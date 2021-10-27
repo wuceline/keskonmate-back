@@ -2,19 +2,25 @@
 
 namespace App\Controller\Api\v1;
 
+use App\Repository\ActorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * @Route("/api/v1/actors", name="api_v1_actor")
+ */
 class ActorController extends AbstractController
 {
     /**
-     * @Route("/api/v1/actor", name="api_v1_actor")
+     * @Route("", name="browse", methods={"GET"})
      */
-    public function index(): Response
+    public function browse(ActorRepository $actorRepository): Response
     {
-        return $this->render('api/v1/actor/index.html.twig', [
-            'controller_name' => 'ActorController',
-        ]);
+        $allActors = $actorRepository->findAll();
+        dd($allActors);
+        
+        return $this->json($allActors, Response::HTTP_OK);
     }
 }
