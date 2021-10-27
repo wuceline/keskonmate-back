@@ -20,7 +20,7 @@ class SeriesController extends AbstractController
         $allSeries = $seriesRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allSeries);
+        return $this->json($allSeries, Response::HTTP_OK);
     }
 }
 

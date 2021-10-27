@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/api/v1/season", name="api_v1_genres")
+ * @Route("/api/v1/season", name="api_v1_season")
  */
 class SeasonController extends AbstractController
 {
@@ -20,6 +20,6 @@ class SeasonController extends AbstractController
         $allSeasons = $seasonRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allSeasons);
+        return $this->json($allSeasons, Response::HTTP_OK);
     }
 }

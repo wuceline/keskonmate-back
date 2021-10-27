@@ -20,6 +20,6 @@ class GenreController extends AbstractController
         $allGenres = $genreRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allGenres);
+        return $this->json($allGenres, Response::HTTP_OK);
     }
 }

@@ -22,6 +22,16 @@ class ActorController extends AbstractController
         $allActors = $actorRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allActors);
+        return $this->json($allActors, Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function read(int $id, ActorRepository $actorRepository): Response
+    {
+        $actor = $actorRepository->find($id);
+
+        return $this->json($actor, Response::HTTP_OK);
     }
 }

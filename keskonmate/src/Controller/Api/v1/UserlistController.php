@@ -20,6 +20,6 @@ class UserlistController extends AbstractController
         $allUserlists = $userlistRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allUserlists);
+        return $this->json($allUserlists, Response::HTTP_OK);
     }
 }
