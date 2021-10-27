@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GenreController extends AbstractController
 {
     /**
-     * @Route("/backoffice/genre", name="_browse")
+     * @Route("/backoffice/genre", name="browse")
      */
     public function browse(): Response
     {
