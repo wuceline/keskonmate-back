@@ -6,14 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/backoffice", name="backoffice_") 
+ */
 class BackController extends AbstractController
 {
     /**
-     * @Route("/back/office/back", name="back_office_back")
+     * @Route("/", name="index")
      */
     public function index(): Response
     {
-        return $this->render('back_office/back/index.html.twig', [
+        return $this->render('backoffice/base.html.twig', [
             'controller_name' => 'BackController',
         ]);
     }
