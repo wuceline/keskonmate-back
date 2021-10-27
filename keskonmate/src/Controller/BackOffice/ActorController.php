@@ -29,16 +29,7 @@ class ActorController extends AbstractController
         $actorForm = $this->createForm(ActorType::class, $actor, [
             'disabled' => 'disabled'
         ]);
-
-        $actorForm
-            ->add('createdAt', null, [
-            'widget' => 'single_text',
-        ])
-            ->add('updatedAt', null, [
-            'widget' => 'single_text',
-        ]);
-
-        // on fournit ce formulaire à notre vue
+                
         return $this->render('backoffice/actor/read.html.twig', [
             'category_form' => $actorForm->createView(),
             'category' => $actorForm,

@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserlistController extends AbstractController
 {
     /**
-     * @Route("/back/office/userlist", name="back_office_userlist")
+     * @Route("/backoffice/userlist", name="_browse")
      */
-    public function index(): Response
+    public function browse(): Response
     {
-        return $this->render('back_office/userlist/index.html.twig', [
+        return $this->render('backoffice/userlist/browse.html.twig', [
             'controller_name' => 'UserlistController',
         ]);
     }
