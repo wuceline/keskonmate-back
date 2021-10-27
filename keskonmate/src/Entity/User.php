@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -19,11 +21,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("api_user_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * 
+     * @Groups("api_user_read")
      */
     private $email;
 
@@ -40,21 +46,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=128)
+     * 
+     * @Groups("api_user_read")
      */
     private $username;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
+     * @Groups("api_user_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * 
+     * @Groups("api_user_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity=UserList::class, mappedBy="users")
+     * 
+     * @Groups("api_user_read")
      */
     private $userlist;
 

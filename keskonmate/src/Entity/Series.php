@@ -6,6 +6,8 @@ use App\Repository\SeriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=SeriesRepository::class)
@@ -16,46 +18,55 @@ class Series
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("api_user_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_user_read")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("api_user_read")
      */
     private $Synopsis;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups("api_user_read")
      */
     private $releaseDate;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("api_user_read")
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_user_read")
      */
     private $director;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("api_user_read")
      */
     private $numberOfSeasons;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups("api_user_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Groups("api_user_read")
      */
     private $updatedAt;
 
@@ -66,16 +77,19 @@ class Series
 
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series")
+     * @Groups("api_user_read")
      */
     private $genre;
 
     /**
      * @ORM\OneToMany(targetEntity=Season::class, mappedBy="series")
+     * @Groups("api_user_read")
      */
     private $season;
 
     /**
      * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="series")
+     * @Groups("api_user_read")
      */
     private $actor;
 
