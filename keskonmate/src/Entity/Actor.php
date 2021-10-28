@@ -20,6 +20,8 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $id;
 
@@ -28,6 +30,8 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $firstname;
 
@@ -36,6 +40,8 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $lastname;
 
@@ -44,6 +50,8 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $image;
 
@@ -52,6 +60,8 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $createdAt;
 
@@ -60,11 +70,16 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="actor")
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
      */
     private $series;
 

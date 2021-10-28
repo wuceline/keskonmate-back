@@ -20,6 +20,8 @@ class Season
      * @Groups("api_seasons_read")
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $id;
 
@@ -30,6 +32,8 @@ class Season
      * @Groups("api_seasons_read")
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $seasonNumber;
 
@@ -65,6 +69,9 @@ class Season
 
     /**
      * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="season")
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      */
     private $series;
 

@@ -18,18 +18,36 @@ class Series
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $title;
 
@@ -38,7 +56,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $Synopsis;
 
@@ -47,7 +66,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $releaseDate;
 
@@ -56,7 +76,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $image;
 
@@ -65,7 +86,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $director;
 
@@ -74,7 +96,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $numberOfSeasons;
 
@@ -83,7 +106,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $createdAt;
 
@@ -92,13 +116,14 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=UserList::class, inversedBy="series")
-     * @Groups("api_user_read")
+     * 
      */
     private $userlist;
 
@@ -107,7 +132,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $genre;
 
@@ -116,7 +142,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $season;
 
@@ -125,7 +152,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $actor;
 

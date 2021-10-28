@@ -27,7 +27,7 @@ class UserController extends AbstractController
         $allUsers = $userRepository->findAll();
         // dd($allUsers);        
         
-        return $this->json($allUsers, Response::HTTP_OK, [], ['groups' => 'api_user_browse']);
+        return $this->json($allUsers, Response::HTTP_OK, [], ['groups' => 'api_users_browse']);
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends AbstractController
     {
         $user = $userRepository->find($id);
         
-        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'api_user_read']);
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'api_users_read']);
     }
 
     /**

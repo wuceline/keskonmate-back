@@ -22,6 +22,10 @@ class Genre
      * @Groups("api_genres_read")
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $id;
 
@@ -32,6 +36,10 @@ class Genre
      * @Groups("api_genres_read")
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $name;
 
@@ -42,6 +50,8 @@ class Genre
      * @Groups("api_genres_read")
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $createdAt;
 
@@ -52,11 +62,16 @@ class Genre
      * @Groups("api_genres_read")
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="genre")
+     * 
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
      */
     private $series;
 
