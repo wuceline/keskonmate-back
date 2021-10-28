@@ -20,6 +20,8 @@ class Genre
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      */
     private $id;
 
@@ -28,6 +30,8 @@ class Genre
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      */
     private $name;
 
@@ -36,6 +40,8 @@ class Genre
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      */
     private $createdAt;
 
@@ -44,6 +50,8 @@ class Genre
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      */
     private $updatedAt;
 

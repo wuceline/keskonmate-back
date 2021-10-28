@@ -18,34 +18,48 @@ class Season
      * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $seasonNumber;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $numberOfEpisodes;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $updatedAt;
 
