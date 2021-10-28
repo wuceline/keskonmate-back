@@ -19,7 +19,7 @@ class Series
      * @ORM\Column(type="integer")
      * 
      * @Groups("api_actors_browse")
-     * @Groups("api_actors_read")
+     * @Groups("api_actors_read")    
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
      * @Groups("api_seasons_browse")

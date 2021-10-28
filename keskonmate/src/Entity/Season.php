@@ -42,8 +42,6 @@ class Season
      * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
-     * @Groups("api_series_browse")
-     * @Groups("api_series_read")
      */
     private $numberOfEpisodes;
 
@@ -52,8 +50,6 @@ class Season
      * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
-     * @Groups("api_series_browse")
-     * @Groups("api_series_read")
      */
     private $createdAt;
 
@@ -62,8 +58,6 @@ class Season
      * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
-     * @Groups("api_series_browse")
-     * @Groups("api_series_read")
      */
     private $updatedAt;
 

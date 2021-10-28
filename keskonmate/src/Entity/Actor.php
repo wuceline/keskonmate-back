@@ -60,8 +60,6 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
-     * @Groups("api_series_browse")
-     * @Groups("api_series_read")
      */
     private $createdAt;
 
@@ -70,8 +68,6 @@ class Actor
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
-     * @Groups("api_series_browse")
-     * @Groups("api_series_read")
      */
     private $updatedAt;
 
