@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SeasonRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SeasonRepository::class)
@@ -14,31 +15,63 @@ class Season
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $seasonNumber;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $numberOfEpisodes;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="season")
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      */
     private $series;
 

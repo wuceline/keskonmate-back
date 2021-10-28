@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/api/v1/genres", name="api_v1_genres")
+ * @Route("/api/v1/genres", name="api_v1_genres_")
  */
 class GenreController extends AbstractController
 {
@@ -20,7 +20,7 @@ class GenreController extends AbstractController
         $allGenres = $genreRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allGenres, Response::HTTP_OK);
+        return $this->json($allGenres, Response::HTTP_OK, [], ['groups' => 'api_genres_browse']);
     }
 
     /**
@@ -30,6 +30,6 @@ class GenreController extends AbstractController
     {
         $genre = $genreRepository->find($id);
 
-        return $this->json($genre, Response::HTTP_OK);
+        return $this->json($genre, Response::HTTP_OK, [], ['groups' => 'api_genres_read']);
     }
 }

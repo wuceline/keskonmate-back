@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/api/v1/actor", name="api_v1_actor")
+ * @Route("/api/v1/actors", name="api_v1_actors_")
  */
 class ActorController extends AbstractController
 {
@@ -21,7 +21,7 @@ class ActorController extends AbstractController
         $allActors = $actorRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allActors, Response::HTTP_OK);
+        return $this->json($allActors, Response::HTTP_OK, [], ['groups' => 'api_actors_browse']);
     }
 
     /**
@@ -31,6 +31,6 @@ class ActorController extends AbstractController
     {
         $actor = $actorRepository->find($id);
 
-        return $this->json($actor, Response::HTTP_OK);
+        return $this->json($actor, Response::HTTP_OK, [], ['groups' => 'api_actors_read']);
     }
 }

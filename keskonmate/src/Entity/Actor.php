@@ -6,6 +6,7 @@ use App\Repository\ActorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ActorRepository::class)
@@ -16,36 +17,69 @@ class Actor
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $image;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="actor")
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
      */
     private $series;
 

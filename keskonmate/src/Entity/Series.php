@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-
 /**
  * @ORM\Entity(repositoryClass=SeriesRepository::class)
  */
@@ -18,79 +17,143 @@ class Series
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_actors_browse")
+     * @Groups("api_actors_read")
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $Synopsis;
 
     /**
      * @ORM\Column(type="date", nullable=true)
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $releaseDate;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $director;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $numberOfSeasons;
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=UserList::class, inversedBy="series")
-     * @Groups("api_user_read")
+     * 
      */
     private $userlist;
 
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series")
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $genre;
 
     /**
      * @ORM\OneToMany(targetEntity=Season::class, mappedBy="series")
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $season;
 
     /**
      * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="series")
-     * @Groups("api_user_read")
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $actor;
 

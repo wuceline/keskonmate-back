@@ -22,16 +22,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * 
-     * @Groups("api_user_browse")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * 
-     * @Groups("api_user_browse")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $email;
 
@@ -49,32 +53,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=128)
      * 
-     * @Groups("api_user_browse")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $username;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      * 
-     * @Groups("api_user_browse")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      * 
-     * @Groups("api_user_browse")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity=UserList::class, mappedBy="users")
      * 
-     * @Groups("api_user_browse")
-     * @Groups("api_user_read")
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $userlist;
 

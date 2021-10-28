@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 /**
- * @Route("/api/v1/user", name="api_v1_user_")
+ * @Route("/api/v1/users", name="api_v1_users_")
  */
 class UserController extends AbstractController
 {
@@ -27,7 +27,7 @@ class UserController extends AbstractController
         $allUsers = $userRepository->findAll();
         // dd($allUsers);        
         
-        return $this->json($allUsers, Response::HTTP_OK, [], ['groups' => 'api_user_read']);
+        return $this->json($allUsers, Response::HTTP_OK, [], ['groups' => 'api_users_browse']);
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends AbstractController
     {
         $user = $userRepository->find($id);
         
-        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'api_user_read']);
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'api_users_read']);
     }
 
     /**

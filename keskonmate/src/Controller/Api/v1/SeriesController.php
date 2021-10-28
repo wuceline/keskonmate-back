@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/api/v1/series", name="api_v1_series")
+ * @Route("/api/v1/series", name="api_v1_series_")
  */
 class SeriesController extends AbstractController
 {
@@ -20,7 +20,7 @@ class SeriesController extends AbstractController
         $allSeries = $seriesRepository->findAll();
         // dd($allActors);
         
-        return $this->json($allSeries, Response::HTTP_OK);
+        return $this->json($allSeries, Response::HTTP_OK, [], ['groups' => 'api_series_browse']);
     }
 
     /**
@@ -30,7 +30,7 @@ class SeriesController extends AbstractController
     {
         $series = $seriesRepository->find($id);
 
-        return $this->json($series, Response::HTTP_OK);
+        return $this->json($series, Response::HTTP_OK, [], ['groups' => 'api_series_read']);
     }
 }
 
