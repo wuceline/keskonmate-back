@@ -44,7 +44,7 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @Route("/edit/{id}", name="edit", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, UserList $userlist): Response
     {
@@ -71,7 +71,7 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="add", methods={"GET", "POST"})
+     * @Route("/add", name="add", methods={"POST"})
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
