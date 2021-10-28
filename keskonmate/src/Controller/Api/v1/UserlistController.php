@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api\v1;
 
+use App\Entity\User;
 use App\Repository\UserListRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
