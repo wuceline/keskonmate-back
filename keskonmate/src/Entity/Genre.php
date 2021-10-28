@@ -6,6 +6,7 @@ use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
@@ -16,21 +17,33 @@ class Genre
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * 
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * 
+     * @Groups("api_genres_browse")
+     * @Groups("api_genres_read")
      */
     private $updatedAt;
 

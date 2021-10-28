@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-
 /**
  * @ORM\Entity(repositoryClass=UserListRepository::class)
  */
@@ -19,50 +18,81 @@ class UserList
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $id;
    
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $seasonNb;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $seriesNb;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $episodeNb;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="smallint")
+     * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $type;
 
     /**
      * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="userlist")
+     * 
+     * @Groups("api_user_browse")
      * @Groups("api_user_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $series;
 

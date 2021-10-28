@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * @Route("/api/v1/userlist", name="api_v1_userlist")
+ * @Route("/api/v1/userlists", name="api_v1_userlists_")
  */
 class UserlistController extends AbstractController
 {
@@ -22,9 +22,8 @@ class UserlistController extends AbstractController
     public function browse(UserListRepository $userlistRepository): Response
     {
         $allUserlists = $userlistRepository->findAll();
-        // dd($allActors);
         
-        return $this->json($allUserlists, Response::HTTP_OK);
+        return $this->json($allUserlists, Response::HTTP_OK, [], ['groups' => 'api_userlists_browse']);
     }
 
     /**
@@ -34,7 +33,7 @@ class UserlistController extends AbstractController
     {
         $userList = $userListRepository->find($id);
 
-        return $this->json($userList, Response::HTTP_OK);
+        return $this->json($userList, Response::HTTP_OK, [], ['groups' => 'api_userlists_read']);
     }
 
     /**
