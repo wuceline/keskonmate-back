@@ -16,7 +16,7 @@ class BackController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('backoffice/base.html.twig', [
+        return $this->render('backoffice/back/main.html.twig', [
             'controller_name' => 'BackController',
         ]);
     }
