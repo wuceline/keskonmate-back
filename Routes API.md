@@ -161,6 +161,7 @@
 ## URL Browse: /api/v1/userlists {GET}
 ## URL Read: /api/v1/userlists/id {GET}
 ## URL Edit: /api/v1/userlists/id {PATCH}
+## URL Add: /api/v1/userlists {POST}
 
 ```json
 [
