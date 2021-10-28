@@ -13,8 +13,9 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+
 /**
- * @Route("/api/v1/user", name="api_v1_user")
+ * @Route("/api/v1/user", name="api_v1_user_")
  */
 class UserController extends AbstractController
 {
@@ -51,9 +52,8 @@ class UserController extends AbstractController
          $jsonContent = $request->getContent();
          
          $serializer->deserialize($jsonContent, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);      
-         
          $errors = $validator->validate($user);
- 
+         
          if(count($errors) > 0)
          {
              $reponseAsArray = [

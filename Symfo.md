@@ -34,7 +34,7 @@ composer require symfony/twig-pack OK
 
 composer require symfony/mailer OK
 
-composer require symfony/validator OK
+composer require symfony/validator doctrine/annotations OK
 
 https://symfony.com/doc/current/mailer.html#using-a-3rd-party-transport
 https://support.google.com/accounts/answer/185833?hl=fr
