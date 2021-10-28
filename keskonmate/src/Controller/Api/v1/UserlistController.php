@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/api/v1/userlists", name="api_v1_userlists_")
@@ -51,5 +52,32 @@ class UserlistController extends AbstractController
         $entityManager->flush();
 
         return $this->read($id, $userListRepository);
+    }
+
+    /**
+     * @Route("/", name="add", methods={"POST"})
+     */
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    {
+        $jsonContent = $request->getContent();        
+        
+        $user = $serializer->deserialize($jsonContent, User::class, 'json');
+        $errors = $validator->validate($user);
+        if (count($errors) > 0) {
+            $responseAsArray = [
+                'error' => true,
+                'message' => $errors,
+            ];
+            return $this->json($responseAsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+        $responseAsArray = [
+            'message' => 'User list created',
+            'id' => $user->getId(),
+        ];
+
+        return $this->json($responseAsArray, Response::HTTP_CREATED);
     }
 }
