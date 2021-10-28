@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/users", name="backoffice_user_") 
+ * @Route("/backoffice/users", name="backoffice_users_") 
  */
 class UserController extends AbstractController
 {

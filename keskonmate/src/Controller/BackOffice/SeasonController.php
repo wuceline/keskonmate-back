@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/seasons", name="backoffice_season_") 
+ * @Route("/backoffice/seasons", name="backoffice_seasons_") 
  */
 class SeasonController extends AbstractController
 {
