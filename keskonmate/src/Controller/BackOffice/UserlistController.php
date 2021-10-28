@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/userlist", name="backoffice_userlist_") 
+ * @Route("/backoffice/userlists", name="backoffice_userlist_") 
  */
 class UserlistController extends AbstractController
 {
     /**
-     * @Route("/backoffice/userlist", name="browse", methods={"GET"})
+     * @Route("/", name="browse", methods={"GET"})
      */
     public function browse(UserListRepository $userlistRepository): Response
     {
