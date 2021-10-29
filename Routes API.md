@@ -1,9 +1,5 @@
 # User: 
 ## URL Browse: /api/v1/users {GET}
-## URL Read: /api/v1/users/id {GET}
-## URL Edit: /api/v1/users/id {PATCH}
-## URL Add: /api/v1/users/id {POST}
-## URL Delete: /api/v1/users/id {DELETE}
 
 ```json
 [
@@ -16,45 +12,159 @@
     "userlist": [
       {
         "id": 1,
-        "seasonNb": null,
+        "seasonNb": 5,
         "seriesNb": 1,
-        "episodeNb": null,
+        "episodeNb": 3,
         "createdAt": "2021-10-27T12:40:34+02:00",
         "updatedAt": null,
         "type": 1,
         "series": [
           {
             "id": 1,
-            "title": "GoT",
-            "Synopsis": "gfvdgfdfgdfgds",
+            "title": "Game of Thrones",
+            "Synopsis": "Plein de gens meurent",
             "releaseDate": null,
             "image": "dfgfdg.jpg",
             "director": "",
             "numberOfSeasons": 5,
             "createdAt": "2021-10-27T15:18:38+02:00",
             "updatedAt": null,
-            "genre": [
-              {
-                "id": 1,
-                "name": "Action"
-              }
-            ],
             "season": [
               {
                 "id": 2,
-                "seasonNumber": null
+                "seasonNumber": 1
               }
             ]
           }
         ]
-      },      
+      }
     ]
   },
-  ```
+  {
+    "id": 12,
+    "email": "nico@keskonmate.io",
+    "username": "nico@keskonmate.io",
+    "createdAt": "2021-10-27T15:31:06+02:00",
+    "updatedAt": null,
+    "userlist": [
+      {
+        "id": 2,
+        "seasonNb": 2,
+        "seriesNb": 2,
+        "episodeNb": 3,
+        "createdAt": "2021-10-27T15:31:06+02:00",
+        "updatedAt": null,
+        "type": 2,
+        "series": [
+          {
+            "id": 2,
+            "title": "The Big Bang Theory",
+            "Synopsis": "Des geeks",
+            "releaseDate": null,
+            "image": null,
+            "director": "",
+            "numberOfSeasons": 1,
+            "createdAt": "2021-10-29T11:09:26+02:00",
+            "updatedAt": null,
+            "season": [
+              {
+                "id": 3,
+                "seasonNumber": 1
+              },
+              {
+                "id": 4,
+                "seasonNumber": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+## URL Read: /api/v1/users/id {GET}
+
+```json
+{
+  "id": 1,
+  "email": "tux@keskonmate.io",
+  "username": "tux@keskonmate.io",
+  "createdAt": "2021-10-27T12:09:27+02:00",
+  "updatedAt": null,
+  "userlist": [
+    {
+      "id": 1,
+      "seasonNb": 5,
+      "seriesNb": 1,
+      "episodeNb": 3,
+      "createdAt": "2021-10-27T12:40:34+02:00",
+      "updatedAt": null,
+      "type": 1,
+      "series": [
+        {
+          "id": 1,
+          "title": "Game of Thrones",
+          "Synopsis": "Plein de gens meurent",
+          "releaseDate": null,
+          "image": "dfgfdg.jpg",
+          "director": "",
+          "numberOfSeasons": 5,
+          "createdAt": "2021-10-27T15:18:38+02:00",
+          "updatedAt": null,
+          "season": [
+            {
+              "id": 2,
+              "seasonNumber": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## URL Edit: /api/v1/users/id {PATCH}
+
+```json
+{
+	"username": "Tux"
+}
+```
+ou
+```json
+{
+	"email": "Tux@oclock.io"
+}
+```
+ou
+```json
+{
+	"email": "Tux@oclock.io",
+  "username": "Tux"
+}
+```
+etc ...
+
+## URL Add: /api/v1/users/id {POST}
+
+```json
+{  	
+  "email": "exemple@keskonmate.io",
+	"roles": ["ROLE_UTILISATEUR"],
+	"password": "mot de passe",
+  "username": "John Doe",
+  "createdAt": "2021-10-27T15:31:06+02:00",
+  "updatedAt": null
+}
+```
+
+## URL Delete: /api/v1/users/id {DELETE} (ne pas utiliser)
+
 
 # Actors:
-## URL Browse: /api/v1/actors
-## URL Read: /api/v1/actors/id
+## URL Browse: /api/v1/actors {GET}
 
 ```json
 [
@@ -68,7 +178,46 @@
     "series": [
       {
         "id": 1,
-        "title": "GoT"
+        "title": "Game of Thrones"
+      },
+      {
+        "id": 2,
+        "title": "The Big Bang Theory"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "firstname": "Mister",
+    "lastname": "Bean",
+    "image": "mrbean.jpg",
+    "createdAt": "2021-10-29T14:53:22+02:00",
+    "updatedAt": null,
+    "series": [
+      {
+        "id": 2,
+        "title": "The Big Bang Theory"
+      }
+    ]
+  }
+]
+```
+
+## URL Read: /api/v1/actors/id {GET}
+
+```json
+[  
+  {
+    "id": 2,
+    "firstname": "Mister",
+    "lastname": "Bean",
+    "image": "mrbean.jpg",
+    "createdAt": "2021-10-29T14:53:22+02:00",
+    "updatedAt": null,
+    "series": [
+      {
+        "id": 2,
+        "title": "The Big Bang Theory"
       }
     ]
   }
@@ -76,8 +225,7 @@
 ```
 
 # Genres:
-## URL Browse: /api/v1/genres
-## URL Read: /api/v1/genres/id
+## URL Browse: /api/v1/genres {GET}
 
 ```json
 [
@@ -89,7 +237,38 @@
     "series": [
       {
         "id": 1,
-        "title": "GoT"
+        "title": "Game of Thrones"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Reaction",
+    "createdAt": "2021-10-29T14:54:39+02:00",
+    "updatedAt": null,
+    "series": [
+      {
+        "id": 2,
+        "title": "The Big Bang Theory"
+      }
+    ]
+  }
+]
+```
+
+## URL Read: /api/v1/genres/id {GET}
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Action",
+    "createdAt": "2021-10-27T12:34:40+02:00",
+    "updatedAt": null,
+    "series": [
+      {
+        "id": 1,
+        "title": "Game of Thrones""
       }
     ]
   }
@@ -97,36 +276,191 @@
 ```
 
 # Season:
-## URL Browse: /api/v1/seasons
-## URL Read: /api/v1/seasons/id
+## URL Browse: /api/v1/seasons {GET}
+
 
 ```json
 [
   {
     "id": 2,
-    "seasonNumber": null,
-    "numberOfEpisodes": null,
+    "seasonNumber": 1,
+    "numberOfEpisodes": 15,
     "createdAt": "2021-10-27T12:38:45+02:00",
     "updatedAt": null,
     "series": {
       "id": 1,
-      "title": "GoT"
+      "title": "Game of Thrones"
+    }
+  },
+  {
+    "id": 3,
+    "seasonNumber": 1,
+    "numberOfEpisodes": 15,
+    "createdAt": "2021-10-29T11:09:55+02:00",
+    "updatedAt": null,
+    "series": {
+      "id": 2,
+      "title": "The Big Bang Theory"
+    }
+  },
+  {
+    "id": 4,
+    "seasonNumber": 2,
+    "numberOfEpisodes": 14,
+    "createdAt": "2021-10-29T11:12:51+02:00",
+    "updatedAt": null,
+    "series": {
+      "id": 2,
+      "title": "The Big Bang Theory"
+    }
+  }
+]
+```
+## URL Read: /api/v1/seasons/id {GET}
+
+
+```json
+[
+ {
+    "id": 4,
+    "seasonNumber": 2,
+    "numberOfEpisodes": 14,
+    "createdAt": "2021-10-29T11:12:51+02:00",
+    "updatedAt": null,
+    "series": {
+      "id": 2,
+      "title": "The Big Bang Theory"
     }
   }
 ]
 ```
 
-# Series:
-## URL Browse: /api/v1/series
-## URL Read: /api/v1/series/id
-
+# Userlist: 
+## URL Browse: /api/v1/userlists {GET}
 
 ```json
 [
   {
     "id": 1,
-    "title": "GoT",
-    "Synopsis": "gfvdgfdfgdfgds",
+    "seasonNb": 5,
+    "seriesNb": 1,
+    "episodeNb": 3,
+    "createdAt": "2021-10-27T12:40:34+02:00",
+    "updatedAt": null,
+    "type": 1,
+    "series": [
+      {
+        "id": 1,
+        "title": "Game of Thrones"
+      }
+    ],
+    "users": {
+      "id": 1,
+      "email": "tux@keskonmate.io"
+    }
+  },
+  {
+    "id": 2,
+    "seasonNb": 2,
+    "seriesNb": 2,
+    "episodeNb": 3,
+    "createdAt": "2021-10-27T15:31:06+02:00",
+    "updatedAt": null,
+    "type": 2,
+    "series": [
+      {
+        "id": 2,
+        "title": "The Big Bang Theory"
+      }
+    ],
+    "users": {
+      "id": 12,
+      "email": "nico@keskonmate.io"
+    }
+  }
+]
+```
+
+## URL Read: /api/v1/userlists/id {GET}
+
+```json
+[{
+    "id": 2,
+    "seasonNb": 2,
+    "seriesNb": 2,
+    "episodeNb": 3,
+    "createdAt": "2021-10-27T15:31:06+02:00",
+    "updatedAt": null,
+    "type": 2,
+    "series": [
+      {
+        "id": 2,
+        "title": "The Big Bang Theory"
+      }
+    ],
+    "users": {
+      "id": 12,
+      "email": "nico@keskonmate.io"
+    }
+  }
+]
+```
+
+## URL Edit: /api/v1/userlists/id {PUT}
+
+```json
+[
+  {
+    "seasonNb": 2
+  }
+]
+``` 
+ou
+```json
+[
+  {
+    "seriesNb": 2
+  }
+]
+```
+ou
+```json
+[
+  {
+    "seriesNb": 2,
+    "seasonNb": 2,
+    "type": 2,
+  }
+]
+```
+etc....
+
+
+## URL Add: /api/v1/userlists {POST}
+
+```json
+[{
+    "id": 2,
+    "seasonNb": 2,
+    "seriesNb": 2,
+    "episodeNb": 3,
+    "createdAt": "2021-10-27T15:31:06+02:00",
+    "updatedAt": null,
+    "type": 2,
+    "series": [],
+    "users": {}
+  }
+]
+```
+# Series:
+## URL Browse: /api/v1/series {GET}
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Game of Thrones",
+    "Synopsis": "Plein de gens meurent",
     "releaseDate": null,
     "image": "dfgfdg.jpg",
     "director": "",
@@ -142,7 +476,7 @@
     "season": [
       {
         "id": 2,
-        "seasonNumber": null
+        "seasonNumber": 1
       }
     ],
     "actor": [
@@ -153,50 +487,95 @@
         "image": "kreeves.jpg"
       }
     ]
+  },
+  {
+    "id": 2,
+    "title": "The Big Bang Theory",
+    "Synopsis": "Des geeks",
+    "releaseDate": null,
+    "image": null,
+    "director": "",
+    "numberOfSeasons": 1,
+    "createdAt": "2021-10-29T11:09:26+02:00",
+    "updatedAt": null,
+    "genre": [
+      {
+        "id": 2,
+        "name": "Reaction"
+      }
+    ],
+    "season": [
+      {
+        "id": 3,
+        "seasonNumber": 1
+      },
+      {
+        "id": 4,
+        "seasonNumber": 2
+      }
+    ],
+    "actor": [
+      {
+        "id": 1,
+        "firstname": "Keanu",
+        "lastname": "Reeves",
+        "image": "kreeves.jpg"
+      },
+      {
+        "id": 2,
+        "firstname": "Mister",
+        "lastname": "Bean",
+        "image": "mrbean.jpg"
+      }
+    ]
   }
 ]
 ```
 
-# Userlist: 
-## URL Browse: /api/v1/userlists {GET}
-## URL Read: /api/v1/userlists/id {GET}
-## URL Edit: /api/v1/userlists/id {PATCH}
-## URL Add: /api/v1/userlists {POST}
+## URL Read: /api/v1/series/id {GET}
 
 ```json
 [
   {
-    "id": 1,
-    "seasonNb": null,
-    "seriesNb": 1,
-    "episodeNb": null,
-    "createdAt": "2021-10-27T12:40:34+02:00",
+    "id": 2,
+    "title": "The Big Bang Theory",
+    "Synopsis": "Des geeks",
+    "releaseDate": null,
+    "image": null,
+    "director": "",
+    "numberOfSeasons": 1,
+    "createdAt": "2021-10-29T11:09:26+02:00",
     "updatedAt": null,
-    "type": 1,
-    "series": [
+    "genre": [
       {
-        "id": 1,
-        "title": "GoT"
+        "id": 2,
+        "name": "Reaction"
       }
     ],
-    "users": {
-      "id": 1,
-      "email": "tux@keskonmate.io"
-    }
-  },
-  {
-    "id": 2,
-    "seasonNb": 1,
-    "seriesNb": 1,
-    "episodeNb": 2,
-    "createdAt": "2021-10-27T15:31:06+02:00",
-    "updatedAt": null,
-    "type": 2,
-    "series": [],
-    "users": {
-      "id": 1,
-      "email": "tux@keskonmate.io"
-    }
+    "season": [
+      {
+        "id": 3,
+        "seasonNumber": 1
+      },
+      {
+        "id": 4,
+        "seasonNumber": 2
+      }
+    ],
+    "actor": [
+      {
+        "id": 1,
+        "firstname": "Keanu",
+        "lastname": "Reeves",
+        "image": "kreeves.jpg"
+      },
+      {
+        "id": 2,
+        "firstname": "Mister",
+        "lastname": "Bean",
+        "image": "mrbean.jpg"
+      }
+    ]
   }
 ]
 ```

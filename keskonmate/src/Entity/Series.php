@@ -132,8 +132,6 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_users_browse")
-     * @Groups("api_users_read")
      */
     private $genre;
 
@@ -152,8 +150,6 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_users_browse")
-     * @Groups("api_users_read")
      */
     private $actor;
 
