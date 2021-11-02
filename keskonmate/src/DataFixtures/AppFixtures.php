@@ -10,50 +10,48 @@ use DateTime;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use App\DataFixtures\GenreFixtures;
 
-class AppFixtures extends Fixture implements FixtureInterface,DependentFixtureInterface
+class AppFixtures extends Fixture implements FixtureInterface
 {
     public const GENRE_ID = "genre-";
     public const ACTOR_ID = "actor-";
+    public const SEASON_ID = "season-";
     
     public function load(ObjectManager $entityManager): void
     {
         $apiKey = "84c05081ccc468ff6d3235adc25d38b7";
-        
-        $tmdbGenreList = (object) json_decode(file_get_contents("https://api.themoviedb.org/3/genre/tv/list?api_key=$apiKey&language=fr-FR"));
 
         $createdAt = new DateTimeImmutable(date("H:i:s"));
 
-        foreach ($tmdbGenreList->genres as $k => $v) {
+        $addedSeriesId = [];
+
+        $tmdbGenreList = (object) json_decode(file_get_contents("https://api.themoviedb.org/3/genre/tv/list?api_key=$apiKey&language=fr-FR"));
+
+        foreach ($tmdbGenreList->genres as $k => $genreInfo) {
             $genre = new Genre();
             $entityManager->persist($genre);
         
-            $genre->setName($v->name);
+            $genre->setName($genreInfo->name);
             
             $genre->setCreatedAt($createdAt);
 
-            $this->addReference(self::GENRE_ID."$v->id", $genre);
-        } 
-        
+            $this->addReference(self::GENRE_ID."$genreInfo->id", $genre);
+        }
+
+        //genre "aucun genre" pour les série qui n'en n'ont pas
         $noGenre = new Genre();
         $entityManager->persist($noGenre);
-        $noGenre->setName("Aucun genre");
+        $noGenre->setName("Aucun Genre");
         $noGenre->setCreatedAt($createdAt);
         $this->addReference(self::GENRE_ID."-none", $noGenre);
-        $entityManager->flush();
-
-        $errorArray = [];
-        $addedSeriesId = [];
 
         for ($i=1; count($addedSeriesId) < 10; $i++) {
 
             $r = rand(20,35); 
             
             while(in_array($r, $addedSeriesId)){
-                $r = rand(20,35); 
+                $r = rand(1,300); 
             }
 
             $handle = curl_init("https://api.themoviedb.org/3/tv/$r?api_key=$apiKey&language=fr-FR");
@@ -62,7 +60,7 @@ class AppFixtures extends Fixture implements FixtureInterface,DependentFixtureIn
 
                 $seriesApiResponse = (object) json_decode(file_get_contents("https://api.themoviedb.org/3/tv/$r?api_key=$apiKey&language=fr-FR"));
                  
-                //creation series
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-Creation Series-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
                 $series = new Series();
                 $entityManager->persist($series);
 
@@ -82,14 +80,14 @@ class AppFixtures extends Fixture implements FixtureInterface,DependentFixtureIn
 
                 foreach($seriesApiResponse->genres as $key => $value){
                     $genreId = !isset($seriesApiResponse->genres[$key]->id) ? '-none' : $seriesApiResponse->genres[$key]->id;
-                    $series->addGenre($this->getReference(GenreFixtures::GENRE_ID."$genreId"));
+                    $series->addGenre($this->getReference(self::GENRE_ID."$genreId"));
                 }
                 
-                //creation Actor
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-Creation Actor-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
                 $handle = curl_init("https://api.themoviedb.org/3/tv/$r/credits?api_key=$apiKey&language=fr-FR");
                 if($this->checkApiUrlResponse($handle) == 200){
                     $seriessActorList = (object) json_decode(file_get_contents("https://api.themoviedb.org/3/tv/$r/credits?api_key=$apiKey&language=fr-FR"));
-                   
+                    
                     if(!empty($seriessActorList->cast)){
                         
                         foreach ($seriessActorList->cast as $key => $actorsInfo) {
@@ -108,64 +106,40 @@ class AppFixtures extends Fixture implements FixtureInterface,DependentFixtureIn
 
                             $this->addReference(self::ACTOR_ID."$actorsInfo->id", $actor);
                         }
+
+                        foreach ($seriessActorList->cast as $key => $value) {
+                            $actorId = $seriessActorList->cast[$key]->id;
+                            $series->addActor($this->getReference(self::ACTOR_ID."$actorId"));
+                        }
                     }
-                    
-                }else{
-                    dump($r);
+                }
+  
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-Creation Season-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+                if(!empty($seriesApiResponse->seasons)){                
+                    foreach($seriesApiResponse->seasons as $key => $seasonInfo){
+                        
+                        $season = new Season();
+                        $entityManager->persist($season);
+                        
+                        $season->setSeasonNumber($seasonInfo->season_number);
+                        
+                        $season->setNumberOfEpisodes($seasonInfo->episode_count);
+                        
+                        $season->setCreatedAt($createdAt);
+
+                        $this->addReference(self::SEASON_ID."$seasonInfo->id", $season);
+                    }
+
+                    foreach($seriesApiResponse->seasons as $key => $seasonInfo){
+                        $seasonId = $seriesApiResponse->seasons[$key]->id;
+                        $series->addSeason($this->getReference(self::SEASON_ID."$seasonId"));
+                    }
                 }
 
-                foreach ($seriessActorList->cast as $key => $value) {
-                    $actorId = !isset($seriessActorList->cast[$key]->id) ? '-none' : $seriessActorList->cast[$key]->id;
-                    $series->addActor($this->getReference(self::ACTOR_ID."$actorId"));
-                }
-                
-
-                
-                //creation season
-                $season = new Season();
-                $entityManager->persist($season);
-                
-                $season->setSeasonNumber(3);
-                
-                $season->setNumberOfEpisodes(23);
-                
-                $season->setCreatedAt($createdAt);
-
-
-
-
-
-
-
-
-
-                /* $entityManager->flush(); */
-
-                
-
-
-
-
-
-
-
-
-
-                /*//linking entities
-                $series->addSeason($season);
-                $series->addActor($actor);
-                
-                $actor->addSeries($series);
-                
-                $season->setSeries($series);
-    
-                $entityManager->flush();*/
+                $entityManager->flush();
                 array_push($addedSeriesId, $r);
             }             
-            
         }
-        dump($addedSeriesId);
-        dump(array_count_values($addedSeriesId));
     }
 
     public function checkApiUrlResponse($handle)
@@ -176,13 +150,6 @@ class AppFixtures extends Fixture implements FixtureInterface,DependentFixtureIn
         curl_close($handle);
 
         return $statusCode;
-    }
-
-    public function getDependencies()
-    {
-        return [
-            GenreFixtures::class,
-        ];
     }
 }
 
