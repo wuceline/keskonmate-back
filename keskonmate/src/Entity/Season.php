@@ -46,10 +46,16 @@ class Season
     private $numberOfEpisodes;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
      * @ORM\Column(type="datetime_immutable")
      * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * 
      */
     private $createdAt;
 
@@ -68,11 +74,6 @@ class Season
      * @Groups("api_seasons_read")
      */
     private $series;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image;
 
     public function getId(): ?int
     {
