@@ -17,12 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class SeriesController extends AbstractController
 {
     /**
-     * @Route("/backoffice/series", name="browse", methods={"GET"})
+     * @Route("", name="browse", methods={"GET"})
      */
     public function browse(SeriesRepository $seriesRepository): Response
     {
-        return $this->render('backoffice/season/browse.html.twig', [
-            'season_list' => $seriesRepository->findAll(),
+        return $this->render('backoffice/series/browse.html.twig', [
+            'series_list' => $seriesRepository->findAll(),
         ]);
     }
 
