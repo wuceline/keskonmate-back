@@ -10,6 +10,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
+ * 
+ * @UniqueEntity(fields={"name"})
  */
 class Genre
 {
@@ -30,7 +32,7 @@ class Genre
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, unique=true)
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
