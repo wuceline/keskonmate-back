@@ -128,7 +128,7 @@ class Series
     private $userlist;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series")
+     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series", cascade={"persist"})
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
@@ -148,7 +148,7 @@ class Series
     private $season;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="series")
+     * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="series", cascade={"persist"})
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")

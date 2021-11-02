@@ -64,7 +64,7 @@ class Genre
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="genre")
+     * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="genre", cascade={"persist"})
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
