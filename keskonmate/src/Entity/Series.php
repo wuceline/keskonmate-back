@@ -82,7 +82,7 @@ class Series
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
@@ -128,7 +128,7 @@ class Series
     private $userlist;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series")
+     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series", nullable=true)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
