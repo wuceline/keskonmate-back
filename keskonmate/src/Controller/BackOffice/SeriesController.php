@@ -3,6 +3,7 @@
 namespace App\Controller\BackOffice;
 
 use App\Entity\Series;
+use App\Form\SeriesType;
 use App\Repository\SeriesRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,9 +32,9 @@ class SeriesController extends AbstractController
      */
     public function read(Request $request, $id, SeriesRepository $seriesRepository): Response
     {       
-        $series = $seriesRepository->findOneWithInfosDQL($id); 
+        $series = $seriesRepository->find($id); 
 
-        $seriesForm = $this->createForm(SeasonType::class, $series, [
+        $seriesForm = $this->createForm(SeriesType::class, $series, [
             'disabled' => 'disabled'
         ]);
 

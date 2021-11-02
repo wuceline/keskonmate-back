@@ -59,7 +59,7 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      */
-    private $Synopsis;
+    private $synopsis;
 
     /**
      * @ORM\Column(type="date", nullable=false)
@@ -183,12 +183,12 @@ class Series
 
     public function getSynopsis(): ?string
     {
-        return $this->Synopsis;
+        return $this->synopsis;
     }
 
-    public function setSynopsis(string $Synopsis): self
+    public function setSynopsis(string $synopsis): self
     {
-        $this->Synopsis = $Synopsis;
+        $this->synopsis = $synopsis;
 
         return $this;
     }
