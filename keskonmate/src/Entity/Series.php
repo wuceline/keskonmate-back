@@ -128,8 +128,7 @@ class Series
     private $userlist;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series", nullable=true)
-     * 
+     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="series")
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
