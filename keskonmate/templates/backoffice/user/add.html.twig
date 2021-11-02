@@ -1,0 +1,52 @@
+{% extends 'backoffice/base.html.twig' %}
+
+{% block title %}
+    {% if page == 'create' %}
+    New User
+    {% else %}
+    User {{ user.username }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div> 
+        <a href="{{ url('backoffice_users_browse') }}" class="btn btn-primary" alt="List" title="List">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+    </a>  
+    </div>
+
+{{ include('_partials/_flash_messages.html.twig') }}
+<h1> 
+    {% if page == 'create' %}
+        New User
+    {% else %}
+        {# Update {{ user.pseudo }} #}
+    {% endif %}
+</h1>
+<div class="text-end">
+</div>
+
+{{ form_start(user_form) }}
+
+    {{ form_errors(user_form) }}
+    {{ form_row(user_form.email) }}
+    {{ form_row(user_form.username) }}
+    {{ form_row(user_form.password) }}
+    {{ form_row(user_form.roles) }}
+    {# {{ form_row(user_form.roles) }} #}
+
+    <button type="submit" class="btn btn-primary mt-4">
+    {% if 'backoffice_users_add' == app.request.get('_route') %}
+    Create
+    {% else %}
+    Update
+    {% endif %}
+    </button>
+
+{{ form_end(user_form) }} 
+
+</div>
+{% endblock %}
