@@ -82,7 +82,7 @@ class Series
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
