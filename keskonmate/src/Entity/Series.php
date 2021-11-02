@@ -59,7 +59,7 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      */
-    private $synopsis;
+    private $Synopsis;
 
     /**
      * @ORM\Column(type="date", nullable=false)
