@@ -70,7 +70,7 @@ class AppFixtures extends Fixture implements FixtureInterface
 
                 $series->setReleaseDate(new DateTimeImmutable($seriesApiResponse->first_air_date));
 
-                $series->setImage('https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'.$seriesApiResponse->backdrop_path);
+                $series->setImage(empty($seriesApiResponse->backdrop_path) ? '' : 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'.$seriesApiResponse->backdrop_path);
 
                 $series->setDirector(!isset($seriesApiResponse->created_by[0]->name) ? '' : $seriesApiResponse->created_by[0]->name);
 
@@ -124,6 +124,8 @@ class AppFixtures extends Fixture implements FixtureInterface
                         $season->setSeasonNumber($seasonInfo->season_number);
                         
                         $season->setNumberOfEpisodes($seasonInfo->episode_count);
+
+                        $season->setImage(empty($seasonInfo->poster_path) ? '' : "https://www.themoviedb.org/t/p/w130_and_h195_bestv2$seasonInfo->poster_path");
                         
                         $season->setCreatedAt($currentDateTime);
 
