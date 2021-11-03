@@ -6,7 +6,7 @@
   {
     "id": 1,
     "email": "tux@keskonmate.io",
-    "username": "tux@keskonmate.io",
+    "userNickname": "Tux",
     "createdAt": "2021-10-27T12:09:27+02:00",
     "updatedAt": null,
     "userlist": [
@@ -22,7 +22,7 @@
           {
             "id": 1,
             "title": "Game of Thrones",
-            "Synopsis": "Plein de gens meurent",
+            "synopsis": "Plein de gens meurent",
             "releaseDate": null,
             "image": "dfgfdg.jpg",
             "director": "",
@@ -43,7 +43,7 @@
   {
     "id": 12,
     "email": "nico@keskonmate.io",
-    "username": "nico@keskonmate.io",
+    "userNickname": "Nico",
     "createdAt": "2021-10-27T15:31:06+02:00",
     "updatedAt": null,
     "userlist": [
@@ -59,7 +59,7 @@
           {
             "id": 2,
             "title": "The Big Bang Theory",
-            "Synopsis": "Des geeks",
+            "synopsis": "Des geeks",
             "releaseDate": null,
             "image": null,
             "director": "",
@@ -89,7 +89,7 @@
 {
   "id": 1,
   "email": "tux@keskonmate.io",
-  "username": "tux@keskonmate.io",
+  "userNickname": "Tux",
   "createdAt": "2021-10-27T12:09:27+02:00",
   "updatedAt": null,
   "userlist": [
@@ -105,7 +105,7 @@
         {
           "id": 1,
           "title": "Game of Thrones",
-          "Synopsis": "Plein de gens meurent",
+          "synopsis": "Plein de gens meurent",
           "releaseDate": null,
           "image": "dfgfdg.jpg",
           "director": "",
@@ -129,7 +129,7 @@
 
 ```json
 {
-	"username": "Tux"
+	"userNickname": "Tux"
 }
 ```
 ou
@@ -142,7 +142,7 @@ ou
 ```json
 {
 	"email": "Tux@oclock.io",
-  "username": "Tux"
+  "userNickname": "Tux"
 }
 ```
 etc ...
@@ -154,7 +154,7 @@ etc ...
   "email": "exemple@keskonmate.io",
 	"roles": ["ROLE_UTILISATEUR"],
 	"password": "mot de passe",
-  "username": "John Doe",
+  "userNickname": "John Doe",
   "createdAt": "2021-10-27T15:31:06+02:00",
   "updatedAt": null
 }
@@ -170,8 +170,7 @@ etc ...
 [
   {
     "id": 1,
-    "firstname": "Keanu",
-    "lastname": "Reeves",
+    "name": "Keanu Reeves",
     "image": "kreeves.jpg",
     "createdAt": "2021-10-27T12:10:49+02:00",
     "updatedAt": null,
@@ -188,8 +187,7 @@ etc ...
   },
   {
     "id": 2,
-    "firstname": "Mister",
-    "lastname": "Bean",
+    "name": "Mister Bean",
     "image": "mrbean.jpg",
     "createdAt": "2021-10-29T14:53:22+02:00",
     "updatedAt": null,
@@ -209,8 +207,7 @@ etc ...
 [  
   {
     "id": 2,
-    "firstname": "Mister",
-    "lastname": "Bean",
+    "name": "Mister Bean",
     "image": "mrbean.jpg",
     "createdAt": "2021-10-29T14:53:22+02:00",
     "updatedAt": null,
@@ -285,6 +282,7 @@ etc ...
     "id": 2,
     "seasonNumber": 1,
     "numberOfEpisodes": 15,
+    "image": "image.jpg",
     "createdAt": "2021-10-27T12:38:45+02:00",
     "updatedAt": null,
     "series": {
@@ -296,6 +294,7 @@ etc ...
     "id": 3,
     "seasonNumber": 1,
     "numberOfEpisodes": 15,
+    "image": "image.jpg",
     "createdAt": "2021-10-29T11:09:55+02:00",
     "updatedAt": null,
     "series": {
@@ -307,6 +306,7 @@ etc ...
     "id": 4,
     "seasonNumber": 2,
     "numberOfEpisodes": 14,
+    "image": "image.jpg",
     "createdAt": "2021-10-29T11:12:51+02:00",
     "updatedAt": null,
     "series": {
@@ -325,6 +325,7 @@ etc ...
     "id": 4,
     "seasonNumber": 2,
     "numberOfEpisodes": 14,
+    "image": "image.jpg",
     "createdAt": "2021-10-29T11:12:51+02:00",
     "updatedAt": null,
     "series": {
@@ -460,7 +461,7 @@ etc....
   {
     "id": 1,
     "title": "Game of Thrones",
-    "Synopsis": "Plein de gens meurent",
+    "synopsis": "Plein de gens meurent",
     "releaseDate": null,
     "image": "dfgfdg.jpg",
     "director": "",
@@ -482,8 +483,7 @@ etc....
     "actor": [
       {
         "id": 1,
-        "firstname": "Keanu",
-        "lastname": "Reeves",
+        "name": "Keanu Reeves",
         "image": "kreeves.jpg"
       }
     ]
@@ -491,7 +491,7 @@ etc....
   {
     "id": 2,
     "title": "The Big Bang Theory",
-    "Synopsis": "Des geeks",
+    "synopsis": "Des geeks",
     "releaseDate": null,
     "image": null,
     "director": "",
@@ -517,14 +517,12 @@ etc....
     "actor": [
       {
         "id": 1,
-        "firstname": "Keanu",
-        "lastname": "Reeves",
+        "name": "Keanu Reeves",
         "image": "kreeves.jpg"
       },
       {
         "id": 2,
-        "firstname": "Mister",
-        "lastname": "Bean",
+        "name": "Mister Bean",
         "image": "mrbean.jpg"
       }
     ]
@@ -539,7 +537,7 @@ etc....
   {
     "id": 2,
     "title": "The Big Bang Theory",
-    "Synopsis": "Des geeks",
+    "synopsis": "Des geeks",
     "releaseDate": null,
     "image": null,
     "director": "",
@@ -565,14 +563,12 @@ etc....
     "actor": [
       {
         "id": 1,
-        "firstname": "Keanu",
-        "lastname": "Reeves",
+        "name": "Keanu Reeves",
         "image": "kreeves.jpg"
       },
       {
         "id": 2,
-        "firstname": "Mister",
-        "lastname": "Bean",
+        "name": "Mister Bean",
         "image": "mrbean.jpg"
       }
     ]
