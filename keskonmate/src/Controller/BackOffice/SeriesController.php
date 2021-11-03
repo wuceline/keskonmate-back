@@ -78,7 +78,7 @@ class SeriesController extends AbstractController
     {
         $series = new Series();
 
-        $seriesForm = $this->createForm(GenreType::class, $series);
+        $seriesForm = $this->createForm(SeriesType::class, $series);
         $seriesForm->handleRequest($request);
 
         if ($seriesForm->isSubmitted() && $seriesForm->isValid()) {
