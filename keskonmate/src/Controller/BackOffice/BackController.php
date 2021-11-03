@@ -12,11 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("", name="homepage")
      */
     public function index(): Response
     {
-        return $this->render('backoffice/base.html.twig', [
+        return $this->render('backoffice/back/main.html.twig', [
             'controller_name' => 'BackController',
         ]);
     }

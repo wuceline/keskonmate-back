@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -83,10 +84,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $userlist;
 
     public function __construct()
-    {
+    {        
+        $this->updatedAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
         $this->userlist = new ArrayCollection();
     }
-    
+
+    public function __toString() {
+        return $this->username;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

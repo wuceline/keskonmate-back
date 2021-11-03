@@ -46,10 +46,16 @@ class Season
     private $numberOfEpisodes;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
      * @ORM\Column(type="datetime_immutable")
      * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")
+     * 
      */
     private $createdAt;
 
@@ -130,6 +136,18 @@ class Season
     public function setSeries(?Series $series): self
     {
         $this->series = $series;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/actor", name="backoffice_actor_") 
+ * @Route("/backoffice/actors", name="backoffice_actors_") 
  */
 class ActorController extends AbstractController
 {
     /**
-     * @Route("/backoffice/actor", name="browse", methods={"GET"})
+     * @Route("", name="browse", methods={"GET"})
      */
     public function browse(ActorRepository $actorRepository): Response
     {

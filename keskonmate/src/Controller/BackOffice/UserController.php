@@ -3,6 +3,7 @@
 namespace App\Controller\BackOffice;
 
 use App\Entity\User;
+use App\Form\UserType;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,12 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/user", name="backoffice_user_") 
+ * @Route("/backoffice/users", name="backoffice_users_") 
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/backoffice/user", name="browse", methods={"GET"})
+     * @Route("", name="browse", methods={"GET"})
      */
     public function browse(UserRepository $userRepository): Response
     {
@@ -31,9 +32,9 @@ class UserController extends AbstractController
      */
     public function read(Request $request, $id, UserRepository $userRepository): Response
     {       
-        $user = $userRepository->findOneWithInfosDQL($id); 
+        $user = $userRepository->find($id); 
 
-        $userForm = $this->createForm(SeasonType::class, $user, [
+        $userForm = $this->createForm(UserType::class, $user, [
             'disabled' => 'disabled'
         ]);
 
@@ -60,7 +61,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', "User `{$user->getUserIdentifier()}` udpated successfully");
 
-            return $this->redirectToRoute('backoffice_user_browse');
+            return $this->redirectToRoute('backoffice_users_browse');
         }
 
         return $this->render('backoffice/user/add.html.twig', [
@@ -90,7 +91,7 @@ class UserController extends AbstractController
             $this->addFlash('success', "User `{$user->getUserIdentifier()}` created successfully");
 
             // redirection
-            return $this->redirectToRoute('backoffice_user_browse');
+            return $this->redirectToRoute('backoffice_users_browse');
         }
 
         return $this->render('backoffice/user/add.html.twig', [
@@ -109,6 +110,6 @@ class UserController extends AbstractController
         $entityManager->remove($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute('backoffice_user_browse');
+        return $this->redirectToRoute('backoffice_users_browse');
     }
 }

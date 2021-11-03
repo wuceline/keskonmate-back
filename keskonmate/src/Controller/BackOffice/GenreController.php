@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/genre", name="backoffice_genre_") 
+ * @Route("/backoffice/genres", name="backoffice_genres_") 
  */
 class GenreController extends AbstractController
 {
     /**
-     * @Route("/backoffice/genre", name="browse", methods={"GET"})
+     * @Route("", name="browse", methods={"GET"})
      */
     public function browse(GenreRepository $genreRepository): Response
     {

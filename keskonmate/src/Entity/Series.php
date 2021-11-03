@@ -59,10 +59,10 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      */
-    private $Synopsis;
+    private $synopsis;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="date", nullable=false)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
@@ -82,7 +82,7 @@ class Series
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
@@ -184,12 +184,12 @@ class Series
 
     public function getSynopsis(): ?string
     {
-        return $this->Synopsis;
+        return $this->synopsis;
     }
 
-    public function setSynopsis(string $Synopsis): self
+    public function setSynopsis(string $synopsis): self
     {
-        $this->Synopsis = $Synopsis;
+        $this->synopsis = $synopsis;
 
         return $this;
     }

@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/season", name="backoffice_season_") 
+ * @Route("/backoffice/seasons", name="backoffice_seasons_") 
  */
 class SeasonController extends AbstractController
 {
     /**
-     * @Route("/backoffice/season", name="browse", methods={"GET"})
+     * @Route("", name="browse", methods={"GET"})
      */
     public function browse(SeasonRepository $seasonRepository): Response
     {
