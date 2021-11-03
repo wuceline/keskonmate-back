@@ -22,8 +22,8 @@ class AppFixtures extends Fixture implements FixtureInterface
     {
         $apiKey = "84c05081ccc468ff6d3235adc25d38b7";
 
-        $createdAt = new DateTimeImmutable(date("H:i:s"));
-
+        $currentDateTime = new DateTimeImmutable(date("H:i:s"));
+        
         $addedSeriesId = [];
 
         $tmdbGenreList = (object) json_decode(file_get_contents("https://api.themoviedb.org/3/genre/tv/list?api_key=$apiKey&language=fr-FR"));
@@ -34,7 +34,7 @@ class AppFixtures extends Fixture implements FixtureInterface
         
             $genre->setName($genreInfo->name);
             
-            $genre->setCreatedAt($createdAt);
+            $genre->setCreatedAt($currentDateTime);
 
             $this->addReference(self::GENRE_ID."$genreInfo->id", $genre);
         }
@@ -43,7 +43,7 @@ class AppFixtures extends Fixture implements FixtureInterface
         $noGenre = new Genre();
         $entityManager->persist($noGenre);
         $noGenre->setName("Aucun Genre");
-        $noGenre->setCreatedAt($createdAt);
+        $noGenre->setCreatedAt($currentDateTime);
         $this->addReference(self::GENRE_ID."-none", $noGenre);
 
         for ($i=1; count($addedSeriesId) < 10; $i++) {
@@ -76,7 +76,7 @@ class AppFixtures extends Fixture implements FixtureInterface
 
                 $series->setNumberOfSeasons($seriesApiResponse->number_of_seasons);
 
-                $series->setCreatedAt($createdAt);
+                $series->setCreatedAt($currentDateTime);
 
                 foreach($seriesApiResponse->genres as $key => $value){
                     $genreId = !isset($seriesApiResponse->genres[$key]->id) ? '-none' : $seriesApiResponse->genres[$key]->id;
@@ -102,7 +102,7 @@ class AppFixtures extends Fixture implements FixtureInterface
                             
                             $actor->setImage(empty($actorsInfo->profile_path) ? '' : "https://www.themoviedb.org/t/p/w138_and_h175_face$actorsInfo->profile_path");
                             
-                            $actor->setCreatedAt($createdAt);
+                            $actor->setCreatedAt($currentDateTime);
 
                             $this->addReference(self::ACTOR_ID."$actorsInfo->id", $actor);
                         }
@@ -125,7 +125,7 @@ class AppFixtures extends Fixture implements FixtureInterface
                         
                         $season->setNumberOfEpisodes($seasonInfo->episode_count);
                         
-                        $season->setCreatedAt($createdAt);
+                        $season->setCreatedAt($currentDateTime);
 
                         $this->addReference(self::SEASON_ID."$seasonInfo->id", $season);
                     }
