@@ -52,12 +52,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=255)
      * 
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      */
-    private $username;
+    private $userNickname;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -82,6 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups("api_users_read")
      */
     private $userlist;
+
 
     public function __construct()
     {        
@@ -183,13 +184,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -240,6 +234,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $userlist->setUsers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserNickname(): ?string
+    {
+        return $this->userNickname;
+    }
+
+    public function setUserNickname(string $userNickname): self
+    {
+        $this->userNickname = $userNickname;
 
         return $this;
     }

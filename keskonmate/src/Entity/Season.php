@@ -47,6 +47,9 @@ class Season
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Groups("api_seasons_browse")
+     * @Groups("api_seasons_read")
      */
     private $image;
 
