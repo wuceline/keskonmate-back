@@ -2,9 +2,9 @@
 
 {% block title %}
     {% if page == 'create' %}
-    Creer un acteur
+        Creer un acteur
     {% else %}
-    {{ actor.firstname }} {{ actor.lastname }}
+        {{ actor_form.name }}
     {% endif %}
 {% endblock %}
 
@@ -17,7 +17,8 @@
     {% if page == 'create' %}
         Creer un acteur
     {% else %}
-        Mettre a jour {{ actor.firstname }} {{ actor.lastname }}
+        Mettre a jour {{ actor_form.name }}
+
     {% endif %}
 </h1>
 <div> 
@@ -31,8 +32,7 @@
 {{ form_start(actor_form) }}
 
     {{ form_errors(actor_form) }}
-    {{ form_row(actor_form.firstname) }}
-    {{ form_row(actor_form.lastname) }}
+    {{ form_row(actor_form.name) }}
     {{ form_row(actor_form.series) }}
     {{ form_row(actor_form.image) }}
     {{ form_row(actor_form.createdAt) }}

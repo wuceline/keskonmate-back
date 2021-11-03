@@ -27,7 +27,7 @@ class UserType extends AbstractType
                 'first_options'  => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat Password'],
             ])
-            ->add('username', TextType::class)
+            ->add('userNickname', TextType::class)
             ->add('roles', ChoiceType::class, [
                 "label" => "Roles",
                 'choices' => [

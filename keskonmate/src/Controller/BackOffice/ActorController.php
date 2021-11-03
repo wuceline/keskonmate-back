@@ -59,7 +59,7 @@ class ActorController extends AbstractController
             $actor->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Actor `{$actor->getFirstname()} {$actor->getLastname()}` udpated successfully");
+            $this->addFlash('success', "Actor `{$actor->getName()}` udpated successfully");
 
             return $this->redirectToRoute('backoffice_actors_browse');
         }
@@ -88,7 +88,7 @@ class ActorController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Actor `{$actor->getFirstname()} {$actor->getLastname()}` created successfully");
+            $this->addFlash('success', "Actor `{$actor->getName()}` created successfully");
 
             // redirection
             return $this->redirectToRoute('backoffice_actors_browse');

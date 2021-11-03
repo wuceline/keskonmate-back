@@ -15,8 +15,7 @@ class ActorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
+            ->add('name')
             ->add('image')
             ->add('series', EntityType::class, [
                 'class' => Series::class,
