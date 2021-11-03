@@ -35,9 +35,9 @@
     <tr>
       <th scope="row">{{ series.id }}</th>
       <td>{{ series.title }}</td>
-      <td>{{ series.synopsis }}</td>
+      <td>{{ series.synopsis|slice(0, 70) }}...</td>
       <td>{{ series.releaseDate|date }}</td>
-      <td>{{ series.image }}</td>
+      <td><a href="{{ series.image }}">image</a></td>
       <td>{{ series.director }}</td>
       <td>{{ series.numberOfSeasons }}</td>
       <td>
