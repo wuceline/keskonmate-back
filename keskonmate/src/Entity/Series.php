@@ -52,7 +52,7 @@ class Series
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
@@ -62,7 +62,7 @@ class Series
     private $synopsis;
 
     /**
-     * @ORM\Column(type="date", nullable=false)
+     * @ORM\Column(type="date", nullable=true)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
@@ -92,7 +92,7 @@ class Series
     private $director;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")

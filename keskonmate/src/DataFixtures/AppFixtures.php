@@ -96,9 +96,7 @@ class AppFixtures extends Fixture implements FixtureInterface
                             $actor = new Actor();
                             $entityManager->persist($actor);
                             
-                            $actor->setFirstname($actorsInfo->name);
-                            
-                            $actor->setLastname('');
+                            $actor->setName($actorsInfo->name);
                             
                             $actor->setImage(empty($actorsInfo->profile_path) ? '' : "https://www.themoviedb.org/t/p/w138_and_h175_face$actorsInfo->profile_path");
                             
