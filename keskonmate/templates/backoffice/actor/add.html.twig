@@ -4,7 +4,7 @@
     {% if page == 'create' %}
         Creer un acteur
     {% else %}
-        {{ actor_form.name }}
+        {{ actor.name }}
     {% endif %}
 {% endblock %}
 
@@ -17,7 +17,7 @@
     {% if page == 'create' %}
         Creer un acteur
     {% else %}
-        Mettre a jour {{ actor_form.name }}
+        Mettre a jour {{ actor.name }}
 
     {% endif %}
 </h1>
