@@ -84,6 +84,11 @@ class Actor
         $this->series = new ArrayCollection();
     }
 
+    public function __toString() 
+    {
+        return $this->lastname;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
