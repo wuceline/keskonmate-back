@@ -3,6 +3,7 @@
 namespace App\Controller\BackOffice;
 
 use App\Entity\Genre;
+use App\Form\GenreType;
 use App\Repository\GenreRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,7 +32,7 @@ class GenreController extends AbstractController
      */
     public function read(Request $request, $id, GenreRepository $genreRepository): Response
     {       
-        $genre = $genreRepository->findOneWithInfosDQL($id); 
+        $genre = $genreRepository->find($id); 
 
         $genreForm = $this->createForm(GenreType::class, $genre, [
             'disabled' => 'disabled'
@@ -104,11 +105,11 @@ class GenreController extends AbstractController
      */
     public function delete(Genre $genre, EntityManagerInterface $entityManager): Response
     {
-        $this->addFlash('success', "Genre {$genre->getId()} deleted");
+        $this->addFlash('success', "Genre {$genre->getName()} deleted");
 
         $entityManager->remove($genre);
         $entityManager->flush();
 
-        return $this->redirectToRoute('backoffice_genre_browse');
+        return $this->redirectToRoute('backoffice_genres_browse');
     }
 }

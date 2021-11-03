@@ -27,7 +27,7 @@ class UserType extends AbstractType
                 'first_options'  => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat Password'],
             ])
-            ->add('username', TextType::class)
+            ->add('userNickname', TextType::class)
             ->add('roles', ChoiceType::class, [
                 "label" => "Roles",
                 'choices' => [
@@ -41,6 +41,7 @@ class UserType extends AbstractType
             ])
             ->add('createdAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',
+                'disabled' => 'disabled'
             ])
             ->add('updatedAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',

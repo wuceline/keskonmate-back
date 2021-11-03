@@ -2,8 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Actor;
+use App\Entity\Genre;
 use App\Entity\Series;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,16 +17,32 @@ class SeriesType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('Synopsis')
+            ->add('Synopsis', null, [
+                "label" => "Synopsis",
+            ])
             ->add('releaseDate')
             ->add('image')
             ->add('director')
             ->add('numberOfSeasons')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('userlist')
-            ->add('genre')
-            ->add('actor')
+            ->add('genre', EntityType::class, [
+                'class' => Genre::class,
+                'label' => "Genres",
+                'multiple' => true,
+                'expanded' => true,
+            ])
+            ->add('actor', EntityType::class, [
+                'class' => Actor::class,
+                'label' => "Actors",
+                'multiple' => true,
+                'expanded' => true,
+            ])
+            ->add('createdAt', DateTimeType::class, [
+                'input'  => 'datetime_immutable',
+                'disabled' => 'disabled'
+            ])
+            ->add('updatedAt', DateTimeType::class, [
+                'input'  => 'datetime_immutable',
+            ])
         ;
     }
 

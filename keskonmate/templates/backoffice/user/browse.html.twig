@@ -6,7 +6,7 @@
 <div class="container">
 {{ include('_partials/_flash_messages.html.twig') }}
 
-<h1>Liste des Utilisateurs</h1>
+<h1>Utilisateurs</h1>
 
 <div> 
     <a href="{{ url('backoffice_users_add') }}" class="btn btn-success" title="Add" alt="Add">
@@ -30,7 +30,7 @@
 {% for user in user_list %}
     <tr>
       <th scope="row">{{ user.id }}</th>
-      <td>{{ user.username }}</td>
+      <td>{{ user.userNickname }}</td>
       <td>{{ user.email }}</td>      
       <td>
         <a class="btn btn-success" href="{{ url('backoffice_users_read', {"id": user.id}) }}" title="Read" alt="Read">

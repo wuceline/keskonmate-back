@@ -32,7 +32,7 @@ class ActorController extends AbstractController
      */
     public function read(Request $request, $id, ActorRepository $actorRepository): Response
     {       
-        $actor = $actorRepository->findOneWithInfosDQL($id); 
+        $actor = $actorRepository->find($id); 
 
         $actorForm = $this->createForm(ActorType::class, $actor, [
             'disabled' => 'disabled'
@@ -59,9 +59,9 @@ class ActorController extends AbstractController
             $actor->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Actor `{$actor->getFirstname()}` `{$actor->getLastname()}` udpated successfully");
+            $this->addFlash('success', "Actor `{$actor->getName()}` udpated successfully");
 
-            return $this->redirectToRoute('backoffice_actor_browse');
+            return $this->redirectToRoute('backoffice_actors_browse');
         }
 
         return $this->render('backoffice/actor/add.html.twig', [
@@ -88,10 +88,10 @@ class ActorController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Actor `{$actor->getFirstname()}` `{$actor->getLastname()}` created successfully");
+            $this->addFlash('success', "Actor `{$actor->getName()}` created successfully");
 
             // redirection
-            return $this->redirectToRoute('backoffice_actor_browse');
+            return $this->redirectToRoute('backoffice_actors_browse');
         }
 
         return $this->render('backoffice/actor/add.html.twig', [
@@ -110,6 +110,6 @@ class ActorController extends AbstractController
         $entityManager->remove($actor);
         $entityManager->flush();
 
-        return $this->redirectToRoute('backoffice_actor_browse');
+        return $this->redirectToRoute('backoffice_actors_browse');
     }
 }

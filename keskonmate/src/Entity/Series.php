@@ -154,6 +154,8 @@ class Series
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
      */
     private $actor;
 
@@ -163,6 +165,11 @@ class Series
         $this->genre = new ArrayCollection();
         $this->season = new ArrayCollection();
         $this->actor = new ArrayCollection();
+    }
+
+    public function __toString() 
+    {
+        return $this->title . ' (' . $this->id . ')';
     }
 
     public function getId(): ?int

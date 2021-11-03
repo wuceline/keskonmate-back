@@ -3,6 +3,7 @@
 namespace App\Controller\BackOffice;
 
 use App\Entity\Series;
+use App\Form\SeriesType;
 use App\Repository\SeriesRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,9 +32,9 @@ class SeriesController extends AbstractController
      */
     public function read(Request $request, $id, SeriesRepository $seriesRepository): Response
     {       
-        $series = $seriesRepository->findOneWithInfosDQL($id); 
+        $series = $seriesRepository->find($id); 
 
-        $seriesForm = $this->createForm(SeasonType::class, $series, [
+        $seriesForm = $this->createForm(SeriesType::class, $series, [
             'disabled' => 'disabled'
         ]);
 
@@ -58,7 +59,7 @@ class SeriesController extends AbstractController
             $series->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Series`{$series->getTitle()}` udpated successfully");
+            $this->addFlash('success', "Series` {$series->getTitle()}` udpated successfully");
 
             return $this->redirectToRoute('backoffice_series_browse');
         }
@@ -77,7 +78,7 @@ class SeriesController extends AbstractController
     {
         $series = new Series();
 
-        $seriesForm = $this->createForm(GenreType::class, $series);
+        $seriesForm = $this->createForm(SeriesType::class, $series);
         $seriesForm->handleRequest($request);
 
         if ($seriesForm->isSubmitted() && $seriesForm->isValid()) {
@@ -87,7 +88,7 @@ class SeriesController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Series`{$series->getTitle()}` created successfully");
+            $this->addFlash('success', "Series` {$series->getTitle()}` created successfully");
 
             // redirection
             return $this->redirectToRoute('backoffice_series_browse');

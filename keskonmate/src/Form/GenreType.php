@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Genre;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +14,14 @@ class GenreType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('series')
+            ->add('createdAt', DateTimeType::class, [
+                'input'  => 'datetime_immutable',
+                'disabled' => 'disabled'
+            ])
+            ->add('updatedAt', DateTimeType::class, [
+                'input'  => 'datetime_immutable',
+            ])
         ;
     }
 

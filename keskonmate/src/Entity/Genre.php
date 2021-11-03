@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -76,6 +77,11 @@ class Genre
     public function __construct()
     {
         $this->series = new ArrayCollection();
+    }
+
+    public function __toString() 
+    {
+        return $this->name . ' (' . $this->id . ')';
     }
 
     public function getId(): ?int
