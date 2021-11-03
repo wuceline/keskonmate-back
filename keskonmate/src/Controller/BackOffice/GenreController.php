@@ -105,11 +105,11 @@ class GenreController extends AbstractController
      */
     public function delete(Genre $genre, EntityManagerInterface $entityManager): Response
     {
-        $this->addFlash('success', "Genre {$genre->getId()} deleted");
+        $this->addFlash('success', "Genre {$genre->getName()} deleted");
 
         $entityManager->remove($genre);
         $entityManager->flush();
 
-        return $this->redirectToRoute('backoffice_genre_browse');
+        return $this->redirectToRoute('backoffice_genres_browse');
     }
 }
