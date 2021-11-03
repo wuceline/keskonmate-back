@@ -77,7 +77,7 @@ class Actor
 
     public function __toString() 
     {
-        return $this->lastname;
+        return $this->name;
     }
 
     public function getId(): ?int
