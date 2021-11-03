@@ -59,7 +59,7 @@ class SeriesController extends AbstractController
             $series->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Series`{$series->getTitle()}` udpated successfully");
+            $this->addFlash('success', "Series` {$series->getTitle()}` udpated successfully");
 
             return $this->redirectToRoute('backoffice_series_browse');
         }
@@ -88,7 +88,7 @@ class SeriesController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Series`{$series->getTitle()}` created successfully");
+            $this->addFlash('success', "Series` {$series->getTitle()}` created successfully");
 
             // redirection
             return $this->redirectToRoute('backoffice_series_browse');
