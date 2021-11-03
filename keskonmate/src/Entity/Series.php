@@ -164,6 +164,11 @@ class Series
         $this->actor = new ArrayCollection();
     }
 
+    public function __toString() 
+    {
+        return $this->title . ' (' . $this->id . ')';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

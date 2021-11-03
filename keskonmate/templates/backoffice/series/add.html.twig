@@ -2,9 +2,9 @@
 
 {% block title %}
     {% if page == 'edit' %}
-    Creer une serie
+        {{ series.title }}        
     {% else %}
-     {# {{ user.username }} #}
+        Creer une serie
     {% endif %}
 {% endblock %}
 
@@ -21,7 +21,7 @@
 {{ include('_partials/_flash_messages.html.twig') }}
 <h1> 
     {% if page == 'edit' %}
-        Mettre a jour
+        Mettre a jour {{ series.title }}
     {% else %}
         Creer une nouvelle serie
     {% endif %}
@@ -45,7 +45,7 @@
 
 
     <button type="submit" class="btn btn-primary mt-4">
-    {% if 'backoffice_users_add' == app.request.get('_route') %}
+    {% if 'backoffice_series_add' == app.request.get('_route') %}
     Create
     {% else %}
     Update
