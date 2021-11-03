@@ -41,6 +41,7 @@ class UserType extends AbstractType
             ])
             ->add('createdAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',
+                'disabled' => 'disabled'
             ])
             ->add('updatedAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',

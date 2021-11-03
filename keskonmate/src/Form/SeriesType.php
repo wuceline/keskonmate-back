@@ -17,20 +17,22 @@ class SeriesType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('Synopsis')
+            ->add('Synopsis', null, [
+                "label" => "Synopsis",
+            ])
             ->add('releaseDate')
             ->add('image')
             ->add('director')
             ->add('numberOfSeasons')
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,
-                'label' => "Roles",
+                'label' => "Genres",
                 'multiple' => true,
                 'expanded' => true,
             ])
             ->add('actor', EntityType::class, [
                 'class' => Actor::class,
-                'label' => "Roles",
+                'label' => "Actors",
                 'multiple' => true,
                 'expanded' => true,
             ])

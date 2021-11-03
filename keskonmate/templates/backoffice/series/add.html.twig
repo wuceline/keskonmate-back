@@ -32,7 +32,17 @@
 {{ form_start(series_form) }}
 
     {{ form_errors(series_form) }}
-    {# {{ form_row(user_form.email) }} #}
+    {{ form_row(series_form.title) }}
+    {{ form_row(series_form.Synopsis) }}
+    {{ form_row(series_form.releaseDate) }}
+    {{ form_row(series_form.image) }}
+    {{ form_row(series_form.director) }}
+    {{ form_row(series_form.numberOfSeasons) }}
+    {{ form_row(series_form.actor) }}
+    {{ form_row(series_form.genre) }}
+    {{ form_row(series_form.createdAt) }}
+    {{ form_row(series_form.updatedAt) }}
+
 
     <button type="submit" class="btn btn-primary mt-4">
     {% if 'backoffice_users_add' == app.request.get('_route') %}
