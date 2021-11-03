@@ -72,7 +72,7 @@ class Actor
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="actor")
+     * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="actor", cascade={"persist"})
      * 
      * @Groups("api_actors_browse")
      * @Groups("api_actors_read")
