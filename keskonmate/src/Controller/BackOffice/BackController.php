@@ -15,20 +15,12 @@ class BackController extends AbstractController
     /**
      * @Route("", name="homepage")
      */
-    public function index(): Response
+    public function index(SeriesRepository $seriesRepository): Response
     {
-        return $this->render('backoffice/homeorder/browse.html.twig', [
-            'controller_name' => 'BackController',
-        ]);
-    }
+        $homeOrder = $seriesRepository->findAllByHomeOrder();
 
-    /**
-     * @Route("", name="browse", methods={"GET"})
-     */
-    public function browse(SeriesRepository $seriesRepository): Response
-    {
         return $this->render('backoffice/homeorder/browse.html.twig', [
-            'allseries' => $seriesRepository->findAll(),
+            'series_list' => $homeOrder,
         ]);
-    }
+    }  
 }
