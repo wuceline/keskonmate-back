@@ -45,11 +45,11 @@ class SeriesRepository extends ServiceEntityRepository
      * Récupère tous les titres et homeOrder des series
      * @return Series
      */
-    public function findAllWithNameandHomeOrder() :array
+    public function findAllWithTitleandHomeOrder() :array
     {
         $entityManager = $this->getEntityManager();
 
-        $dqlQuery = " SELECT s.title, s.homeOrder 
+        $dqlQuery = " SELECT s.id, s.title, s.homeOrder 
                     FROM App\Entity\Series s ";
 
         $query = $entityManager->createQuery(
