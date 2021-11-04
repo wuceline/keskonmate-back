@@ -27,7 +27,7 @@ class AppFixtures extends Fixture implements FixtureInterface
         $addedSeriesId = [];
 
         $tmdbGenreList = (object) json_decode(file_get_contents("https://api.themoviedb.org/3/genre/tv/list?api_key=$apiKey&language=fr-FR"));
-
+        
         foreach ($tmdbGenreList->genres as $k => $genreInfo) {
             $genre = new Genre();
             $entityManager->persist($genre);
@@ -46,9 +46,9 @@ class AppFixtures extends Fixture implements FixtureInterface
         $noGenre->setCreatedAt($currentDateTime);
         $this->addReference(self::GENRE_ID."-none", $noGenre);
 
-        for ($i=1; count($addedSeriesId) < 10; $i++) {
+        for ($i=1; count($addedSeriesId) < 1000; $i++) {
 
-            $r = rand(20,35); 
+            $r = rand(20, 1500); 
             
             while(in_array($r, $addedSeriesId)){
                 $r = rand(1,300); 
@@ -102,7 +102,7 @@ class AppFixtures extends Fixture implements FixtureInterface
                             
                             $actor->setCreatedAt($currentDateTime);
 
-                            $this->addReference(self::ACTOR_ID."$actorsInfo->id", $actor);
+                            $this->setReference(self::ACTOR_ID."$actorsInfo->id", $actor);
                         }
 
                         foreach ($seriessActorList->cast as $key => $value) {
