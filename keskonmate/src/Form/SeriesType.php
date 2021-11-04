@@ -36,6 +36,7 @@ class SeriesType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
+            ->add('homeOrder')
             ->add('createdAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',
                 'disabled' => 'disabled'

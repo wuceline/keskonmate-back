@@ -34,8 +34,6 @@
     {{ form_errors(genre_form) }}
     {{ form_row(genre_form.name) }}
     {{ form_row(genre_form.series) }}
-    {{ form_row(genre_form.createdAt) }}
-    {{ form_row(genre_form.updatedAt) }}
 
     <button type="submit" class="btn btn-primary mt-4">
     {% if 'backoffice_actors_add' == app.request.get('_route') %}

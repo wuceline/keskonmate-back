@@ -35,8 +35,6 @@
     {{ form_row(user_form.email) }}    
     {{ form_row(user_form.password) }}
     {{ form_row(user_form.roles) }}
-    {{ form_row(user_form.createdAt) }}
-    {{ form_row(user_form.updatedAt) }}
 
     <button type="submit" class="btn btn-primary mt-4">
     {% if 'backoffice_users_add' == app.request.get('_route') %}

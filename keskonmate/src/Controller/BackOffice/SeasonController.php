@@ -49,6 +49,9 @@ class SeasonController extends AbstractController
     public function edit(Request $request, Season $season): Response
     {
         $seasonForm = $this->createForm(GenreType::class, $season);
+        $seasonForm
+            ->remove('createdAt')
+            ->remove('updatedAt');        
 
         $seasonForm->handleRequest($request);
 
@@ -58,7 +61,7 @@ class SeasonController extends AbstractController
             $season->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Season `{$season->getId()}` udpated successfully");
+            $this->addFlash('success', "La saison '{$season->getId()}' a ete mis a jour");
 
             return $this->redirectToRoute('backoffice_season_browse');
         }
@@ -76,8 +79,11 @@ class SeasonController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $season = new Season();
-
+        $season->setCreatedAt(new DateTimeImmutable());
         $seasonForm = $this->createForm(GenreType::class, $season);
+        $seasonForm
+            ->remove('createdAt')
+            ->remove('updatedAt');  
         $seasonForm->handleRequest($request);
 
         if ($seasonForm->isSubmitted() && $seasonForm->isValid()) {
@@ -87,7 +93,7 @@ class SeasonController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Season `{$season->getId()}` created successfully");
+            $this->addFlash('success', "La saison '{$season->getId()}' a ete cree");
 
             // redirection
             return $this->redirectToRoute('backoffice_season_browse');

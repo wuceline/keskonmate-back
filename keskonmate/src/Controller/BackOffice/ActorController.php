@@ -50,7 +50,9 @@ class ActorController extends AbstractController
     public function edit(Request $request, Actor $actor): Response
     {
         $actorForm = $this->createForm(ActorType::class, $actor);
-
+        $actorForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
         $actorForm->handleRequest($request);
 
         if ($actorForm->isSubmitted() && $actorForm->isValid()) {
@@ -59,7 +61,7 @@ class ActorController extends AbstractController
             $actor->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Actor `{$actor->getName()}` udpated successfully");
+            $this->addFlash('success', "'{$actor->getName()}' a ete mis a jour");
 
             return $this->redirectToRoute('backoffice_actors_browse');
         }
@@ -77,8 +79,12 @@ class ActorController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $actor = new Actor();
+        $actor->setCreatedAt(new DateTimeImmutable());
 
         $actorForm = $this->createForm(ActorType::class, $actor);
+        $actorForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
         $actorForm->handleRequest($request);
 
         if ($actorForm->isSubmitted() && $actorForm->isValid()) {
@@ -88,7 +94,7 @@ class ActorController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Actor `{$actor->getName()}` created successfully");
+            $this->addFlash('success', "'{$actor->getName()}' a ete cree");
 
             // redirection
             return $this->redirectToRoute('backoffice_actors_browse');

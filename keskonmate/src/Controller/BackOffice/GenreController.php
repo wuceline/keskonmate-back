@@ -50,6 +50,9 @@ class GenreController extends AbstractController
     public function edit(Request $request, Genre $genre): Response
     {
         $genreForm = $this->createForm(GenreType::class, $genre);
+        $genreForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
 
         $genreForm->handleRequest($request);
 
@@ -59,7 +62,7 @@ class GenreController extends AbstractController
             $genre->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Genre `{$genre->getName()}` udpated successfully");
+            $this->addFlash('success', "'{$genre->getName()}' a ete mis a jour");
 
             return $this->redirectToRoute('backoffice_genre_browse');
         }
@@ -77,8 +80,11 @@ class GenreController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $genre = new Genre();
-
+        $genre->setCreatedAt(new DateTimeImmutable());
         $genreForm = $this->createForm(GenreType::class, $genre);
+        $genreForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
         $genreForm->handleRequest($request);
 
         if ($genreForm->isSubmitted() && $genreForm->isValid()) {
@@ -88,7 +94,7 @@ class GenreController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Genre `{$genre->getName()}` created successfully");
+            $this->addFlash('success', "'{$genre->getName()}' a ete cree");
 
             // redirection
             return $this->redirectToRoute('backoffice_actor_browse');

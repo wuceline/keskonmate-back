@@ -102,6 +102,11 @@ class Series
     private $numberOfSeasons;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $homeOrder;
+
+    /**
      * @ORM\Column(type="datetime_immutable")
      * 
      * @Groups("api_series_browse")
@@ -371,6 +376,18 @@ class Series
     public function removeActor(Actor $actor): self
     {
         $this->actor->removeElement($actor);
+
+        return $this;
+    }
+
+    public function getHomeOrder(): ?int
+    {
+        return $this->homeOrder;
+    }
+
+    public function setHomeOrder(?int $homeOrder): self
+    {
+        $this->homeOrder = $homeOrder;
 
         return $this;
     }
