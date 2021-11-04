@@ -2,7 +2,9 @@
 
 namespace App\Controller\BackOffice;
 
+use App\Entity\User;
 use App\Entity\UserList;
+use App\Form\UserlistType;
 use App\Repository\UserListRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserlistController extends AbstractController
 {
     /**
-     * @Route("/", name="browse", methods={"GET"})
+     * @Route("", name="browse", methods={"GET"})
      */
     public function browse(UserListRepository $userlistRepository): Response
     {
@@ -31,7 +33,7 @@ class UserlistController extends AbstractController
      */
     public function read(Request $request, $id, UserListRepository $userlistRepository): Response
     {       
-        $userlist = $userlistRepository->findOneWithInfosDQL($id); 
+        $userlist = $userlistRepository->find($id); 
 
         $userlistForm = $this->createForm(UserlistType::class, $userlist, [
             'disabled' => 'disabled'
@@ -44,11 +46,15 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="edit", methods={"POST"}, requirements={"id"="\d+"})
+     * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, UserList $userlist): Response
     {
         $userlistForm = $this->createForm(UserlistType::class, $userlist);
+
+        $userlistForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
 
         $userlistForm->handleRequest($request);
 
@@ -71,19 +77,25 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="add", methods={"POST"})
+     * @Route("/add", name="add", methods={"GET", "POST"})
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $userlist = new Userlist();
-
+        
         $userlistForm = $this->createForm(UserlistType::class, $userlist);
+        
+        $userlistForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
+
         $userlistForm->handleRequest($request);
-
+        
         if ($userlistForm->isSubmitted() && $userlistForm->isValid()) {
-
+          
             $entityManager = $this->getDoctrine()->getManager();  
             $entityManager->persist($userlist);
+            $userlist->setCreatedAt(new DateTimeImmutable(date("")));
             $entityManager->flush();
 
             // pour opquast 
