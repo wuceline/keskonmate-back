@@ -22,7 +22,7 @@ class SeriesRepository extends ServiceEntityRepository
     /**
      *
      * Récupère toutes les informations liées aux series dont home_order est definit
-     * @return Series
+     * @return Series[]
      */
     public function findAllByHomeOrder() :array
     {
@@ -42,10 +42,10 @@ class SeriesRepository extends ServiceEntityRepository
 
     /**
      *
-     * Récupère tous les titres et homeOrder des series
-     * @return Series
+     * Récupère tous les ID, titres et homeOrder des series
+     * @return Series[]
      */
-    public function findAllWithTitleandHomeOrder() :array
+    public function findAllWithIdTitleAndHomeOrder(): array
     {
         $entityManager = $this->getEntityManager();
 
