@@ -80,7 +80,7 @@ class GenreController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $genre = new Genre();
-
+        $genre->setCreatedAt(new DateTimeImmutable());
         $genreForm = $this->createForm(GenreType::class, $genre);
         $genreForm
             ->remove('createdAt')

@@ -80,7 +80,7 @@ class SeriesController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $series = new Series();
-
+        $series->setCreatedAt(new DateTimeImmutable());
         $seriesForm = $this->createForm(SeriesType::class, $series);
         $seriesForm
             ->remove('createdAt')

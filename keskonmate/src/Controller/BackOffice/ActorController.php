@@ -53,7 +53,6 @@ class ActorController extends AbstractController
         $actorForm
             ->remove('createdAt')
             ->remove('updatedAt');
-
         $actorForm->handleRequest($request);
 
         if ($actorForm->isSubmitted() && $actorForm->isValid()) {
@@ -80,6 +79,7 @@ class ActorController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $actor = new Actor();
+        $actor->setCreatedAt(new DateTimeImmutable());
 
         $actorForm = $this->createForm(ActorType::class, $actor);
         $actorForm

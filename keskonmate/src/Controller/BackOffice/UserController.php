@@ -80,7 +80,8 @@ class UserController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
-        //
+        $user->setCreatedAt(new DateTimeImmutable());
+        
         $userForm = $this->createForm(UserType::class, $user);
         $userForm
             ->remove('createdAt')

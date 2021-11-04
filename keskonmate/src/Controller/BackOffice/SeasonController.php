@@ -79,7 +79,7 @@ class SeasonController extends AbstractController
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $season = new Season();
-
+        $season->setCreatedAt(new DateTimeImmutable());
         $seasonForm = $this->createForm(GenreType::class, $season);
         $seasonForm
             ->remove('createdAt')
