@@ -86,6 +86,7 @@ class UserList
      * @Groups("api_userlists_read")
      */
     private $type;
+    
 
     /**
      * @ORM\ManyToMany(targetEntity=Series::class, mappedBy="userlist")

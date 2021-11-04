@@ -127,7 +127,7 @@ class Series
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=UserList::class, inversedBy="series")
+     * @ORM\ManyToOne(targetEntity=UserList::class, inversedBy="series")
      * 
      */
     private $userlist;
