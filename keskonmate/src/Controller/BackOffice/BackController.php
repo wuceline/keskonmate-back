@@ -18,9 +18,11 @@ class BackController extends AbstractController
     public function index(SeriesRepository $seriesRepository): Response
     {
         $homeOrder = $seriesRepository->findAllByHomeOrder();
+        $seriesList = $seriesRepository->findAllWithNameandHomeOrder();
 
         return $this->render('backoffice/homeorder/browse.html.twig', [
-            'series_list' => $homeOrder,
+            'series_homeOrder' => $homeOrder,
+            'series_list' => $seriesList,
         ]);
     }  
 }

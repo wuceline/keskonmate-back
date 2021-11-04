@@ -19,6 +19,47 @@ class SeriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Series::class);
     }
 
+    /**
+     *
+     * Récupère toutes les informations liées aux series dont home_order est definit
+     * @return Series
+     */
+    public function findAllByHomeOrder() :array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $dqlQuery = " SELECT s 
+                    FROM App\Entity\Series s
+                    WHERE s.homeOrder IS NOT NULL ";
+
+        $query = $entityManager->createQuery(
+            $dqlQuery
+        );
+
+        // dd($query->getResult());
+        return $query->getResult();
+    }
+
+    /**
+     *
+     * Récupère tous les titres et homeOrder des series
+     * @return Series
+     */
+    public function findAllWithNameandHomeOrder() :array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $dqlQuery = " SELECT s.title, s.homeOrder 
+                    FROM App\Entity\Series s ";
+
+        $query = $entityManager->createQuery(
+            $dqlQuery
+        );
+
+        // dd($query->getResult());
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Series[] Returns an array of Series objects
     //  */
