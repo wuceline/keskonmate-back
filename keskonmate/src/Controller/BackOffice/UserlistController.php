@@ -64,7 +64,7 @@ class UserlistController extends AbstractController
             $userlist->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Userlist `{$userlist->getId()}` udpated successfully");
+            $this->addFlash('success', "La liste `{$userlist->getId()}` a été mis à jour");
 
             return $this->redirectToRoute('backoffice_userlist_browse');
         }
@@ -95,11 +95,11 @@ class UserlistController extends AbstractController
           
             $entityManager = $this->getDoctrine()->getManager();  
             $entityManager->persist($userlist);
-            $userlist->setCreatedAt(new DateTimeImmutable(date("")));
+            $userlist->setCreatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Userlist `{$userlist->getId()}` created successfully");
+            $this->addFlash('success', "La liste '{$userlist->getId()}' a été créé");
 
             // redirection
             return $this->redirectToRoute('backoffice_userlist_browse');
@@ -116,7 +116,7 @@ class UserlistController extends AbstractController
      */
     public function delete(UserList $userlist, EntityManagerInterface $entityManager): Response
     {
-        $this->addFlash('success', "Userlist {$userlist->getId()} deleted");
+        $this->addFlash('success', "La liste '{$userlist->getId()}' a été effacée");
 
         $entityManager->remove($userlist);
         $entityManager->flush();
