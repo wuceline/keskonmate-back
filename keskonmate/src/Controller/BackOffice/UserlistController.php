@@ -2,6 +2,7 @@
 
 namespace App\Controller\BackOffice;
 
+use App\Entity\User;
 use App\Entity\UserList;
 use App\Form\UserlistType;
 use App\Repository\UserListRepository;
@@ -51,6 +52,10 @@ class UserlistController extends AbstractController
     {
         $userlistForm = $this->createForm(UserlistType::class, $userlist);
 
+        $userlistForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
+
         $userlistForm->handleRequest($request);
 
         if ($userlistForm->isSubmitted() && $userlistForm->isValid()) {
@@ -72,19 +77,25 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="add", methods={"POST"})
+     * @Route("/add", name="add", methods={"GET", "POST"})
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $userlist = new Userlist();
-
+        
         $userlistForm = $this->createForm(UserlistType::class, $userlist);
+        
+        $userlistForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
+
         $userlistForm->handleRequest($request);
-
+        
         if ($userlistForm->isSubmitted() && $userlistForm->isValid()) {
-
+          
             $entityManager = $this->getDoctrine()->getManager();  
             $entityManager->persist($userlist);
+            $userlist->setCreatedAt(new DateTimeImmutable(date("")));
             $entityManager->flush();
 
             // pour opquast 

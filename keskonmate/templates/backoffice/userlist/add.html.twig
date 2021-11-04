@@ -2,7 +2,7 @@
 
 {% block title %}
     {% if page == 'create' %}
-    Creer un utilisateur
+    Ajouter une série à une liste
     {% else %}
     {# User {{ user.username }} #}
     {% endif %}
@@ -35,8 +35,7 @@
     {{ form_row(userlist_form.seasonNb) }}    
     {{ form_row(userlist_form.episodeNb) }}
     {{ form_row(userlist_form.type) }}
-    {{ form_row(userlist_form.createdAt) }}
-    {{ form_row(userlist_form.updatedAt) }}
+    {{ form_row(userlist_form.users) }}
 
     <button type="submit" class="btn btn-primary mt-4">
     {% if 'backoffice_userlist_add' == app.request.get('_route') %}
