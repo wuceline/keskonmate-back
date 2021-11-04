@@ -62,7 +62,7 @@ class UserController extends AbstractController
             $user->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "User `{$user->getUserIdentifier()}` udpated successfully");
+            $this->addFlash('success', "'{$user->getUserIdentifier()}' a ete mis a jour");
 
             return $this->redirectToRoute('backoffice_users_browse');
         }
@@ -82,6 +82,9 @@ class UserController extends AbstractController
         $user = new User();
         //
         $userForm = $this->createForm(UserType::class, $user);
+        $userForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
         $userForm->handleRequest($request);
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {
@@ -91,7 +94,7 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "User `{$user->getUserIdentifier()}` created successfully");
+            $this->addFlash('success', "'{$user->getUserIdentifier()}' a ete cree");
 
             // redirection
             return $this->redirectToRoute('backoffice_users_browse');

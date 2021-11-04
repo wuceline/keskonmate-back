@@ -7,6 +7,7 @@ use App\Form\HomeOrderType;
 use App\Form\SeriesType;
 use App\Repository\SeriesRepository;
 use DateTimeImmutable;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,16 +43,25 @@ class BackController extends AbstractController
     public function edit(Request $request, Series $series): Response
     {
         $seriesForm = $this->createForm(SeriesType::class, $series);
+        $seriesForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
 
         $seriesForm->handleRequest($request);
-
+        
         if ($seriesForm->isSubmitted() && $seriesForm->isValid()) {
+            
             $entityManager = $this->getDoctrine()->getManager();
             
             $series->setUpdatedAt(new DateTimeImmutable());
-            $entityManager->flush();
+            try{
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', "Cet emplacement est deja pris");
+                return $this->redirectToRoute('backoffice_homepage');
+            }
 
-            $this->addFlash('success', "Series` {$series->getTitle()}` udpated successfully");
+            $this->addFlash('success', "'{$series->getTitle()}' a ete ajoute a la liste");
 
             return $this->redirectToRoute('backoffice_homepage');
         }

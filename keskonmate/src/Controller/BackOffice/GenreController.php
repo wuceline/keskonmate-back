@@ -62,7 +62,7 @@ class GenreController extends AbstractController
             $genre->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Genre `{$genre->getName()}` udpated successfully");
+            $this->addFlash('success', "'{$genre->getName()}' a ete mis a jour");
 
             return $this->redirectToRoute('backoffice_genre_browse');
         }
@@ -82,6 +82,9 @@ class GenreController extends AbstractController
         $genre = new Genre();
 
         $genreForm = $this->createForm(GenreType::class, $genre);
+        $genreForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
         $genreForm->handleRequest($request);
 
         if ($genreForm->isSubmitted() && $genreForm->isValid()) {
@@ -91,7 +94,7 @@ class GenreController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Genre `{$genre->getName()}` created successfully");
+            $this->addFlash('success', "'{$genre->getName()}' a ete cree");
 
             // redirection
             return $this->redirectToRoute('backoffice_actor_browse');

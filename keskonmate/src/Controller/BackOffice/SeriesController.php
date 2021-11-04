@@ -62,7 +62,7 @@ class SeriesController extends AbstractController
             $series->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "Series` {$series->getTitle()}` udpated successfully");
+            $this->addFlash('success', "'{$series->getTitle()}' a ete mis a jour");
 
             return $this->redirectToRoute('backoffice_series_browse');
         }
@@ -82,6 +82,9 @@ class SeriesController extends AbstractController
         $series = new Series();
 
         $seriesForm = $this->createForm(SeriesType::class, $series);
+        $seriesForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
         $seriesForm->handleRequest($request);
 
         if ($seriesForm->isSubmitted() && $seriesForm->isValid()) {
@@ -91,7 +94,7 @@ class SeriesController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "Series` {$series->getTitle()}` created successfully");
+            $this->addFlash('success', "'{$series->getTitle()}' a ete cree");
 
             // redirection
             return $this->redirectToRoute('backoffice_series_browse');
