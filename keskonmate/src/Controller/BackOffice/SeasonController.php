@@ -49,6 +49,9 @@ class SeasonController extends AbstractController
     public function edit(Request $request, Season $season): Response
     {
         $seasonForm = $this->createForm(GenreType::class, $season);
+        $seasonForm
+            ->remove('createdAt')
+            ->remove('updatedAt');        
 
         $seasonForm->handleRequest($request);
 

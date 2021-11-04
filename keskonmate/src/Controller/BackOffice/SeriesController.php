@@ -50,6 +50,9 @@ class SeriesController extends AbstractController
     public function edit(Request $request, Series $series): Response
     {
         $seriesForm = $this->createForm(SeriesType::class, $series);
+        $seriesForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
 
         $seriesForm->handleRequest($request);
 

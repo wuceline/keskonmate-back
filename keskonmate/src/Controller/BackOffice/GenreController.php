@@ -50,6 +50,9 @@ class GenreController extends AbstractController
     public function edit(Request $request, Genre $genre): Response
     {
         $genreForm = $this->createForm(GenreType::class, $genre);
+        $genreForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
 
         $genreForm->handleRequest($request);
 

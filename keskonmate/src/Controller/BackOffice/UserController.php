@@ -50,6 +50,9 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user): Response
     {
         $userForm = $this->createForm(UserType::class, $user);
+        $userForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
 
         $userForm->handleRequest($request);
 

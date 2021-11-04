@@ -50,6 +50,9 @@ class ActorController extends AbstractController
     public function edit(Request $request, Actor $actor): Response
     {
         $actorForm = $this->createForm(ActorType::class, $actor);
+        $actorForm
+            ->remove('createdAt')
+            ->remove('updatedAt');
 
         $actorForm->handleRequest($request);
 

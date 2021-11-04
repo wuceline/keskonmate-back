@@ -17,33 +17,30 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class BackController extends AbstractController
 {
-    // /**
-    //  * @Route("", name="homepage", methods={"GET"})
-    //  */
-    // public function index(SeriesRepository $seriesRepository): Response
-    // {
-    //     $homeOrderAll = $seriesRepository->findAllByHomeOrder();
-    //     $seriesList = $seriesRepository->findAllWithIdTitleAndHomeOrder();
-
-    //     $homeOrderForm = $this->createForm(HomeOrderType::class, $seriesList, [
-    //         'disabled' => 'disabled'
-    //     ]);
-
-    //     return $this->render('backoffice/homeorder/browse.html.twig', [
-    //         'series_homeOrder' => $homeOrderAll,
-    //         'series_list' => $seriesList,
-    //         'series_form' => $homeOrderForm->createView(),
-    //     ]);
-    // }  
-
     /**
-     * @Route("", name="homepage", methods={"GET", "PATCH"}, requirements={"id"="\d+"}))
+     * @Route("", name="homepage", methods={"GET"})
      */
-    public function index(Request $request, Series $series, SeriesRepository $seriesRepository): Response
+    public function index(SeriesRepository $seriesRepository): Response
     {
-        
+        $homeOrderAll = $seriesRepository->findAllByHomeOrder();
         $seriesList = $seriesRepository->findAllWithIdTitleAndHomeOrder();
 
+        $homeOrderForm = $this->createForm(HomeOrderType::class, $seriesList, [
+            'disabled' => 'disabled'
+        ]);
+
+        return $this->render('backoffice/homeorder/browse.html.twig', [
+            'series_homeOrder' => $homeOrderAll,
+            'series_list' => $seriesList,
+            'series_form' => $homeOrderForm->createView(),
+        ]);
+    }      
+
+    /**
+     * @Route("/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     */
+    public function edit(Request $request, Series $series): Response
+    {
         $seriesForm = $this->createForm(SeriesType::class, $series);
 
         $seriesForm->handleRequest($request);
@@ -59,36 +56,10 @@ class BackController extends AbstractController
             return $this->redirectToRoute('backoffice_homepage');
         }
 
-
-        return $this->render('backoffice/homeorder/browse.html.twig', [
-            'series_list' => $seriesList,
+        return $this->render('backoffice/series/add.html.twig', [
+            'series_form' => $seriesForm->createView(),
+            'series' => $series,
+            'page' => 'edit',
         ]);
-    } 
-
-    // /**
-    //  * @Route("/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
-    //  */
-    // public function edit(Request $request, Series $series): Response
-    // {
-    //     $seriesForm = $this->createForm(SeriesType::class, $series);
-
-    //     $seriesForm->handleRequest($request);
-
-    //     if ($seriesForm->isSubmitted() && $seriesForm->isValid()) {
-    //         $entityManager = $this->getDoctrine()->getManager();
-            
-    //         $series->setUpdatedAt(new DateTimeImmutable());
-    //         $entityManager->flush();
-
-    //         $this->addFlash('success', "Series` {$series->getTitle()}` udpated successfully");
-
-    //         return $this->redirectToRoute('backoffice_homepage');
-    //     }
-
-    //     return $this->render('backoffice/series/add.html.twig', [
-    //         'series_form' => $seriesForm->createView(),
-    //         'series' => $series,
-    //         'page' => 'edit',
-    //     ]);
-    // }
+    }
 }

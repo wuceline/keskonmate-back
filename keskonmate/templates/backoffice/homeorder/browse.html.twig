@@ -37,23 +37,4 @@
   </tbody>
 </table>
 </div>
-
-
-{{ form_start(series_list) }}
-
-    {{ form_errors(series_list) }}
-    {{ form_row(series_list.id) }}
-    {{ form_row(series_list.title) }}
-    {{ form_row(series_list.homeOrder) }}
-
-
-    <button type="submit" class="btn btn-primary mt-4">
-    {% if 'backoffice_series_add' == app.request.get('_route') %}
-    Create
-    {% else %}
-    Update
-    {% endif %}
-    </button>
-
-{{ form_end(series_list) }} 
 {% endblock %}
