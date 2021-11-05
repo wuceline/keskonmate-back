@@ -8,6 +8,7 @@ use App\Repository\GenreRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class GenreController extends AbstractController
     /**
      * @Route("", name="browse", methods={"GET"})
      * 
-     * @IsGranted("ROLE_CATALOGUE_CONTROLLER") 
+     * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
     public function browse(GenreRepository $genreRepository): Response
     {
@@ -33,7 +34,7 @@ class GenreController extends AbstractController
     /**
      * @Route("/read/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
      * 
-     * @IsGranted("ROLE_CATALOGUE_CONTROLLER") 
+     * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
     public function read(Request $request, $id, GenreRepository $genreRepository): Response
     {       
@@ -52,7 +53,7 @@ class GenreController extends AbstractController
     /**
      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      * 
-     * @IsGranted("ROLE_ADMIN") 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function edit(Request $request, Genre $genre): Response
     {
@@ -84,7 +85,7 @@ class GenreController extends AbstractController
     /**
      * @Route("/add", name="add", methods={"GET", "POST"})
      * 
-     * @IsGranted("ROLE_ADMIN") 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -118,7 +119,7 @@ class GenreController extends AbstractController
     /**
      * @Route("/delete/{id}", name="delete", methods={"GET"}, requirements={"id"="\d+"})
      * 
-     * @IsGranted("ROLE_ADMIN") 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function delete(Genre $genre, EntityManagerInterface $entityManager): Response
     {
