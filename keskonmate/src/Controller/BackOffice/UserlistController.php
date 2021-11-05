@@ -9,6 +9,7 @@ use App\Repository\UserListRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/backoffice/userlists", name="backoffice_userlist_") 
- * @IsGranted("ROLE_ADMIN")
+ * 
+ * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
  */
 class UserlistController extends AbstractController
 {
     /**
      * @Route("", name="browse", methods={"GET"})
+     * 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function browse(UserListRepository $userlistRepository): Response
     {
@@ -32,6 +36,8 @@ class UserlistController extends AbstractController
 
     /**
      * @Route("/read/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     * 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function read(Request $request, $id, UserListRepository $userlistRepository): Response
     {       
@@ -49,6 +55,8 @@ class UserlistController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function edit(Request $request, UserList $userlist): Response
     {
@@ -80,6 +88,8 @@ class UserlistController extends AbstractController
 
     /**
      * @Route("/add", name="add", methods={"GET", "POST"})
+     * 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -115,6 +125,8 @@ class UserlistController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="delete", methods={"GET"}, requirements={"id"="\d+"})
+     * 
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
     public function delete(UserList $userlist, EntityManagerInterface $entityManager): Response
     {

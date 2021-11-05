@@ -9,6 +9,7 @@ use App\Repository\SeriesRepository;
 use DateTimeImmutable;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class BackController extends AbstractController
     /**
      * @Route("", name="homepage", methods={"GET"})
      * 
-     * @IsGranted("ROLE_CATALOGUE_MANAGER") 
+     * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
     public function index(SeriesRepository $seriesRepository): Response
     {
@@ -43,7 +44,7 @@ class BackController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      * 
-     * @IsGranted("ROLE_CATALOGUE_MANAGER") 
+     * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
     public function edit(Request $request, Series $series): Response
     {
