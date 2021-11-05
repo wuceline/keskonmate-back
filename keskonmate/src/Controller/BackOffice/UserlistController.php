@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/backoffice/userlists", name="backoffice_userlist_") 
+ * @IsGranted("ROLE_ADMIN")
  */
 class UserlistController extends AbstractController
 {

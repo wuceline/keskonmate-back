@@ -14,10 +14,10 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="_password"/>
 
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         {# If you want to control the URL the user is redirected to on success #}
-        <input type="hidden" name="backoffice" value="/backoffice"/>
+        <input type="hidden" name="go_to" value="{{ path('backoffice_homepage') }}"/>
 
         <button type="submit">login</button>
     </form>

@@ -20,6 +20,8 @@ class BackController extends AbstractController
 {
     /**
      * @Route("", name="homepage", methods={"GET"})
+     * 
+     * @IsGranted("ROLE_CATALOGUE_MANAGER") 
      */
     public function index(SeriesRepository $seriesRepository): Response
     {
@@ -39,6 +41,8 @@ class BackController extends AbstractController
 
     /**
      * @Route("/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * 
+     * @IsGranted("ROLE_CATALOGUE_MANAGER") 
      */
     public function edit(Request $request, Series $series): Response
     {

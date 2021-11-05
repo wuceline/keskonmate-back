@@ -14,11 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/backoffice/users", name="backoffice_users_") 
+ * @IsGranted("ROLE_ADMIN")
  */
 class UserController extends AbstractController
 {
     /**
      * @Route("", name="browse", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function browse(UserRepository $userRepository): Response
     {
@@ -29,6 +31,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/read/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function read(Request $request, $id, UserRepository $userRepository): Response
     {       
@@ -46,6 +49,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function edit(Request $request, User $user): Response
     {
@@ -76,6 +80,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/add", name="add", methods={"GET", "POST"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -109,6 +114,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="delete", methods={"GET"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function delete(User $user, EntityManagerInterface $entityManager): Response
     {
