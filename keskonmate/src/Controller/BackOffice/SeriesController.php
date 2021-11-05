@@ -7,18 +7,20 @@ use App\Form\SeriesType;
 use App\Repository\SeriesRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/series", name="backoffice_series_") 
+ * @Route("/backoffice/series", name="backoffice_series_")
  */
 class SeriesController extends AbstractController
 {
     /**
      * @Route("", name="browse", methods={"GET"})
+     * @IsGranted("ROLE_CATALOGUE_MANAGER")
      */
     public function browse(SeriesRepository $seriesRepository): Response
     {
@@ -29,6 +31,7 @@ class SeriesController extends AbstractController
 
     /**
      * @Route("/read/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_CATALOGUE_MANAGER")
      */
     public function read(Request $request, $id, SeriesRepository $seriesRepository): Response
     {       
@@ -46,6 +49,7 @@ class SeriesController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Series $series): Response
     {
@@ -76,6 +80,7 @@ class SeriesController extends AbstractController
 
     /**
      * @Route("/add", name="add", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -108,6 +113,7 @@ class SeriesController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="delete", methods={"GET"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Series $series, EntityManagerInterface $entityManager): Response
     {
