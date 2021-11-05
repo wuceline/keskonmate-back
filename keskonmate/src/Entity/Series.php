@@ -103,6 +103,9 @@ class Series
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * 
+     * @Groups("api_series_browse")
+     * @Groups("api_series_read")
      */
     private $homeOrder;
 
