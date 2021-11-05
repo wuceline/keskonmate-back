@@ -8,6 +8,7 @@ use App\Form\SeriesType;
 use App\Repository\SeriesRepository;
 use DateTimeImmutable;
 use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
