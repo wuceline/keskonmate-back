@@ -100,10 +100,10 @@ class UserController extends AbstractController
         return $this->json($responseAsArray, Response::HTTP_CREATED);
     }
 
-    /**
+     /**
      * @Route("/{id}", name="delete", methods={"DELETE"}, requirements={"id"="\d+"})
      */
-    public function delete(int $id, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+ /*   public function delete(int $id, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
         $user = $userRepository->find($id);
 
@@ -119,7 +119,7 @@ class UserController extends AbstractController
         ];
 
         return $this->json($reponseAsArray);
-    }
+    } */
 
     
 
