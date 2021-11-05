@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,14 @@ class LoginController extends AbstractController
      * @Route("/logout", name="app_logout", methods={"GET"}))
      */
     public function logout()
+    {
+        
+    }
+
+    /**
+     * @Route("/api/login", name="api_login")
+     */
+    public function apiToken()
     {
         
     }
