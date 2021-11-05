@@ -28,6 +28,5 @@ class MailerController extends AbstractController
             ->html('COUCOU!!!!!');
 
         $mailer->send($email);
-        return 
     }
 }
