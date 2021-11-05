@@ -466,6 +466,7 @@ etc....
     "image": "dfgfdg.jpg",
     "director": "",
     "numberOfSeasons": 5,
+    "homeOrder": 1,
     "createdAt": "2021-10-27T15:18:38+02:00",
     "updatedAt": null,
     "genre": [
@@ -496,6 +497,7 @@ etc....
     "image": null,
     "director": "",
     "numberOfSeasons": 1,
+    "homeOrder": 2,
     "createdAt": "2021-10-29T11:09:26+02:00",
     "updatedAt": null,
     "genre": [
@@ -542,6 +544,7 @@ etc....
     "image": null,
     "director": "",
     "numberOfSeasons": 1,
+    "homeOrder": 2,
     "createdAt": "2021-10-29T11:09:26+02:00",
     "updatedAt": null,
     "genre": [
