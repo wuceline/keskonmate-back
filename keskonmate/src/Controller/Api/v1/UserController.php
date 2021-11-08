@@ -60,12 +60,8 @@ class UserController extends AbstractController
             $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
             
             $user->setPassword($hashedPassword);
-            dump($request->toArray());
-            //dd((object)$user);
-
-        $serializer->deserialize($user, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);    
+            dump($request->toArray()); 
         }
-        // dd($user);
         $errors = $validator->validate($user);
     
         if(count($errors) > 0) {
@@ -93,10 +89,22 @@ class UserController extends AbstractController
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
-        $jsonContent = $request->getContent();        
-        dd(json_decode($jsonContent));
-        $user = $serializer->deserialize($jsonContent, User::class, 'json');
-        dd($user);
+        $role = ["ROLE_USER"];
+
+        $jsonContent = $request->getContent();   
+        $jsonContent = json_decode($jsonContent);
+
+        $user->setEmail($jsonContent->email);
+        $user->setRoles($role);
+        $user->setUserNickname($jsonContent->userNickname);
+        $user->setCreatedAt(new DateTimeImmutable());
+
+        $clearPassword = $jsonContent->password;
+        if (! empty($clearPassword)) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
+            $user->setPassword($hashedPassword);
+        }        
+
         $errors = $validator->validate($user);
         if (count($errors) > 0) {
             $responseAsArray = [
@@ -104,12 +112,6 @@ class UserController extends AbstractController
                 'message' => $errors,
             ];
             return $this->json($responseAsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-        // dd($user);
-        $clearPassword = $user;
-        if (! empty($clearPassword)) {
-            $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
-            $user->setPassword($hashedPassword);
         }
 
         $entityManager->persist($user);
