@@ -4,10 +4,12 @@ namespace App\Controller\Api\v1;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -43,32 +45,40 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="edit", methods={"PATCH"}, requirements={"id"="\d+"})
      */
-    public function edit(int $id, UserRepository $userRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    public function edit(int $id, UserRepository $userRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator, UserPasswordHasherInterface $passwordHasher): Response
     {
-         $user = $userRepository->find($id);
-         if (is_null($userRepository)) {
-             return $this->getNotFoundResponse();
-         }
-         $jsonContent = $request->getContent();
-         
-         $serializer->deserialize($jsonContent, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);      
-         $errors = $validator->validate($user);
-         
-         if(count($errors) > 0)
-         {
-             $reponseAsArray = [
-                 'error' => true,
-                 'message' => $errors,
-             ];
- 
-             return $this->json($reponseAsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
-         }  
-         $entityManager->persist($user);
-         $entityManager->flush();
-         $responseAsArray = [
+        $user = $userRepository->find($id);
+
+        if (is_null($userRepository)) {
+            return $this->getNotFoundResponse();
+        }
+
+        $user->setUpdatedAt(new DateTimeImmutable());
+        
+        $clearPassword = $request->toArray()['password'];
+        if (! empty($request->toArray()['password'])) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
+            
+            $user->setPassword($hashedPassword);
+            dump($request->toArray()); 
+        }
+        $errors = $validator->validate($user);
+    
+        if(count($errors) > 0) {
+            $reponseAsArray = [
+                'error' => true,
+                'message' => $errors,
+            ];
+            
+            return $this->json($reponseAsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    
+        $entityManager->persist($user);
+        $entityManager->flush();
+        $responseAsArray = [
              'message' => 'Utilisateur mis a jour',
              'id' => $user->getId(),
-         ];
+        ];
  
          return $this->json($responseAsArray, Response::HTTP_CREATED);
     }
@@ -76,11 +86,25 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="add", methods={"POST"})
      */
-    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator, UserPasswordHasherInterface $passwordHasher): Response
     {
-        $jsonContent = $request->getContent();        
-        
-        $user = $serializer->deserialize($jsonContent, User::class, 'json');
+        $user = new User();
+        $role = ["ROLE_USER"];
+
+        $jsonContent = $request->getContent();   
+        $jsonContent = json_decode($jsonContent);
+
+        $user->setEmail($jsonContent->email);
+        $user->setRoles($role);
+        $user->setUserNickname($jsonContent->userNickname);
+        $user->setCreatedAt(new DateTimeImmutable());
+
+        $clearPassword = $jsonContent->password;
+        if (! empty($clearPassword)) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
+            $user->setPassword($hashedPassword);
+        }        
+
         $errors = $validator->validate($user);
         if (count($errors) > 0) {
             $responseAsArray = [
