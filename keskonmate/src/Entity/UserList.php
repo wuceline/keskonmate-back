@@ -88,7 +88,7 @@ class UserList
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity=Series::class, inversedBy="userlist")
+     * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="userlist")
      * 
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
