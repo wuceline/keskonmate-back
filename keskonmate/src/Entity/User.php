@@ -27,6 +27,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups("api_users_read")
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     * @Groups("api_users_new")
      */
     private $id;
 
@@ -37,6 +39,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups("api_users_read")
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     * @Groups("api_users_new")
      */
     private $email;
 
@@ -56,6 +60,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * 
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups("api_users_new")
      */
     private $userNickname;
 
@@ -80,6 +86,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * 
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
      */
     private $userlist;
 

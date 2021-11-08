@@ -10,8 +10,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -57,7 +60,7 @@ class UserController extends AbstractController
      * 
      * @Security("is_granted('ROLE_SUPER_ADMIN')")
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
         $userForm = $this->createForm(UserType::class, $user);
         $userForm
@@ -68,6 +71,13 @@ class UserController extends AbstractController
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $clearPassword = $request->request->get('user')['password']['first'];
+            if (! empty($clearPassword))
+            {
+                $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
+                $user->setPassword($hashedPassword);
+            }
             
             $user->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
@@ -89,7 +99,7 @@ class UserController extends AbstractController
      * 
      * @Security("is_granted('ROLE_SUPER_ADMIN')")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
         $user->setCreatedAt(new DateTimeImmutable());
@@ -102,14 +112,19 @@ class UserController extends AbstractController
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {
 
-            $entityManager = $this->getDoctrine()->getManager();  
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+
+            $clearPassword = $request->request->get('user')['password']['first'];
+            if (! empty($clearPassword))
+            {
+                $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
+                $user->setPassword($hashedPassword);
+            }
             $entityManager->flush();
 
-            // pour opquast 
             $this->addFlash('success', "'{$user->getUserIdentifier()}' a ete cree");
 
-            // redirection
             return $this->redirectToRoute('backoffice_users_browse');
         }
 
