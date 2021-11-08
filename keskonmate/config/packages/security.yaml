@@ -61,6 +61,10 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/series, roles: PUBLIC_ACCESS }
+        - { path: ^/api/genres, roles: PUBLIC_ACCESS }
+        - { path: ^/api/actors, roles: PUBLIC_ACCESS }
+        - { path: ^/api/seasons, roles: PUBLIC_ACCESS }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
     # ?-_-_-_-_-_-_-_-Actors routes-_-_-_-_-_-_-_-_
     #     - { path: '^/actors/delete', roles: ROLE_ADMIN }
