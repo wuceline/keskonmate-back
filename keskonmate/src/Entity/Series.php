@@ -130,7 +130,7 @@ class Series
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserList::class, inversedBy="series")
+     * @ORM\OneToMany(targetEntity=UserList::class, mappedBy="series")
      * 
      */
     private $userlist;

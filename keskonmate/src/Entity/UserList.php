@@ -88,7 +88,7 @@ class UserList
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity=Series::class, mappedBy="userlist")
+     * @ORM\OneToOne(targetEntity=Series::class, inversedBy="userlist")
      * 
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
@@ -188,9 +188,9 @@ class UserList
     }     
 
     /**
-     * @return Collection|Series[]
+     * @return Series
      */
-    public function getSeries(): Collection
+    public function getSeries()
     {
         return $this->series;
     }
