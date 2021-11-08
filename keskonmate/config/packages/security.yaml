@@ -60,6 +60,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
     # ?-_-_-_-_-_-_-_-Actors routes-_-_-_-_-_-_-_-_
     #     - { path: '^/actors/delete', roles: ROLE_ADMIN }
     #     - { path: '^/actors/add', roles: ROLE_ADMIN }
