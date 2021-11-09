@@ -1,3 +1,21 @@
+# Login: 
+
+```json
+{
+    "username": "dorian@keskonmate.io",
+    "password": "admin"
+}
+```
+
+# Reponse: 
+
+```json
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGc......",
+  "userId": 2
+}
+```
+
 # User: 
 ## URL Browse: /api/v1/users {GET}
 
