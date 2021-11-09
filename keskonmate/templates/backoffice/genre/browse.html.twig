@@ -19,15 +19,19 @@
 <div class="text-end">
 </a>
 </div>
+<div class="d-flex justify-content-center">
+  {{ knp_pagination_render(genres) }}
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nom</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-{% for genre in genre_list %}
+{% for genre in genres %}
     <tr>
       <th scope="row">{{ genre.id }}</th>
       <td>{{ genre.name }}</td>
@@ -62,5 +66,8 @@
 {% endfor %}
   </tbody>
 </table>
+</div>
+<div class="d-flex justify-content-center">
+  {{ knp_pagination_render(genres) }}
 </div>
 {% endblock %}
