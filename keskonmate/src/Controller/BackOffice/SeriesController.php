@@ -7,6 +7,7 @@ use App\Form\SeriesType;
 use App\Repository\SeriesRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,10 +25,19 @@ class SeriesController extends AbstractController
      * 
      * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
-    public function browse(SeriesRepository $seriesRepository): Response
+    public function browse(SeriesRepository $seriesRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $data = $seriesRepository->findBy([],['title' => 'asc']);
+
+        $series = $paginator->paginate(
+            $data, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            20 // Nombre de résultats par page
+        );
+
         return $this->render('backoffice/series/browse.html.twig', [
             'series_list' => $seriesRepository->findAll(),
+            'series' => $series,
         ]);
     }
 
