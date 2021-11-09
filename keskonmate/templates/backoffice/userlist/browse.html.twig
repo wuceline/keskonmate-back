@@ -27,6 +27,7 @@
       <th scope="col">Saison en cours</th>
       <th scope="col">Episode en cours</th>
       <th scope="col">Type</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -59,8 +60,7 @@
             </svg>
             </button>
             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <li><a class="dropdown-item" href="{{ url('backoffice_userlist_delete', {"id": list.id}) }}">Yes I am sure !</a></li>
-                <li><a class="dropdown-item" href="#">Nope</a></li>
+                <li><a class="dropdown-item" href="{{ url('backoffice_userlist_delete', {"id": list.id}) }}">Oui, je suis sur!</a></li>
             </ul>
         </div>
 
