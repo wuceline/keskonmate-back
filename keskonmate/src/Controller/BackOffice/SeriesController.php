@@ -25,6 +25,7 @@ class SeriesController extends AbstractController
      * 
      * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
+
     public function browse(SeriesRepository $seriesRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $data = $seriesRepository->findBy([],['title' => 'asc']);

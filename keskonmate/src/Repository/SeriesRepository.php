@@ -30,7 +30,8 @@ class SeriesRepository extends ServiceEntityRepository
 
         $dqlQuery = " SELECT s 
                     FROM App\Entity\Series s
-                    WHERE s.homeOrder IS NOT NULL ";
+                    WHERE s.homeOrder BETWEEN 0 AND 5 
+                    ORDER BY s.homeOrder ASC";
 
         $query = $entityManager->createQuery(
             $dqlQuery
