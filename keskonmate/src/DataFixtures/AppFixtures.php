@@ -11,6 +11,7 @@ use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Exception;
 
 class AppFixtures extends Fixture implements FixtureInterface
 {
@@ -48,8 +49,10 @@ class AppFixtures extends Fixture implements FixtureInterface
 
         for ($i=1; count($addedSeriesId) < 1000; $i++) {
 
-            $r = rand(20, 1500); 
+            $r = rand(1, 1500); 
             
+            $lorem = file_get_contents("https://loripsum.net/api/1/short/plaintext");
+
             while(in_array($r, $addedSeriesId)){
                 $r = rand(1,300); 
             }
@@ -66,13 +69,13 @@ class AppFixtures extends Fixture implements FixtureInterface
 
                 $series->setTitle($seriesApiResponse->name);
 
-                $series->setSynopsis(!$seriesApiResponse->overview ? '' : $seriesApiResponse->overview);
+                $series->setSynopsis(!$seriesApiResponse->overview ? "$lorem" : $seriesApiResponse->overview);
 
                 $series->setReleaseDate(new DateTimeImmutable($seriesApiResponse->first_air_date));
 
-                $series->setImage(empty($seriesApiResponse->backdrop_path) ? '' : 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'.$seriesApiResponse->backdrop_path);
+                $series->setImage(empty($seriesApiResponse->backdrop_path) ? 'https://i.ibb.co/ySnm17G/Keskonmate.png' : 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'.$seriesApiResponse->backdrop_path);
 
-                $series->setDirector(!isset($seriesApiResponse->created_by[0]->name) ? '' : $seriesApiResponse->created_by[0]->name);
+                $series->setDirector(!isset($seriesApiResponse->created_by[0]->name) ? 'Xavier Muspimerol' : $seriesApiResponse->created_by[0]->name);
 
                 $series->setNumberOfSeasons($seriesApiResponse->number_of_seasons);
 
@@ -80,7 +83,9 @@ class AppFixtures extends Fixture implements FixtureInterface
 
                 foreach($seriesApiResponse->genres as $key => $value){
                     $genreId = !isset($seriesApiResponse->genres[$key]->id) ? '-none' : $seriesApiResponse->genres[$key]->id;
+                    try{
                     $series->addGenre($this->getReference(self::GENRE_ID."$genreId"));
+                    }catch(Exception $e){}
                 }
                 
 //-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-Creation Actor-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
@@ -90,25 +95,29 @@ class AppFixtures extends Fixture implements FixtureInterface
                     
                     if(!empty($seriessActorList->cast)){
                         
-                        foreach ($seriessActorList->cast as $key => $actorsInfo) {
-                            
+                        $nbActors = 1;
+                        $addedactors = [];
+                        foreach ($seriessActorList->cast as $index => $actorsInfo) {
                             /* dd($seriessActorList->cast[0]->id); */
                             $actor = new Actor();
                             $entityManager->persist($actor);
                             
                             $actor->setName($actorsInfo->name);
                             
-                            $actor->setImage(empty($actorsInfo->profile_path) ? '' : "https://www.themoviedb.org/t/p/w138_and_h175_face$actorsInfo->profile_path");
+                            $actor->setImage(empty($actorsInfo->profile_path) ? 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg' : "https://www.themoviedb.org/t/p/w138_and_h175_face$actorsInfo->profile_path");
                             
                             $actor->setCreatedAt($currentDateTime);
 
                             $this->setReference(self::ACTOR_ID."$actorsInfo->id", $actor);
+                
+                            $actorId = $seriessActorList->cast[$index]->id;
+                            try{
+                                $series->addActor($this->getReference(self::ACTOR_ID."$actorId"));
+                            }catch(Exception $e){}
+                            $addedactors[] = $nbActors;
+                            if ($nbActors++ == 5) break;
                         }
-
-                        foreach ($seriessActorList->cast as $key => $value) {
-                            $actorId = $seriessActorList->cast[$key]->id;
-                            $series->addActor($this->getReference(self::ACTOR_ID."$actorId"));
-                        }
+                        //dump(count($addedactors));
                     }
                 }
   
@@ -123,7 +132,7 @@ class AppFixtures extends Fixture implements FixtureInterface
                         
                         $season->setNumberOfEpisodes($seasonInfo->episode_count);
 
-                        $season->setImage(empty($seasonInfo->poster_path) ? '' : "https://www.themoviedb.org/t/p/w130_and_h195_bestv2$seasonInfo->poster_path");
+                        $season->setImage(empty($seasonInfo->poster_path) ? 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg' : "https://www.themoviedb.org/t/p/w130_and_h195_bestv2$seasonInfo->poster_path");
                         
                         $season->setCreatedAt($currentDateTime);
 
@@ -138,6 +147,7 @@ class AppFixtures extends Fixture implements FixtureInterface
 
                 $entityManager->flush();
                 array_push($addedSeriesId, $r);
+                dump(count($addedSeriesId));
             }             
         }
     }
