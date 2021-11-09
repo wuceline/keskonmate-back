@@ -70,7 +70,7 @@ class GenreController extends AbstractController
             $genre->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "'{$genre->getName()}' a ete mis a jour");
+            $this->addFlash('success', "'{$genre->getName()}' a été mis à jour");
 
             return $this->redirectToRoute('backoffice_genre_browse');
         }
@@ -104,7 +104,7 @@ class GenreController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "'{$genre->getName()}' a ete cree");
+            $this->addFlash('success', "'{$genre->getName()}' a été créé");
 
             // redirection
             return $this->redirectToRoute('backoffice_actor_browse');

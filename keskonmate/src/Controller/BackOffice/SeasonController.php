@@ -69,7 +69,7 @@ class SeasonController extends AbstractController
             $season->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "La saison '{$season->getId()}' a ete mis a jour");
+            $this->addFlash('success', "La saison '{$season->getId()}' a été mis à jour");
 
             return $this->redirectToRoute('backoffice_season_browse');
         }
@@ -103,7 +103,7 @@ class SeasonController extends AbstractController
             $entityManager->flush();
 
             // pour opquast 
-            $this->addFlash('success', "La saison '{$season->getId()}' a ete cree");
+            $this->addFlash('success', "La saison '{$season->getId()}' a été créé");
 
             // redirection
             return $this->redirectToRoute('backoffice_season_browse');
