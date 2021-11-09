@@ -8,6 +8,7 @@ use App\Form\UserlistType;
 use App\Repository\UserListRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,10 +28,18 @@ class UserlistController extends AbstractController
      * 
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
-    public function browse(UserListRepository $userlistRepository): Response
+    public function browse(UserListRepository $userlistRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $data = $userlistRepository->findBy([],['id' => 'asc']);
+
+        $userlists = $paginator->paginate(
+            $data, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            20 // Nombre de résultats par page
+        );
+
         return $this->render('backoffice/userlist/browse.html.twig', [
-            'userlist_list' => $userlistRepository->findAll(),
+            'userlists' => $userlists
         ]);
     }
 

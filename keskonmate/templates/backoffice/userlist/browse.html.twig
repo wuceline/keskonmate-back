@@ -18,6 +18,9 @@
 <div class="text-end">
 </a>
 </div>
+<div class="d-flex justify-content-center">
+  {{ knp_pagination_render(userlists) }}
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,10 +30,11 @@
       <th scope="col">Saison en cours</th>
       <th scope="col">Episode en cours</th>
       <th scope="col">Type</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-{% for list in userlist_list %}
+{% for list in userlists %}
     <tr>
       <th scope="row">{{ list.id }}</th>
       <td>{{ list.users.id }}</td>
@@ -69,5 +73,8 @@
 {% endfor %}
   </tbody>
 </table>
+</div>
+<div class="d-flex justify-content-center">
+  {{ knp_pagination_render(userlists) }}
 </div>
 {% endblock %}
