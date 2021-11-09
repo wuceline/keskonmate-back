@@ -36,7 +36,6 @@ class SeriesController extends AbstractController
         );
 
         return $this->render('backoffice/series/browse.html.twig', [
-            'series_list' => $seriesRepository->findAll(),
             'series' => $series,
         ]);
     }

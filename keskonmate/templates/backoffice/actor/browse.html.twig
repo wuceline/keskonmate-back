@@ -19,15 +19,19 @@
 <div class="text-end">
 </a>
 </div>
+<div class="d-flex justify-content-center">
+  {{ knp_pagination_render(actors) }}
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nom</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-{% for actor in actor_list %}
+{% for actor in actors %}
     <tr>
       <th scope="row">{{ actor.id }}</th>
       <td>{{ actor.name }}</td>
@@ -62,5 +66,8 @@
 {% endfor %}
   </tbody>
 </table>
+</div>
+<div class="d-flex justify-content-center">
+  {{ knp_pagination_render(actors) }}
 </div>
 {% endblock %}
