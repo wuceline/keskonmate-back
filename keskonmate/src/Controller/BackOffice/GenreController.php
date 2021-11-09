@@ -7,6 +7,7 @@ use App\Form\GenreType;
 use App\Repository\GenreRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,12 +25,20 @@ class GenreController extends AbstractController
      * 
      * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
-    public function browse(GenreRepository $genreRepository): Response
+    public function browse(GenreRepository $genreRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $data = $genreRepository->findBy([],['name' => 'asc']);
+
+        $genres = $paginator->paginate(
+            $data, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            20 // Nombre de résultats par page
+        );
+
         return $this->render('backoffice/genre/browse.html.twig', [
-            'genre_list' => $genreRepository->findAll(),
+            'genres' => $genres,
         ]);
-    }
+    }    
 
     /**
      * @Route("/read/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
