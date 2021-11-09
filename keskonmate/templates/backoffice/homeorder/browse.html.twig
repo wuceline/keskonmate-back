@@ -22,17 +22,55 @@
   </thead>
   <tbody>
 {% for series_homeOrder in series_list %}
-{% if series_homeOrder.homeOrder > 0 and series_homeOrder.homeOrder < 6 %}
+
     <tr>    
-      <th scope="row">{{ series_homeOrder.homeOrder }}</th>
-      <td>{{ series_homeOrder.title }}</td>
-      <td>
-        <button type="submit" class="btn btn-primary">
-          Mettre a jour
-        </button>
-      </td>
-    </tr>
-{% endif %}
+      {% if series_homeOrder.homeOrder == 1 %}
+        <th scope="row">{{ series_homeOrder.homeOrder }}</th>      
+        <td>{{ series_homeOrder.title }}</td>
+        <td>
+          <button type="submit" class="btn btn-primary">
+            Mettre a jour
+          </button>
+        </td>
+      {% endif %}
+      {% if series_homeOrder.homeOrder == 2 %}
+        <th scope="row">{{ series_homeOrder.homeOrder }}</th>      
+        <td>{{ series_homeOrder.title }}</td>
+        <td>
+          <button type="submit" class="btn btn-primary">
+            Mettre a jour
+          </button>
+        </td>
+      {% endif %}
+      {% if series_homeOrder.homeOrder == 3 %}
+        <th scope="row">{{ series_homeOrder.homeOrder }}</th>      
+        <td>{{ series_homeOrder.title }}</td>
+        <td>
+          <button type="submit" class="btn btn-primary">
+            Mettre a jour
+          </button>
+        </td>
+      {% endif %}
+      {% if series_homeOrder.homeOrder == 5 %}
+        <th scope="row">{{ series_homeOrder.homeOrder }}</th>      
+        <td>{{ series_homeOrder.title }}</td>
+        <td>
+          <button type="submit" class="btn btn-primary">
+            Mettre a jour
+          </button>
+        </td>
+      {% endif %}
+      {% if series_homeOrder.homeOrder == 4 %}
+        <th scope="row">{{ series_homeOrder.homeOrder }}</th>      
+        <td>{{ series_homeOrder.title }}</td>
+        <td>
+          <button type="submit" class="btn btn-primary">
+            Mettre a jour
+          </button>
+        </td>
+      {% endif %}
+    </tr>          
+
 {% endfor %}
   </tbody>
 </table>
