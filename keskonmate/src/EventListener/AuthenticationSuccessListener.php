@@ -2,6 +2,7 @@
 
 namespace App\EventListener;
 
+use Doctrine\Common\EventSubscriber;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -13,6 +14,7 @@ class AuthenticationSuccessListener {
     {
         $data = $event->getData();
         $user = $event->getUser();
+        dd($user);
 
         if (!$user instanceof UserInterface) {
             return;
