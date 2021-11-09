@@ -80,7 +80,7 @@ class SeriesController extends AbstractController
             $series->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "'{$series->getTitle()}' a ete mis a jour");
+            $this->addFlash('success', "'{$series->getTitle()}' a été mis à jour");
 
             return $this->redirectToRoute('backoffice_series_browse');
         }

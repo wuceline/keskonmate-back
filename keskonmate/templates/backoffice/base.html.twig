@@ -37,30 +37,37 @@
                     <a class="navbar-brand" href="{{ url('backoffice_homepage') }}">Admin</a>                
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav justify-content-end navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ url('backoffice_homepage') }}">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('backoffice_users_browse') }}">Utilisateurs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('backoffice_series_browse') }}">Series</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('backoffice_actors_browse') }}">Acteurs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('backoffice_genres_browse') }}">Genres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('backoffice_userlist_browse') }}">Listes des Utilisateurs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('login') }}">Connexion</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('app_logout') }}">Déconnexion</a>
-                            </li>
+                            {% if 'login' != app.request.get('_route') %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ url('backoffice_homepage') }}">Accueil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('backoffice_series_browse') }}">Series</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('backoffice_actors_browse') }}">Acteurs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('backoffice_genres_browse') }}">Genres</a>
+                                </li>
+
+                                {% if (is_granted('ROLE_ADMIN')) %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('backoffice_users_browse') }}">Utilisateurs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('backoffice_userlist_browse') }}">Listes des Utilisateurs</a>
+                                    </li>
+                                {% endif %}
+                                
+                                    <li class="nav-item">
+                                    {% if (is_granted('ROLE_USER')) %}
+                                        <a class="nav-link" href="{{ url('app_logout') }}">Déconnexion</a>
+                                    {% else %}
+                                        <a class="nav-link" href="{{ url('login') }}">Connexion</a>
+                                    {% endif %}
+                                    </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
