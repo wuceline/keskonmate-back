@@ -29,7 +29,6 @@ class BackController extends AbstractController
     {
         $homeOrderAll = $seriesRepository->findAllByHomeOrder();
         $seriesList = $seriesRepository->findAllWithIdTitleAndHomeOrder();
-
         $homeOrderForm = $this->createForm(HomeOrderType::class, $seriesList, [
             'disabled' => 'disabled'
         ]);

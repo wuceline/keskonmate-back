@@ -25,7 +25,7 @@ class SeriesController extends AbstractController
      * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
     public function browse(SeriesRepository $seriesRepository): Response
-    {
+    {        
         return $this->render('backoffice/series/browse.html.twig', [
             'series_list' => $seriesRepository->findAll(),
         ]);
