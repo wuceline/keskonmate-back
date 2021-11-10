@@ -174,7 +174,7 @@ class UserList
         return $this->series;
     }
 
-    public function setSeries(?User $serie): self
+    public function setSeries(?Series $serie): self
     {
         $this->series = $serie;
 
