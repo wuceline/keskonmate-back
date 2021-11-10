@@ -32,17 +32,7 @@
 {{ form_start(userlist_form) }}
 
     {{ form_errors(userlist_form) }}
-    {% if page == 'create' %}
-        <div>
-            <label for="userlist_seriesNb" class="required">Series</label>
-            <select id="userlist_seriesNb" name="userlist[seriesNb]">
-                {% for series in seriesList %}
-                    <option value="{{series.id}}">{{series.title}}</option>
-                {% dump(series.title) %}
-                {% endfor %}
-            </select>
-        </div>
-    {% endif %}
+    {{ form_row(userlist_form.series) }}
     {{ form_row(userlist_form.seasonNb) }}    
     {{ form_row(userlist_form.episodeNb) }}
     {{ form_row(userlist_form.type) }}
