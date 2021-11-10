@@ -90,7 +90,7 @@ class UserController extends AbstractController
             $user->setUpdatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
-            $this->addFlash('success', "'{$user->getUserIdentifier()}' a ete mis a jour");
+            $this->addFlash('success', "'{$user->getUserIdentifier()}' a été mis à jour");
 
             return $this->redirectToRoute('backoffice_users_browse');
         }
@@ -131,7 +131,7 @@ class UserController extends AbstractController
             }
             $entityManager->flush();
 
-            $this->addFlash('success', "'{$user->getUserIdentifier()}' a ete cree");
+            $this->addFlash('success', "'{$user->getUserIdentifier()}' a été créé");
 
             return $this->redirectToRoute('backoffice_users_browse');
         }
