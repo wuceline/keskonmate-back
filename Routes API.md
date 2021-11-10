@@ -160,24 +160,20 @@
 ```
 
 ## URL Edit: /api/v1/users/id {PATCH}
-Le password doit etre communique a chaque fois
 ```json
 {
-  "password": "...."
 	"userNickname": "Tux"
 }
 ```
 ou
 ```json
 {
-  "password": "...."
 	"email": "Tux@oclock.io"
 }
 ```
 ou
 ```json
 {
-  "password": "...."
 	"email": "Tux@oclock.io",
   "userNickname": "Tux"
 }
@@ -490,7 +486,7 @@ etc ...
 ]
 ```
 
-## URL Edit: /api/v1/userlists/id {PUT}
+## URL Edit: /api/v1/userlists/id {PATCH}
 
 ```json
 [
