@@ -26,6 +26,15 @@ class UserList
      */
     private $id;
    
+    /**
+     * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="userlist")
+     * 
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
+     */
+    private $series;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -75,17 +84,7 @@ class UserList
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
      */
-    private $type;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="userlist")
-     * 
-     * @Groups("api_users_browse")
-     * @Groups("api_users_read")
-     * @Groups("api_userlists_browse")
-     * @Groups("api_userlists_read")
-     */
-    private $series;
+    private $type;    
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="users")
