@@ -23,140 +23,74 @@
 [
   {
     "id": 1,
-    "email": "tux@keskonmate.io",
-    "userNickname": "Tux",
-    "createdAt": "2021-11-04T16:41:45+01:00",
-    "updatedAt": null,
+    "email": "user@keskonmate.me",
+    "userNickname": "user",
+    "createdAt": "2021-11-09T17:12:46+01:00",
+    "updatedAt": "2021-11-10T11:46:27+01:00",
     "userlist": [
       {
-        "id": 1,
-        "seasonNb": 1,
-        "seriesNb": 279,
-        "episodeNb": 1,
-        "createdAt": "2021-11-04T16:54:16+01:00",
-        "updatedAt": null,
-        "type": 1,
+        "id": 25,
         "series": {
-          "id": 279,
-          "title": "Weeds",
-          "synopsis": "",
-          "releaseDate": "2017-08-07T00:00:00+02:00",
-          "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/5VKxIBSMVZxIKqJVPNThAnjgcOS.jpg",
-          "director": "Jenji Kohan",
-          "numberOfSeasons": 8,
-          "createdAt": "2021-11-04T13:27:32+01:00",
-          "updatedAt": "2021-11-05T15:21:01+01:00",
-          "genre": [
-            {
-              "id": 259,
-              "name": "Comédie"
-            },
-            {
-              "id": 260,
-              "name": "Crime"
-            },
-            {
-              "id": 262,
-              "name": "Drame"
-            }
-          ],
-          "season": [
-            {
-              "id": 1028,
-              "seasonNumber": 0
-            },
-            {
-              "id": 1029,
-              "seasonNumber": 1
-            },
-          ],
-          "actor": [
-            [],
-            [],            
-          ]
-        }
-      }
+          "id": 22,
+          "title": "Rookie Vets",
+          "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nimis multa. Quae cum essent dicta, discessimus. Beatum, inquit. An hoc usque quaque, aliter in vita? \n\n",
+          "releaseDate": "2021-11-09T00:00:00+01:00",
+          "image": "https:\/\/i.ibb.co\/ySnm17G\/Keskonmate.png",
+          "director": "Xavier Muspimerol",
+          "numberOfSeasons": 0,
+          "createdAt": "2021-11-09T17:10:20+01:00",
+          "updatedAt": null
+        },
+        "seasonNb": 1,
+        "episodeNb": 1,
+        "createdAt": "2021-10-27T12:40:34+02:00",
+        "updatedAt": null,
+        "type": 1
+      },
     ]
   },
   {
     "id": 2,
-    "email": "dorian2@keskonmate.io",
-    "userNickname": "Dorian123",
-    "createdAt": "2021-10-27T15:31:06+02:00",
-    "updatedAt": null,
+    "email": "test@keskonmate.io",
+    "userNickname": "test",
+    "createdAt": "2021-11-09T17:16:02+01:00",
+    "updatedAt": "2021-11-09T17:16:02+01:00",
     "userlist": []
   },
-  {
-    "id": 3,
-    "email": "admin@keskonmate.io",
-    "userNickname": "admin",
-    "createdAt": "2021-11-05T10:23:28+01:00",
-    "updatedAt": null,
-    "userlist": []
-  }
 ]
 ```
 ## URL Read: /api/v1/users/id {GET}
 
 ```json
 {
-  "id": 1,
-  "email": "tux@keskonmate.io",
-  "userNickname": "Tux",
-  "createdAt": "2021-11-04T16:41:45+01:00",
-  "updatedAt": null,
-  "userlist": [
-    {
-      "id": 1,
-      "seasonNb": 1,
-      "seriesNb": 279,
-      "episodeNb": 1,
-      "createdAt": "2021-11-04T16:54:16+01:00",
-      "updatedAt": null,
-      "type": 1,
-      "series": {
-        "id": 279,
-        "title": "Weeds",
-        "synopsis": "",
-        "releaseDate": "2017-08-07T00:00:00+02:00",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/5VKxIBSMVZxIKqJVPNThAnjgcOS.jpg",
-        "director": "Jenji Kohan",
-        "numberOfSeasons": 8,
-        "createdAt": "2021-11-04T13:27:32+01:00",
-        "updatedAt": "2021-11-05T15:21:01+01:00",
-        "genre": [
-          {
-            "id": 259,
-            "name": "Comédie"
-          },
-          {
-            "id": 260,
-            "name": "Crime"
-          },
-          {
-            "id": 262,
-            "name": "Drame"
-          }
-        ],
-        "season": [
-          {
-            "id": 1028,
-            "seasonNumber": 0
-          },
-          {
-            "id": 1029,
-            "seasonNumber": 1
-          },
-        ],
-        "actor": [
-          [],
-          [],
-          [],
-        ]
-      }
-    }
-  ]
-}
+    "id": 1,
+    "email": "user@keskonmate.me",
+    "userNickname": "user",
+    "createdAt": "2021-11-09T17:12:46+01:00",
+    "updatedAt": "2021-11-10T11:46:27+01:00",
+    "userlist": [
+      {
+        "id": 25,
+        "series": {
+          "id": 22,
+          "title": "Rookie Vets",
+          "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nimis multa. Quae cum essent dicta, discessimus. Beatum, inquit. An hoc usque quaque, aliter in vita? \n\n",
+          "releaseDate": "2021-11-09T00:00:00+01:00",
+          "image": "https:\/\/i.ibb.co\/ySnm17G\/Keskonmate.png",
+          "director": "Xavier Muspimerol",
+          "numberOfSeasons": 0,
+          "createdAt": "2021-11-09T17:10:20+01:00",
+          "updatedAt": null
+        },
+        "seasonNb": 1,
+        "episodeNb": 1,
+        "createdAt": "2021-10-27T12:40:34+02:00",
+        "updatedAt": null,
+        "type": 1
+      },
+    ]
+},
+
 ```
 
 ## URL Edit: /api/v1/users/id {PATCH}
@@ -203,34 +137,31 @@ etc ...
 [
   {
     "id": 1,
-    "name": "Keanu Reeves",
-    "image": "kreeves.jpg",
-    "createdAt": "2021-10-27T12:10:49+02:00",
+    "name": "Allan Lane",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg",
+    "createdAt": "2021-11-09T17:10:20+01:00",
     "updatedAt": null,
     "series": [
       {
         "id": 1,
-        "title": "Game of Thrones"
-      },
-      {
-        "id": 2,
-        "title": "The Big Bang Theory"
+        "title": "Monsieur Ed, le cheval qui parle"
       }
     ]
   },
   {
     "id": 2,
-    "name": "Mister Bean",
-    "image": "mrbean.jpg",
-    "createdAt": "2021-10-29T14:53:22+02:00",
+    "name": "Connie Hines",
+    "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg",
+    "createdAt": "2021-11-09T17:10:20+01:00",
     "updatedAt": null,
     "series": [
       {
-        "id": 2,
-        "title": "The Big Bang Theory"
+        "id": 1,
+        "title": "Monsieur Ed, le cheval qui parle"
       }
     ]
-  }
+  },
+  
 ]
 ```
 
@@ -238,18 +169,18 @@ etc ...
 
 ```json
 {
-  "id": 1290,
-  "name": "Mary-Louise Parker",
-  "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/1ohhrIZ4OMlLx9DvHjPhQJAIP0F.jpg",
-  "createdAt": "2021-11-04T13:27:32+01:00",
-  "updatedAt": null,
-  "series": [
-    {
-      "id": 279,
-      "title": "Weeds"
-    }
-  ]
-}
+    "id": 1,
+    "name": "Allan Lane",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg",
+    "createdAt": "2021-11-09T17:10:20+01:00",
+    "updatedAt": null,
+    "series": [
+      {
+        "id": 1,
+        "title": "Monsieur Ed, le cheval qui parle"
+      }
+    ]
+} 
 ```
 
 # Genres:
@@ -258,39 +189,39 @@ etc ...
 ```json
 [
   {
-    "id": 257,
+    "id": 1,
     "name": "Action & Adventure",
-    "createdAt": "2021-11-04T13:27:32+01:00",
+    "createdAt": "2021-11-09T17:10:20+01:00",
     "updatedAt": null,
     "series": [
       {
-        "id": 295,
-        "title": "Pacific Blue"
-      },
-      {
-        "id": 317,
-        "title": "Jericho"
-      },
+        "id": 26,
+        "title": "Q.E.D."
+      }
     ]
   },
   {
-    "id": 258,
+    "id": 2,
     "name": "Animation",
-    "createdAt": "2021-11-04T13:27:32+01:00",
+    "createdAt": "2021-11-09T17:10:20+01:00",
     "updatedAt": null,
     "series": [
       {
-        "id": 281,
-        "title": "Captain Star"
+        "id": 6,
+        "title": "The New Scooby and Scrappy-Doo Show"
       },
       {
-        "id": 287,
-        "title": "Squirrel Boy"
+        "id": 8,
+        "title": "Space Sentinels"
       },
       {
-        "id": 291,
+        "id": 15,
+        "title": "Aqua Teen Hunger Force"
+      },
+      {
+        "id": 42,
         "title": "Inhumanoids"
-      },
+      }
     ]
   },
 ]
@@ -300,21 +231,17 @@ etc ...
 
 ```json
 {
-  "id": 257,
-  "name": "Action & Adventure",
-  "createdAt": "2021-11-04T13:27:32+01:00",
-  "updatedAt": null,
-  "series": [
-    {
-      "id": 295,
-      "title": "Pacific Blue"
-    },
-    {
-      "id": 317,
-      "title": "Jericho"
-    },
-  ]
-}
+    "id": 1,
+    "name": "Action & Adventure",
+    "createdAt": "2021-11-09T17:10:20+01:00",
+    "updatedAt": null,
+    "series": [
+      {
+        "id": 26,
+        "title": "Q.E.D."
+      }
+    ]
+  }
 ```
 
 # Season:
@@ -323,32 +250,30 @@ etc ...
 
 ```json
 [
-  [
   {
-    "id": 1028,
+    "id": 1,
     "seasonNumber": 0,
-    "numberOfEpisodes": 1,
-    "image": "",
-    "createdAt": "2021-11-04T13:27:32+01:00",
+    "numberOfEpisodes": 4,
+    "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg",
+    "createdAt": "2021-11-09T17:10:20+01:00",
     "updatedAt": null,
     "series": {
-      "id": 279,
-      "title": "Weeds"
+      "id": 1,
+      "title": "Monsieur Ed, le cheval qui parle"
     }
   },
   {
-    "id": 1029,
+    "id": 2,
     "seasonNumber": 1,
-    "numberOfEpisodes": 10,
-    "image": "https:\/\/www.themoviedb.org\/t\/p\/w130_and_h195_bestv2\/zYpR9LaslMCxjR1Llv5BwaeDyF4.jpg",
-    "createdAt": "2021-11-04T13:27:32+01:00",
+    "numberOfEpisodes": 4,
+    "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg",
+    "createdAt": "2021-11-09T17:10:20+01:00",
     "updatedAt": null,
     "series": {
-      "id": 279,
-      "title": "Weeds"
+      "id": 1,
+      "title": "Mega 64"
     }
-  },
-  ]
+  }  
 ]
 ```
 ## URL Read: /api/v1/seasons/id {GET}
@@ -356,16 +281,16 @@ etc ...
 
 ```json
 {
-  "id": 1080,
-  "seasonNumber": 1,
-  "numberOfEpisodes": 13,
-  "image": "",
-  "createdAt": "2021-11-04T13:27:32+01:00",
-  "updatedAt": null,
-  "series": {
-    "id": 296,
-    "title": "Joë chez les abeilles"
-  }
+    "id": 1,
+    "seasonNumber": 0,
+    "numberOfEpisodes": 4,
+    "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg",
+    "createdAt": "2021-11-09T17:10:20+01:00",
+    "updatedAt": null,
+    "series": {
+      "id": 1,
+      "title": "Monsieur Ed, le cheval qui parle"
+    }
 }
 ```
 
@@ -375,115 +300,59 @@ etc ...
 ```json
 [
   {
-    "id": 1,
+    "id": 25,
+    "series": {
+      "id": 22,
+      "title": "Rookie Vets"
+    },
     "seasonNb": 1,
-    "seriesNb": 279,
     "episodeNb": 1,
-    "createdAt": "2021-11-04T16:54:16+01:00",
+    "createdAt": "2021-10-27T12:40:34+02:00",
     "updatedAt": null,
     "type": 1,
-    "series": {
-      "id": 279,
-      "title": "Weeds",
-      "actor": [
-        {
-          "id": 1290,
-          "name": "Mary-Louise Parker"
-        },
-        {
-          "id": 1291,
-          "name": "Justin Kirk"
-        },
-        {
-          "id": 1292,
-          "name": "Alexander Gould"
-        },
-        {
-          "id": 1293,
-          "name": "Kevin Nealon"
-        },
-        {
-          "id": 1294,
-          "name": "Hunter Parrish"
-        },
-        {
-          "id": 1295,
-          "name": "Jennifer Jason Leigh"
-        },
-        {
-          "id": 1296,
-          "name": "Ethan Kent"
-        },
-        {
-          "id": 1297,
-          "name": "Gavin Kent"
-        }
-      ]
-    },
     "users": {
       "id": 1,
-      "email": "tux@keskonmate.io"
+      "email": "user@keskonmate.me"
     }
-  }
+  },
+  {
+    "id": 29,
+    "series": {
+      "id": 22,
+      "title": "Rookie Vets"
+    },
+    "seasonNb": 1,
+    "episodeNb": 1,
+    "createdAt": "2021-10-27T12:40:34+02:00",
+    "updatedAt": null,
+    "type": 1,
+    "users": {
+      "id": 1,
+      "email": "user@keskonmate.me"
+    }
+  },
 ]
 ```
 
 ## URL Read: /api/v1/userlists/id {GET}
 
 ```json
-[
-  {
-    "id": 1,
+{
+    "id": 25,
+    "series": {
+      "id": 22,
+      "title": "Rookie Vets"
+    },
     "seasonNb": 1,
-    "seriesNb": 279,
     "episodeNb": 1,
-    "createdAt": "2021-11-04T16:54:16+01:00",
+    "createdAt": "2021-10-27T12:40:34+02:00",
     "updatedAt": null,
     "type": 1,
-    "series": {
-      "id": 279,
-      "title": "Weeds",
-      "actor": [
-        {
-          "id": 1290,
-          "name": "Mary-Louise Parker"
-        },
-        {
-          "id": 1291,
-          "name": "Justin Kirk"
-        },
-        {
-          "id": 1292,
-          "name": "Alexander Gould"
-        },
-        {
-          "id": 1293,
-          "name": "Kevin Nealon"
-        },
-        {
-          "id": 1294,
-          "name": "Hunter Parrish"
-        },
-        {
-          "id": 1295,
-          "name": "Jennifer Jason Leigh"
-        },
-        {
-          "id": 1296,
-          "name": "Ethan Kent"
-        },
-        {
-          "id": 1297,
-          "name": "Gavin Kent"
-        }
-      ]
-    },
     "users": {
       "id": 1,
-      "email": "tux@keskonmate.io"
+      "email": "user@keskonmate.me"
     }
   }
-]
 ```
 
 ## URL Edit: /api/v1/userlists/id {PATCH}
@@ -499,7 +368,7 @@ ou
 ```json
 [
   {
-    "seriesNb": 2
+    "series": 2
   }
 ]
 ```
@@ -537,101 +406,78 @@ etc....
 
 ```json
 [
-  [
   {
-    "id": 279,
-    "title": "Weeds",
-    "synopsis": "",
-    "releaseDate": "2017-08-07T00:00:00+02:00",
-    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/5VKxIBSMVZxIKqJVPNThAnjgcOS.jpg",
-    "director": "Jenji Kohan",
-    "numberOfSeasons": 8,
-    "homeOrder": 1,
-    "createdAt": "2021-11-04T13:27:32+01:00",
-    "updatedAt": "2021-11-05T15:21:01+01:00",
+    "id": 1,
+    "title": "Monsieur Ed, le cheval qui parle",
+    "synopsis": "Wilbur Post et sa femme Carol emménagent dans une belle maison. Lorsque Wilbur jette un coup d'œil dans sa nouvelle grange, il constate que l'ancien propriétaire a laissé son cheval derrière lui. Ce cheval n'est pas un cheval ordinaire... il ne peut parler qu'à Wilbur, ce qui entraîne toutes sortes de mésaventures pour Wilbur et son acolyte fauteur de troubles, Monsieur Ed.",
+    "releaseDate": "1961-01-05T00:00:00+01:00",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/luppCk9XUcs0gUEf9Sv7MhiJv4H.jpg",
+    "director": "Walter R. Brooks",
+    "numberOfSeasons": 6,
+    "homeOrder": null,
+    "createdAt": "2021-11-09T17:10:20+01:00",
+    "updatedAt": null,
     "genre": [
       {
-        "id": 259,
+        "id": 3,
         "name": "Comédie"
-      },
-      {
-        "id": 260,
-        "name": "Crime"
-      },
-      {
-        "id": 262,
-        "name": "Drame"
       }
     ],
     "season": [
       {
-        "id": 1028,
+        "id": 1,
         "seasonNumber": 0
       },
       {
-        "id": 1029,
+        "id": 2,
         "seasonNumber": 1
-      },
-      {
-        "id": 1030,
-        "seasonNumber": 2
-      },
-      {
-        "id": 1031,
-        "seasonNumber": 3
       },
     ],
     "actor": [
       {
-        "id": 1290,
-        "name": "Mary-Louise Parker",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/1ohhrIZ4OMlLx9DvHjPhQJAIP0F.jpg"
-      },
-      {
-        "id": 1291,
-        "name": "Justin Kirk",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/hwPliH9zK3keAYt3uo1ksAlIsNV.jpg"
-      },
-      {
-        "id": 1292,
-        "name": "Alexander Gould",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/fe4mUSp0XotA6Ku4Bs69Q9o2lqU.jpg"
+        "id": 1,
+        "name": "Allan Lane",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg"
       },
     ]
   },
   {
-    "id": 280,
-    "title": "River City",
-    "synopsis": "",
-    "releaseDate": "2002-09-24T00:00:00+02:00",
-    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/mdYT9F9bZFcbiP2xxLnohKguqyP.jpg",
-    "director": "Stephen Greenhorn",
-    "numberOfSeasons": 10,
+    "id": 2,
+    "title": "Mega64",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae diligentissime contra Aristonem dicuntur a Chryippo. Bonum incolumis acies: misera caecitas. Nam ante Aristippus, et ille melius. Si id dicis, vicimus. Quis non odit sordidos, vanos, leves, futtiles? Quod quidem iam fit etiam in Academia. Duo Reges: constructio interrete. Ex rebus enim timiditas, non ex vocabulis nascitur. \n\n",
+    "releaseDate": "2004-11-18T00:00:00+01:00",
+    "image": "https:\/\/i.ibb.co\/ySnm17G\/Keskonmate.png",
+    "director": "Derrick Acosta",
+    "numberOfSeasons": 4,
     "homeOrder": null,
-    "createdAt": "2021-11-04T13:27:32+01:00",
+    "createdAt": "2021-11-09T17:10:20+01:00",
     "updatedAt": null,
     "genre": [
       {
-        "id": 262,
-        "name": "Drame"
-      },
-      {
-        "id": 269,
-        "name": "Soap"
+        "id": 3,
+        "name": "Comédie"
       }
     ],
     "season": [
       {
-        "id": 1037,
-        "seasonNumber": 1
-      },
-      {
-        "id": 1038,
-        "seasonNumber": 2
+        "id": 8,
+        "seasonNumber": 0
       },
     ],
-    "actor": []
+    "actor": [
+      {
+        "id": 6,
+        "name": "Rocco Botte",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/83dugHkP4Davdwnpa3VcnyiBcPY.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Shawn Chatfield",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/7UWVMS79HmhnM8L16TU2XM4PFyY.jpg"
+      },
+    ]
   },
+   
 ]
 ```
 
@@ -639,43 +485,38 @@ etc....
 
 ```json
 {
-  "id": 286,
-  "title": "Dark Skies : L'Impossible Vérité",
-  "synopsis": "Dans les années 1960, Kimberly Sayers et John Loengard emménagent à Washington pour le travail de John comme assistant parlementaire. Il enquête sur une administration, Majestic (voir Majestic 12 pour un possible parallèle), et découvre que celle-ci lutte contre une invasion extraterrestre en cours. Ils prennent possession de corps humains et leurs intentions ne sont pas pacifiques.John et Kim s'engagent dans le combat contre les envahisseurs, tout en essayant de rester à distance des agents de Majestic.",
-  "releaseDate": "1996-09-21T00:00:00+02:00",
-  "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/d6gaIKwu3e6AFqXnHwkJc2a2G3J.jpg",
-  "director": "",
-  "numberOfSeasons": 1,
-  "homeOrder": null,
-  "createdAt": "2021-11-04T13:27:32+01:00",
-  "updatedAt": "2021-11-05T15:22:27+01:00",
-  "genre": [
-    {
-      "id": 262,
-      "name": "Drame"
-    },
-    {
-      "id": 268,
-      "name": "Science-Fiction & Fantastique"
-    }
-  ],
-  "season": [
-    {
-      "id": 1063,
-      "seasonNumber": 1
-    }
-  ],
-  "actor": [
-    {
-      "id": 1328,
-      "name": "Tim Kelleher",
-      "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8W3KgoIPUMNjqb3CxC9B8QjBsjM.jpg"
-    },
-    {
-      "id": 1329,
-      "name": "Eric Close",
-      "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/njJYXuTlmCgI3VVHBFqkqrhiey3.jpg"
-    },
-  ]
-}
+    "id": 1,
+    "title": "Monsieur Ed, le cheval qui parle",
+    "synopsis": "Wilbur Post et sa femme Carol emménagent dans une belle maison. Lorsque Wilbur jette un coup d'œil dans sa nouvelle grange, il constate que l'ancien propriétaire a laissé son cheval derrière lui. Ce cheval n'est pas un cheval ordinaire... il ne peut parler qu'à Wilbur, ce qui entraîne toutes sortes de mésaventures pour Wilbur et son acolyte fauteur de troubles, Monsieur Ed.",
+    "releaseDate": "1961-01-05T00:00:00+01:00",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/luppCk9XUcs0gUEf9Sv7MhiJv4H.jpg",
+    "director": "Walter R. Brooks",
+    "numberOfSeasons": 6,
+    "homeOrder": null,
+    "createdAt": "2021-11-09T17:10:20+01:00",
+    "updatedAt": null,
+    "genre": [
+      {
+        "id": 3,
+        "name": "Comédie"
+      }
+    ],
+    "season": [
+      {
+        "id": 1,
+        "seasonNumber": 0
+      },
+      {
+        "id": 2,
+        "seasonNumber": 1
+      },
+    ],
+    "actor": [
+      {
+        "id": 1,
+        "name": "Allan Lane",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg"
+      },
+    ]
+  }
 ```
