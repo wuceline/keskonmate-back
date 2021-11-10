@@ -118,12 +118,6 @@ class UserlistController extends AbstractController
           
             $entityManager = $this->getDoctrine()->getManager();  
             $entityManager->persist($userlist);
-            $seriesNb = $_REQUEST['userlist']['seriesNb'];
-            //dd($seriesNb);
-            $seriesToAdd = $entityManager->getRepository(Series::class)->find($seriesNb);
-            $userlist->setSeriesNb($seriesNb);
-            //dd($seriesToAdd);
-            $userlist->addSeries($seriesToAdd);
             $userlist->setCreatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
@@ -136,7 +130,6 @@ class UserlistController extends AbstractController
 
         return $this->render('backoffice/userlist/add.html.twig', [
             'userlist_form' => $userlistForm->createView(),
-            'seriesList' => $entityManager->getRepository(Series::class)->findAll(),
             'page' => 'create',
         ]);
     }

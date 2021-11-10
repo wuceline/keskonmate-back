@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Series;
 use App\Entity\User;
 use App\Entity\UserList;
 use DateTimeImmutable;
@@ -21,6 +22,11 @@ class UserlistType extends AbstractType
             ->add('users', EntityType::class, [
                 'class' => User::class
             ])
+            ->add('series', EntityType::class, [
+                'class' => Series::class,
+                'label' => "Série",
+                'multiple' => false,
+            ])
             ->add('seasonNb', TextType::class)
             ->add('episodeNb', TextType::class)
             ->add('type', TextType::class)
@@ -38,7 +44,6 @@ class UserlistType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserList::class,
-            "allow_extra_fields" => true
         ]);
     }
 }
