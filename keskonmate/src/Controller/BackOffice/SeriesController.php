@@ -10,7 +10,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,8 +39,21 @@ class SeriesController extends AbstractController
             20 // Nombre de résultats par page
         );
 
+        $formSearchBar = $this->createFormBuilder(null)
+            ->add('Rechercher', TextType::class)
+            ->add('_', EntityType::class, [
+                'class' => Series::class
+                ])
+            ->add('Soumettre', SubmitType::class, [
+                'attr' => [
+                    'btn btn-primary'
+                ]
+            ])
+            ->getForm();
+
         return $this->render('backoffice/series/browse.html.twig', [
             'series' => $series,
+            'searchBar' => $formSearchBar->createView()
         ]);
     }
 
