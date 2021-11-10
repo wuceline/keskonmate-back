@@ -47,9 +47,9 @@ class AppFixtures extends Fixture implements FixtureInterface
         $noGenre->setCreatedAt($currentDateTime);
         $this->addReference(self::GENRE_ID."-none", $noGenre);
 
-        for ($i=1; count($addedSeriesId) < 1000; $i++) {
+        for ($i=1; count($addedSeriesId) < 100; $i++) {
 
-            $r = rand(1, 1500); 
+            $r = rand(1, 500); 
             
             $lorem = file_get_contents("https://loripsum.net/api/1/short/plaintext");
 
