@@ -45,16 +45,6 @@ class UserList
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
      */
-    private $seriesNb;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * 
-     * @Groups("api_users_browse")
-     * @Groups("api_users_read")
-     * @Groups("api_userlists_browse")
-     * @Groups("api_userlists_read")
-     */
     private $episodeNb;
 
     /**
@@ -123,18 +113,6 @@ class UserList
     public function setSeasonNb(?int $seasonNb): self
     {
         $this->seasonNb = $seasonNb;
-
-        return $this;
-    }
-
-    public function getSeriesNb(): ?int
-    {
-        return $this->seriesNb;
-    }
-
-    public function setSeriesNb(?int $seriesNb): self
-    {
-        $this->seriesNb = $seriesNb;
 
         return $this;
     }
