@@ -3,6 +3,7 @@
 namespace App\Controller\Api\v1;
 
 use App\Entity\Userlist;
+use App\Repository\SeriesRepository;
 use App\Repository\UserListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +24,13 @@ class UserlistController extends AbstractController
      */
     public function browse(UserListRepository $userlistRepository): Response
     {
-        $allUserlists = $userlistRepository->findAll();
-        
-        return $this->json($allUserlists, Response::HTTP_OK, [], ['groups' => 'api_userlists_browse']);
+        // $allUserlists = $userlistRepository->findAll();
+                
+        // return $this->json($allUserlists, Response::HTTP_OK, [], ['groups' => 'api_userlists_browse']);
+
+        $allListsDQL = $userlistRepository->findAllWithDQL();
+        dd($allListsDQL);
+        return $this->json($allListsDQL, Response::HTTP_OK, [], ['groups' => 'api_userlists_browse']);
     }
 
     /**
