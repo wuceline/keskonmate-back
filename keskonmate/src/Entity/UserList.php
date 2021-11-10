@@ -26,6 +26,16 @@ class UserList
      */
     private $id;
    
+    /**
+     * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="userlist")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * 
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     * @Groups("api_userlists_browse")
+     * @Groups("api_userlists_read")
+     */
+    private $series;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -36,16 +46,6 @@ class UserList
      * @Groups("api_userlists_read")
      */
     private $seasonNb;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * 
-     * @Groups("api_users_browse")
-     * @Groups("api_users_read")
-     * @Groups("api_userlists_browse")
-     * @Groups("api_userlists_read")
-     */
-    private $seriesNb;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -85,18 +85,7 @@ class UserList
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
      */
-    private $type;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="userlist")
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     * 
-     * @Groups("api_users_browse")
-     * @Groups("api_users_read")
-     * @Groups("api_userlists_browse")
-     * @Groups("api_userlists_read")
-     */
-    private $series;
+    private $type;    
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="users")
@@ -125,18 +114,6 @@ class UserList
     public function setSeasonNb(?int $seasonNb): self
     {
         $this->seasonNb = $seasonNb;
-
-        return $this;
-    }
-
-    public function getSeriesNb(): ?int
-    {
-        return $this->seriesNb;
-    }
-
-    public function setSeriesNb(?int $seriesNb): self
-    {
-        $this->seriesNb = $seriesNb;
 
         return $this;
     }
