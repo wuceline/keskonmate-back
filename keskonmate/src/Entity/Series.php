@@ -145,7 +145,6 @@ class Series
 
     /**
      * @ORM\OneToMany(targetEntity=Season::class, mappedBy="series")
-     * @ORM\JoinColumn(onDelete="CASCADE") 
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
