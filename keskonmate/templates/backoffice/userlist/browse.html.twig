@@ -37,8 +37,16 @@
 {% for list in userlists %}
     <tr>
       <th scope="row">{{ list.id }}</th>
-      <td>{{ list.users.id }}</td>
-      <td>{{ list.seriesNb }}</td>
+      <td>
+        <a href="{{ url('backoffice_users_read', {"id": list.users.id}) }}">
+          {{ list.users.id }}
+        </a>
+      </td>
+      <td>
+        <a href="{{ url('backoffice_series_read', {"id": list.seriesNb}) }}">
+          {{ list.seriesNb }}
+        </a>
+      </td>
       <td>{{ list.seasonNb }}</td>
       <td>{{ list.episodeNb }}</td>
       <td>{{ list.type }}</td>

@@ -107,6 +107,7 @@ class UserList
 
     public function __construct()
     {
+        //$this->series = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -196,8 +197,9 @@ class UserList
 
     public function addSeries(Series $series): self
     {
-        if (!$this->series->contains($series)) {
-            $this->series[] = $series;
+        //dd($series);
+        if (empty($this->series)) {
+            $this->series = $series;
             $series->addUserlist($this);
         }
 

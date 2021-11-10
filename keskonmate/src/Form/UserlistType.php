@@ -7,6 +7,7 @@ use App\Entity\UserList;
 use DateTimeImmutable;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +22,6 @@ class UserlistType extends AbstractType
                 'class' => User::class
             ])
             ->add('seasonNb', TextType::class)
-            ->add('seriesNb', TextType::class)
             ->add('episodeNb', TextType::class)
             ->add('type', TextType::class)
             ->add('createdAt', DateTimeType::class, [
@@ -38,6 +38,7 @@ class UserlistType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserList::class,
+            "allow_extra_fields" => true
         ]);
     }
 }
