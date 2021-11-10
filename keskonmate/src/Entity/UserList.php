@@ -195,13 +195,8 @@ class UserList
         return $this->series;
     }
 
-    public function addSeries(Series $series): self
-    {
-        //dd($series);
-        if (empty($this->series)) {
-            $this->series = $series;
-            $series->addUserlist($this);
-        }
+    public function setSeries($serie) {
+        $this->series = $serie;
 
         return $this;
     }
