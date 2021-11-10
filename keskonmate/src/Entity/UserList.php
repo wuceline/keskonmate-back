@@ -89,6 +89,7 @@ class UserList
 
     /**
      * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="userlist")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * 
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
@@ -99,6 +100,7 @@ class UserList
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="users")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * 
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
@@ -190,22 +192,14 @@ class UserList
     /**
      * @return Series
      */
-    public function getSeries()
+    public function getSeries(): ?Series
     {
         return $this->series;
     }
 
-    public function setSeries($serie) {
-        $this->series = $serie;
-
-        return $this;
-    }
-
-    public function removeSeries(Series $series): self
+    public function setSeries(?User $serie): self
     {
-        if ($this->series->removeElement($series)) {
-            $series->removeUserlist($this);
-        }
+        $this->series = $serie;
 
         return $this;
     }

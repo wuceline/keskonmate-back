@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20211110092100 extends AbstractMigration
+final class Version20211110143250 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -33,8 +33,8 @@ final class Version20211110092100 extends AbstractMigration
         $this->addSql('ALTER TABLE series_genre ADD CONSTRAINT FK_F6DFD7E54296D31F FOREIGN KEY (genre_id) REFERENCES genre (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE series_actor ADD CONSTRAINT FK_31FAB2E45278319C FOREIGN KEY (series_id) REFERENCES series (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE series_actor ADD CONSTRAINT FK_31FAB2E410DAF24A FOREIGN KEY (actor_id) REFERENCES actor (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE user_list ADD CONSTRAINT FK_3E49B4D15278319C FOREIGN KEY (series_id) REFERENCES series (id)');
-        $this->addSql('ALTER TABLE user_list ADD CONSTRAINT FK_3E49B4D167B3B43D FOREIGN KEY (users_id) REFERENCES `user` (id)');
+        $this->addSql('ALTER TABLE user_list ADD CONSTRAINT FK_3E49B4D15278319C FOREIGN KEY (series_id) REFERENCES series (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE user_list ADD CONSTRAINT FK_3E49B4D167B3B43D FOREIGN KEY (users_id) REFERENCES `user` (id) ON DELETE CASCADE');
     }
 
     public function down(Schema $schema): void
