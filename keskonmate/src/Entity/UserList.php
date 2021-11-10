@@ -107,7 +107,6 @@ class UserList
 
     public function __construct()
     {
-        $this->series = new ArrayCollection();
     }
 
     public function getId(): ?int

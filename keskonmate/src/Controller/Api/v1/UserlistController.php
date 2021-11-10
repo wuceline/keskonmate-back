@@ -39,17 +39,16 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="edit", methods={"PUT"}, requirements={"id"="\d+"})
+     * @Route("/{id}", name="edit", methods={"PATCH"}, requirements={"id"="\d+"})
      */
     public function edit(int $id, UserListRepository $userListRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): Response
     {
-        $user = $userListRepository->find($id);
+        $userList = $userListRepository->find($id);
 
         $jsonContent = $request->getContent();
+        $serializer->deserialize($jsonContent, Userlist::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $userList]);  
 
-        $serializer->deserialize($jsonContent, Userlist::class, 'json');
-
-        $entityManager->persist($user);
+        $entityManager->persist($userList);
         $entityManager->flush();
 
         return $this->read($id, $userListRepository);
