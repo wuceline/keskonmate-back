@@ -7,6 +7,7 @@ use App\Form\ActorType;
 use App\Repository\ActorRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,12 +25,19 @@ class ActorController extends AbstractController
      * 
      * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
-    public function browse(ActorRepository $actorRepository): Response
+    public function browse(ActorRepository $actorRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $data = $actorRepository->findBy([],['name' => 'asc']);
+        $actors = $paginator->paginate(
+            $data, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            20 // Nombre de résultats par page
+        );
+
         return $this->render('backoffice/actor/browse.html.twig', [
-            'actor_list' => $actorRepository->findAll(),
+            'actors' => $actors,
         ]);
-    }
+    }   
 
     /**
      * @Route("/read/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})

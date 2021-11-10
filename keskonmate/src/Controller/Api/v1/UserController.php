@@ -52,11 +52,15 @@ class UserController extends AbstractController
         if (is_null($userRepository)) {
             return $this->getNotFoundResponse();
         }
-
-        $user->setUpdatedAt(new DateTimeImmutable());
         
-        $clearPassword = $request->toArray()['password'];
+        $jsonContent = $request->getContent();
+        $serializer->deserialize($jsonContent, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);   
+        $errors = $validator->validate($user);
+
+        $user->setUpdatedAt(new DateTimeImmutable());        
+        
         if (! empty($request->toArray()['password'])) {
+            $clearPassword = $request->toArray()['password'];
             $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
             
             $user->setPassword($hashedPassword);
@@ -98,9 +102,9 @@ class UserController extends AbstractController
         $user->setRoles($role);
         $user->setUserNickname($jsonContent->userNickname);
         $user->setCreatedAt(new DateTimeImmutable());
-
-        $clearPassword = $jsonContent->password;
+        
         if (! empty($clearPassword)) {
+            $clearPassword = $jsonContent->password;
             $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
             $user->setPassword($hashedPassword);
         }        

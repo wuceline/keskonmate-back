@@ -22,8 +22,6 @@ class Actor
      * @Groups("api_actors_read")
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_userlists_browse")
-     * @Groups("api_userlists_read")
      */
     private $id;
     
@@ -34,8 +32,6 @@ class Actor
      * @Groups("api_actors_read")
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
-     * @Groups("api_userlists_browse")
-     * @Groups("api_userlists_read")
      */
     private $name;
 
