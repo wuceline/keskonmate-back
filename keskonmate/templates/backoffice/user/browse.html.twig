@@ -25,9 +25,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Pseudo</th>
-      <th scope="col">#</th>
-      <th scope="col">Email</th>
+      <th scope="col">{{ knp_pagination_sortable(users, 'Pseudo', 'userNickname') }}</th>
+      <th scope="col">{{ knp_pagination_sortable(users, 'Id', 'id') }}</th>
+      <th scope="col">{{ knp_pagination_sortable(users, 'Email', 'email') }}</th>
       <th scope="col"></th>
     </tr>
   </thead>

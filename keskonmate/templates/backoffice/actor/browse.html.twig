@@ -25,8 +25,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nom</th>
+      <th scope="col">{{ knp_pagination_sortable(actors, 'Id', 'id') }}</th>
+      <th scope="col">{{ knp_pagination_sortable(actors, 'Nom', 'name') }}</th>
       <th scope="col"></th>
     </tr>
   </thead>

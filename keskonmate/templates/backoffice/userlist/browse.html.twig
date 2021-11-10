@@ -24,12 +24,12 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">User</th>
-      <th scope="col">Série</th>
-      <th scope="col">Saison en cours</th>
-      <th scope="col">Episode en cours</th>
-      <th scope="col">Type</th>
+      <th scope="col">{{ knp_pagination_sortable(userlists, 'Id', 'id') }}</th>
+      <th scope="col">{{ knp_pagination_sortable(userlists, 'Id', 'id') }}</th>
+      <th scope="col">{{ knp_pagination_sortable(userlists, 'Serie', 'serieId') }}Série</th>
+      <th scope="col">{{ knp_pagination_sortable(userlists, 'Saison en cours', 'seasonNb') }}</th>
+      <th scope="col">{{ knp_pagination_sortable(userlists, 'Episode en cours', 'episodeNb') }}Episode en cours</th>
+      <th scope="col">{{ knp_pagination_sortable(userlists, 'Type', 'type') }}Type</th>
       <th scope="col"></th>
     </tr>
   </thead>
