@@ -2,12 +2,15 @@
 
 namespace App\Controller\BackOffice;
 
+use App\Entity\Series;
 use App\Entity\User;
 use App\Entity\UserList;
 use App\Form\UserlistType;
 use App\Repository\UserListRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +44,7 @@ class UserlistController extends AbstractController
      */
     public function read(Request $request, $id, UserListRepository $userlistRepository): Response
     {       
-        $userlist = $userlistRepository->find($id); 
+        $userlist = $userlistRepository->find($id);
 
         $userlistForm = $this->createForm(UserlistType::class, $userlist, [
             'disabled' => 'disabled'
@@ -49,7 +52,7 @@ class UserlistController extends AbstractController
 
         return $this->render('backoffice/userlist/read.html.twig', [
             'userlist_form' => $userlistForm->createView(),
-            'userlist' => $userlistForm,
+            'userlist' => $userlist,
         ]);
     }
 
@@ -107,6 +110,12 @@ class UserlistController extends AbstractController
           
             $entityManager = $this->getDoctrine()->getManager();  
             $entityManager->persist($userlist);
+            $seriesNb = $_REQUEST['userlist']['seriesNb'];
+            //dd($seriesNb);
+            $seriesToAdd = $entityManager->getRepository(Series::class)->find($seriesNb);
+            $userlist->setSeriesNb($seriesNb);
+            //dd($seriesToAdd);
+            $userlist->addSeries($seriesToAdd);
             $userlist->setCreatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
@@ -119,6 +128,7 @@ class UserlistController extends AbstractController
 
         return $this->render('backoffice/userlist/add.html.twig', [
             'userlist_form' => $userlistForm->createView(),
+            'seriesList' => $entityManager->getRepository(Series::class)->findAll(),
             'page' => 'create',
         ]);
     }
