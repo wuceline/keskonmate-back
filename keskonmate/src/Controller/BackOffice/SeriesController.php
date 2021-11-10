@@ -38,7 +38,6 @@ class SeriesController extends AbstractController
 
         return $this->render('backoffice/series/browse.html.twig', [
             'series' => $series,
-            'pagination' => $paginator
         ]);
     }
 
