@@ -39,7 +39,7 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="edit", methods={"PUT"}, requirements={"id"="\d+"})
+     * @Route("/{id}", name="edit", methods={"PATCH"}, requirements={"id"="\d+"})
      */
     public function edit(int $id, UserListRepository $userListRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): Response
     {
