@@ -8,7 +8,7 @@
 {{ include('_partials/_flash_messages.html.twig') }}
 
 <h1>Series</h1>
-{{ include('backoffice/_search/_searchBar.html.twig') }}
+{{ form(searchBar) }}
 <div> 
     <a href="{{ url('backoffice_series_add') }}" class="btn btn-success" title="Add" alt="Add">
         Ajouter

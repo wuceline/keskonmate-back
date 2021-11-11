@@ -39,14 +39,18 @@ class SeriesController extends AbstractController
             10 // Nombre de résultats par page
         );
 
-        $formSearchBar = $this->createFormBuilder(null)
-            ->add('Rechercher', TextType::class)
-            ->add('_', EntityType::class, [
-                'class' => Series::class
-                ])
-            ->add('Soumettre', SubmitType::class, [
+        $formSearchBar = $this->createFormBuilder()
+            ->setAction($this->generateUrl('backoffice_series_handleSearch'))
+            ->add('query', TextType::class, [
+                'label' => false,
                 'attr' => [
-                    'btn btn-primary'
+                    'class' => 'form-control',
+                    'placeholder' => 'Entrez un mot-clé'
+                ]
+            ])
+            ->add('recherche', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
                 ]
             ])
             ->getForm();
@@ -155,5 +159,20 @@ class SeriesController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('backoffice_series_browse');
+    }
+
+    /**
+     * @Route("/handleSearch", name="handleSearch")
+     * @param Request $request
+     */
+    public function handleSearch(Request $request, SeriesRepository $seriesRepository)
+    {
+        $query = $request->request->get('form')['query'];
+        if($query) {
+            $series = $seriesRepository->findSeriesByName($query);
+        }
+        return $this->render('backoffice/_search/_searchBar.html.twig', [
+            'series' => $series
+        ]);
     }
 }
