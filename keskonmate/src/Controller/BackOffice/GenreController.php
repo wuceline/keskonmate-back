@@ -32,7 +32,7 @@ class GenreController extends AbstractController
         $genres = $paginator->paginate(
             $data, // Requête contenant les données à paginer (ici nos articles)
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            20 // Nombre de résultats par page
+            10 // Nombre de résultats par page
         );
 
         return $this->render('backoffice/genre/browse.html.twig', [

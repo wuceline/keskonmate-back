@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/userlists", name="backoffice_userlist_") 
+ * @Route("/backoffice/userlists", name="backoffice_userlists_") 
  * 
  * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
  */
@@ -118,12 +118,6 @@ class UserlistController extends AbstractController
           
             $entityManager = $this->getDoctrine()->getManager();  
             $entityManager->persist($userlist);
-            $seriesNb = $_REQUEST['userlist']['seriesNb'];
-            //dd($seriesNb);
-            $seriesToAdd = $entityManager->getRepository(Series::class)->find($seriesNb);
-            $userlist->setSeriesNb($seriesNb);
-            //dd($seriesToAdd);
-            $userlist->addSeries($seriesToAdd);
             $userlist->setCreatedAt(new DateTimeImmutable());
             $entityManager->flush();
 
@@ -136,7 +130,6 @@ class UserlistController extends AbstractController
 
         return $this->render('backoffice/userlist/add.html.twig', [
             'userlist_form' => $userlistForm->createView(),
-            'seriesList' => $entityManager->getRepository(Series::class)->findAll(),
             'page' => 'create',
         ]);
     }

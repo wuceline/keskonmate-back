@@ -72,6 +72,7 @@ class Season
 
     /**
      * @ORM\ManyToOne(targetEntity=Series::class, inversedBy="season")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * 
      * @Groups("api_seasons_browse")
      * @Groups("api_seasons_read")

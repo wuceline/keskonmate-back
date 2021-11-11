@@ -23,17 +23,19 @@
 <div class="d-flex justify-content-center">
   {{ knp_pagination_render(series) }}
 </div>
-<table class="table table-striped">
+<table class="table table-striped" style="width:100%">
   <thead>
     <tr>
-      <th scope="col">Titre</th>
-      <th scope="col">#</th>
-      <th scope="col">Synopsis</th>
-      <th scope="col">Date de sortie</th>
-      <th scope="col">Image</th>
-      <th scope="col">Realisateur</th>
-      <th scope="col">Nombre de saisons</th>
-      <th scope="col"></th>
+     
+
+      <th scope="col" style="width:10%">{{ knp_pagination_sortable(series, 'Titre', 'title') }}</th>
+      <th scope="col" style="width:5%">{{ knp_pagination_sortable(series, 'Id', 'id') }}</th>
+      <th scope="col" style="width:40%">Synopsis</th>
+      <th scope="col"style="width:5%">{{ knp_pagination_sortable(series, 'Date de Sortie', 'releaseDate') }}</th>
+      <th scope="col"style="width:5%">Image</th>
+      <th scope="col"style="width:15%">{{ knp_pagination_sortable(series, 'Realisateur', 'director') }}</th>
+      <th scope="col"style="width:10%">Nombre de saisons</th>
+      <th scope="col"style="width:10%"></th>
     </tr>
   </thead>
   <tbody>

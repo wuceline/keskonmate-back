@@ -31,12 +31,12 @@ class SeriesController extends AbstractController
 
     public function browse(SeriesRepository $seriesRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $data = $seriesRepository->findBy([],['title' => 'asc']);
+        $data = $seriesRepository->findAll();
 
         $series = $paginator->paginate(
-            $data, // Requête contenant les données à paginer (ici nos articles)
+            $data,
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            20 // Nombre de résultats par page
+            10 // Nombre de résultats par page
         );
 
         $formSearchBar = $this->createFormBuilder(null)
