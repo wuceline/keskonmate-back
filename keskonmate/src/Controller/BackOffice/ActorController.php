@@ -73,7 +73,7 @@ class ActorController extends AbstractController
 
         return $this->render('backoffice/actor/read.html.twig', [
             'actor_form' => $actorForm->createView(),
-            'actor' => $actorForm,
+            'actor' => $actor,
         ]);
     }
 
