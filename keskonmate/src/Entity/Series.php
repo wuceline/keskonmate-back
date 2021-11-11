@@ -15,8 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass=SeriesRepository::class)
  * 
  * @ApiResource(attributes={
- *      "normalization_context"={"groups"={"series_read"}},
- *      "denormalization_context"={"groups"={"write"}},
+ *      "normalization_context"={"groups"={"series_browse"}},
  * })
  * @ApiFilter(OrderFilter::class))
  */
@@ -40,7 +39,8 @@ class Series
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
+     * @Groups({"genres_browse"})
      */
     private $id;
 
@@ -60,7 +60,8 @@ class Series
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
+     * @Groups({"genres_browse"})
      */
     private $title;
 
@@ -72,7 +73,7 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
      */
     private $synopsis;
 
@@ -84,7 +85,7 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
      */
     private $releaseDate;
 
@@ -96,7 +97,7 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
      */
     private $image;
 
@@ -108,7 +109,7 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
      */
     private $director;
 
@@ -138,7 +139,7 @@ class Series
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
      */
     private $createdAt;
 
@@ -164,7 +165,7 @@ class Series
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
      */
     private $genre;
 

@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\GenreRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +14,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
+ * 
+ * @ApiResource(attributes={
+ *      "normalization_context"={"groups"={"genres_browse"}},
+ * })
+ * @ApiFilter(OrderFilter::class))
  * 
  * @UniqueEntity(fields={"name"})
  */
@@ -29,6 +37,8 @@ class Genre
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups({"genres_browse"})
      */
     private $id;
 
@@ -44,7 +54,8 @@ class Genre
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
      * 
-     * @Groups({"series_read"})
+     * @Groups({"series_browse"})
+     * @Groups({"genres_browse"})
      */
     private $name;
 
@@ -73,6 +84,8 @@ class Genre
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
+     * 
+     * @Groups({"genres_browse"})
      * 
      */
     private $series;
