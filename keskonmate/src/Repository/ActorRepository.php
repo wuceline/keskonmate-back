@@ -19,6 +19,26 @@ class ActorRepository extends ServiceEntityRepository
         parent::__construct($registry, Actor::class);
     }
 
+    // Find/search series by title
+    public function findActorByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('a.name', ':query'),
+                    ),
+                    $qb->expr()->isNotNull('a.createdAt')
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+        ;
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Actor[] Returns an array of Actor objects
     //  */

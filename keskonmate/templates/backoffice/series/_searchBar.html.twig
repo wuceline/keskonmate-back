@@ -1,0 +1,23 @@
+{% extends 'backoffice/base.html.twig' %}
+
+{% block searchBar %}
+    {% if app.request.method == 'POST' %}
+        <div>
+            {% if series | length == 0 %}
+                <h4>Aucun résulat pour votre recherche.</h4>
+            {% else %}
+                <h3 class="mt-3">Vos résulats de recherche :</h3>
+                {% for series in series %}
+                    <div class="mt-3 p-3 bg-light border rounded">
+                        <a href="{{ path('backoffice_series_read', {'id': series.id}) }}">
+                                <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ series.title }}</h6>
+                                <div class="text-dark small p-1 rounded">
+                                        Crée le {{ series.createdAt|format_datetime('medium', 'short') }} par {{ series.director }}
+                                </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

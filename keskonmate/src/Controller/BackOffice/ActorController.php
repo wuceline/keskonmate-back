@@ -11,6 +11,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,8 +36,25 @@ class ActorController extends AbstractController
             10 // Nombre de résultats par page
         );
 
+        $formSearchBar = $this->createFormBuilder()
+            ->setAction($this->generateUrl('backoffice_actors_handleSearch'))
+            ->add('query', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Entrez un mot-clé'
+                ]
+            ])
+            ->add('recherche', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
+            ->getForm();
+
         return $this->render('backoffice/actor/browse.html.twig', [
             'actors' => $actors,
+            'searchBar' => $formSearchBar->createView()
         ]);
     }   
 
@@ -137,5 +156,20 @@ class ActorController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('backoffice_actors_browse');
+    }
+    
+    /**
+     * @Route("/handleSearch", name="handleSearch")
+     * @param Request $request
+     */
+    public function handleSearch(Request $request, ActorRepository $actorRepository)
+    {
+        $query = $request->request->get('form')['query'];
+        if($query) {
+            $actor = $actorRepository->findActorByName($query);
+        }
+        return $this->render('backoffice/actor/_searchBar.html.twig', [
+            'actors' => $actor
+        ]);
     }
 }

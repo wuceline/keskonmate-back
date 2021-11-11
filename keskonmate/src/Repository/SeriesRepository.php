@@ -61,6 +61,27 @@ class SeriesRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    // Find/search series by title
+    public function findSeriesByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('s.title', ':query'),
+                        $qb->expr()->like('s.director', ':query'),
+                    ),
+                    $qb->expr()->isNotNull('s.createdAt')
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+        ;
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Series[] Returns an array of Series objects
     //  */
