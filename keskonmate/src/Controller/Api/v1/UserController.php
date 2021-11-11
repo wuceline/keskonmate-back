@@ -57,17 +57,15 @@ class UserController extends AbstractController
         $serializer->deserialize($jsonContent, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);   
         $errors = $validator->validate($user);
 
-        $user->setUpdatedAt(new DateTimeImmutable());        
         
         if (! empty($request->toArray()['password'])) {
             $clearPassword = $request->toArray()['password'];
             $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
             
             $user->setPassword($hashedPassword);
-            dump($request->toArray()); 
         }
         $errors = $validator->validate($user);
-    
+        
         if(count($errors) > 0) {
             $reponseAsArray = [
                 'error' => true,
@@ -76,7 +74,8 @@ class UserController extends AbstractController
             
             return $this->json($reponseAsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-    
+        
+        $user->setUpdatedAt(new DateTimeImmutable());        
         $entityManager->persist($user);
         $entityManager->flush();
         $responseAsArray = [
@@ -103,8 +102,8 @@ class UserController extends AbstractController
         $user->setUserNickname($jsonContent->userNickname);
         $user->setCreatedAt(new DateTimeImmutable());
         
+        $clearPassword = $jsonContent->password;
         if (! empty($clearPassword)) {
-            $clearPassword = $jsonContent->password;
             $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
             $user->setPassword($hashedPassword);
         }        
