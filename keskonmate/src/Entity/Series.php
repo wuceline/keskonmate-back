@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\SeriesRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,12 +15,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass=SeriesRepository::class)
  * 
  * @ApiResource(attributes={
- *     "normalization_context"={"groups"={"series_read"}},
- *     "denormalization_context"={"groups"={"write"}}
+ *      "normalization_context"={"groups"={"series_read"}},
+ *      "denormalization_context"={"groups"={"write"}},
  * })
+ * @ApiFilter(OrderFilter::class))
  */
 class Series
-{
+{    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
