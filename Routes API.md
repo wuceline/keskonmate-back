@@ -574,15 +574,13 @@ http://localhost:8080/api/v1/userlists
 ====================================================================================================================================
 
 
-# API V2: /api/v2/series
+# API V2: 
+## Interface series: http://keskonmate.me/api/v2/series
 
-## Series:
-## Routes {GET}
-
- /api/v2/series?order[parametre]=<asc|desc>
- [parametres]: id, title, releaseDate, director
- Exemple: Pour lister les series par realisateur, de Z a A: http://keskonmate.me/api/v2/series?order[director]=desc
-          Pour lister les series par id, croissant :        http://keskonmate.me/api/v2/series?order[id]=asc
+ ### /api/v2/series?order[parametre]=<asc|desc> {GET}
+ ### [parametres]: id, title, releaseDate, director
+ ### Exemple: Pour lister les series par realisateur, de Z a A: http://keskonmate.me/api/v2/series?order[director]=desc
+###          Pour lister les series par id, croissant :        http://keskonmate.me/api/v2/series?order[id]=asc
 
 ```json
 {
@@ -633,13 +631,12 @@ http://localhost:8080/api/v1/userlists
     },
 ```
  
-## Genres:
-## Routes {GET}
+## Interface genres: http://keskonmate.me/api/v2/genres
 
- ##/api/v2/genres?order[parametre]=<asc|desc>
- ##[parametres]: id, name
- ##Exemple: Pour lister les series par nom, de Z a A:   http://keskonmate.me/api/v2/series?order[name]=desc
- ##         Pour lister les genres par id, croissant :  http://keskonmate.me/api/v2/genres?order[id]=asc
+ ### /api/v2/genres?order[parametre]=<asc|desc> {GET}
+ ### [parametres]: id, name
+ ### Exemple: Pour lister les series par nom, de Z a A:   http://keskonmate.me/api/v2/series?order[name]=desc
+ ###         Pour lister les genres par id, croissant :  http://keskonmate.me/api/v2/genres?order[id]=asc
 
 ```json
 {
