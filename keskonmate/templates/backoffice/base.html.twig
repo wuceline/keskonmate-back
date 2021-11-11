@@ -39,34 +39,77 @@
                         <ul class="nav justify-content-end navbar-nav me-auto mb-2 mb-lg-0">
                             {% if 'login' != app.request.get('_route') %}
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ url('backoffice_homepage') }}">Accueil</a>
+                                    <a 
+                                    {% if app.request.get('_route') starts with 'backoffice_homepage' %}
+                                        class="nav-link active" aria-current="page" href="{{ url('backoffice_homepage') }}"
+                                    {% else %}
+                                        class="nav-link"  href="{{ url('backoffice_homepage') }}"
+                                    {% endif %}
+                                        >Accueil
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('backoffice_series_browse') }}">Series</a>
+                                    <a 
+                                    {% if app.request.get('_route') starts with 'backoffice_series_browse' %}
+                                        class="nav-link active" href="{{ url('backoffice_series_browse') }}"
+                                    {% else %}
+                                        class="nav-link"  href="{{ url('backoffice_series_browse') }}"
+                                    {% endif %}
+                                        >Series
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('backoffice_actors_browse') }}">Acteurs</a>
+                                    <a 
+                                    {% if app.request.get('_route') starts with 'backoffice_actors_browse' %}
+                                        class="nav-link active" href="{{ url('backoffice_actors_browse') }}"
+                                    {% else %}
+                                        class="nav-link"  href="{{ url('backoffice_actors_browse') }}"
+                                    {% endif %}
+                                        >Actors
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('backoffice_genres_browse') }}">Genres</a>
+                                    <a 
+                                    {% if app.request.get('_route') starts with 'backoffice_genres_browse' %}
+                                        class="nav-link active" href="{{ url('backoffice_genres_browse') }}"
+                                    {% else %}
+                                        class="nav-link"  href="{{ url('backoffice_genres_browse') }}"
+                                    {% endif %}
+                                        >Genres
+                                    </a>
                                 </li>
 
-                                {% if (is_granted('ROLE_ADMIN')) %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('backoffice_users_browse') }}">Utilisateurs</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('backoffice_userlist_browse') }}">Listes des Utilisateurs</a>
-                                    </li>
-                                {% endif %}
-                                
-                                    <li class="nav-item">
-                                    {% if (is_granted('ROLE_USER')) %}
-                                        <a class="nav-link" href="{{ url('app_logout') }}">Déconnexion</a>
+                            {% if (is_granted('ROLE_ADMIN')) %}   
+
+                                <li class="nav-item">                                        
+                                    <a 
+                                    {% if app.request.get('_route') starts with 'backoffice_users_browse' %}
+                                        class="nav-link active" href="{{ url('backoffice_users_browse') }}"
                                     {% else %}
-                                        <a class="nav-link" href="{{ url('login') }}">Connexion</a>
+                                        class="nav-link"  href="{{ url('backoffice_users_browse') }}"
                                     {% endif %}
+                                        >Utilisateurs
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a 
+                                    {% if app.request.get('_route') starts with 'backoffice_userlists_browse' %}
+                                        class="nav-link active" href="{{ url('backoffice_userlists_browse') }}"
+                                    {% else %}
+                                        class="nav-link"  href="{{ url('backoffice_userlists_browse') }}"
+                                    {% endif %}
+                                        >Listes
+                                    </a>
+
+                            {% endif %}
+                                {% if (is_granted('ROLE_USER')) %}                                
+                                    <li class="nav-item">                                    
+                                        <a class="nav-link" href="{{ url('app_logout') }}">Déconnexion</a>
+                                {% else %}
+                                        <a class="nav-link" href="{{ url('login') }}">Connexion</a>
+                                {% endif %}
                                     </li>
+                                    
                             {% endif %}
                         </ul>
                     </div>
