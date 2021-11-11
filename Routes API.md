@@ -1,301 +1,458 @@
-# Login: 
+# Login
 
-```json
-{
-    "username": "dorian@keskonmate.io",
-    "password": "admin"
-}
-```
-
-# Reponse: 
-
-```json
-{
-  "token": "eyJ0eXAiOiJKV1QiLCJhbGc......",
-  "userId": 2
-}
-```
-
-# User: 
-## URL Browse: /api/v1/users {GET}
+# API V1:
+# Actors
+## Actors Browse {GET}
 
 ```json
 [
   {
     "id": 1,
-    "email": "user@keskonmate.me",
-    "userNickname": "user",
-    "createdAt": "2021-11-09T17:12:46+01:00",
-    "updatedAt": "2021-11-10T11:46:27+01:00",
-    "userlist": [
-      {
-        "id": 25,
-        "series": {
-          "id": 22,
-          "title": "Rookie Vets",
-          "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nimis multa. Quae cum essent dicta, discessimus. Beatum, inquit. An hoc usque quaque, aliter in vita? \n\n",
-          "releaseDate": "2021-11-09T00:00:00+01:00",
-          "image": "https:\/\/i.ibb.co\/ySnm17G\/Keskonmate.png",
-          "director": "Xavier Muspimerol",
-          "numberOfSeasons": 0,
-          "createdAt": "2021-11-09T17:10:20+01:00",
-          "updatedAt": null
-        },
-        "seasonNb": 1,
-        "episodeNb": 1,
-        "createdAt": "2021-10-27T12:40:34+02:00",
-        "updatedAt": null,
-        "type": 1
-      },
-    ]
-  },
-  {
-    "id": 2,
-    "email": "test@keskonmate.io",
-    "userNickname": "test",
-    "createdAt": "2021-11-09T17:16:02+01:00",
-    "updatedAt": "2021-11-09T17:16:02+01:00",
-    "userlist": []
-  },
-]
-```
-## URL Read: /api/v1/users/id {GET}
-
-```json
-{
-    "id": 1,
-    "email": "user@keskonmate.me",
-    "userNickname": "user",
-    "createdAt": "2021-11-09T17:12:46+01:00",
-    "updatedAt": "2021-11-10T11:46:27+01:00",
-    "userlist": [
-      {
-        "id": 25,
-        "series": {
-          "id": 22,
-          "title": "Rookie Vets",
-          "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nimis multa. Quae cum essent dicta, discessimus. Beatum, inquit. An hoc usque quaque, aliter in vita? \n\n",
-          "releaseDate": "2021-11-09T00:00:00+01:00",
-          "image": "https:\/\/i.ibb.co\/ySnm17G\/Keskonmate.png",
-          "director": "Xavier Muspimerol",
-          "numberOfSeasons": 0,
-          "createdAt": "2021-11-09T17:10:20+01:00",
-          "updatedAt": null
-        },
-        "seasonNb": 1,
-        "episodeNb": 1,
-        "createdAt": "2021-10-27T12:40:34+02:00",
-        "updatedAt": null,
-        "type": 1
-      },
-    ]
-},
-
-```
-
-## URL Edit: /api/v1/users/id {PATCH}
-```json
-{
-	"userNickname": "Tux"
-}
-```
-ou
-```json
-{
-	"email": "Tux@oclock.io"
-}
-```
-ou
-```json
-{
-	"email": "Tux@oclock.io",
-  "userNickname": "Tux"
-}
-```
-etc ...
-
-## URL Add: /api/v1/users/id {POST}
-
-```json
-{  	
-  "email": "exemple@keskonmate.io",
-	"roles": ["ROLE_UTILISATEUR"],
-	"password": "mot de passe",
-  "userNickname": "John Doe",
-  "createdAt": "2021-10-27T15:31:06+02:00",
-  "updatedAt": null
-}
-```
-
-## URL Delete: /api/v1/users/id {DELETE} (desactive)
-
-
-# Actors:
-## URL Browse: /api/v1/actors {GET}
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Allan Lane",
-    "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg",
-    "createdAt": "2021-11-09T17:10:20+01:00",
+    "name": "Johnny Whitaker",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/rxUX4BH5lM1We1ei9xbp4CVgSxY.jpg",
+    "createdAt": "2021-11-10T17:15:35+01:00",
     "updatedAt": null,
     "series": [
       {
         "id": 1,
-        "title": "Monsieur Ed, le cheval qui parle"
+        "title": "Sigmund and the Sea Monsters"
       }
     ]
   },
   {
     "id": 2,
-    "name": "Connie Hines",
-    "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg",
-    "createdAt": "2021-11-09T17:10:20+01:00",
+    "name": "Rip Taylor",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/qqEGeLNaAXPLKJVjjLpWVyNyFIu.jpg",
+    "createdAt": "2021-11-10T17:15:35+01:00",
     "updatedAt": null,
     "series": [
       {
         "id": 1,
-        "title": "Monsieur Ed, le cheval qui parle"
+        "title": "Sigmund and the Sea Monsters"
       }
     ]
-  },
-  
+  }, 
+  etc...
 ]
 ```
 
-## URL Read: /api/v1/actors/id {GET}
+## Actors Read {GET}
 
 ```json
 {
-    "id": 1,
-    "name": "Allan Lane",
-    "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg",
-    "createdAt": "2021-11-09T17:10:20+01:00",
-    "updatedAt": null,
-    "series": [
-      {
-        "id": 1,
-        "title": "Monsieur Ed, le cheval qui parle"
-      }
-    ]
-} 
+  "id": 1,
+  "name": "Johnny Whitaker",
+  "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/rxUX4BH5lM1We1ei9xbp4CVgSxY.jpg",
+  "createdAt": "2021-11-10T17:15:35+01:00",
+  "updatedAt": null,
+  "series": [
+    {
+      "id": 1,
+      "title": "Sigmund and the Sea Monsters"
+    }
+  ]
+}
 ```
 
-# Genres:
-## URL Browse: /api/v1/genres {GET}
+# Genres
+## Genres Browse {GET}
 
 ```json
 [
   {
     "id": 1,
     "name": "Action & Adventure",
-    "createdAt": "2021-11-09T17:10:20+01:00",
+    "createdAt": "2021-11-10T17:15:35+01:00",
     "updatedAt": null,
     "series": [
       {
-        "id": 26,
-        "title": "Q.E.D."
+        "id": 8,
+        "title": "American Dragon: Jake Long"
+      },
+      {
+        "id": 15,
+        "title": "Capitaine Scarlet"
       }
     ]
   },
   {
     "id": 2,
     "name": "Animation",
-    "createdAt": "2021-11-09T17:10:20+01:00",
+    "createdAt": "2021-11-10T17:15:35+01:00",
     "updatedAt": null,
     "series": [
       {
         "id": 6,
-        "title": "The New Scooby and Scrappy-Doo Show"
+        "title": "Bod"
       },
       {
-        "id": 8,
+        "id": 7,
         "title": "Space Sentinels"
-      },
-      {
-        "id": 15,
-        "title": "Aqua Teen Hunger Force"
-      },
-      {
-        "id": 42,
-        "title": "Inhumanoids"
       }
     ]
   },
+  etc...
 ]
 ```
 
-## URL Read: /api/v1/genres/id {GET}
+## Genres Read {GET}
 
 ```json
 {
-    "id": 1,
-    "name": "Action & Adventure",
-    "createdAt": "2021-11-09T17:10:20+01:00",
-    "updatedAt": null,
-    "series": [
-      {
-        "id": 26,
-        "title": "Q.E.D."
-      }
-    ]
-  }
+  "id": 1,
+  "name": "Action & Adventure",
+  "createdAt": "2021-11-10T17:15:35+01:00",
+  "updatedAt": null,
+  "series": [
+    {
+      "id": 8,
+      "title": "American Dragon: Jake Long"
+    },
+    {
+      "id": 15,
+      "title": "Capitaine Scarlet"
+    },
+    {
+      "id": 25,
+      "title": "Torchwood"
+    }
+  ]
+}
 ```
 
-# Season:
-## URL Browse: /api/v1/seasons {GET}
 
+# Season
+## Season Browse {GET}
 
 ```json
 [
   {
     "id": 1,
-    "seasonNumber": 0,
-    "numberOfEpisodes": 4,
-    "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg",
-    "createdAt": "2021-11-09T17:10:20+01:00",
+    "seasonNumber": 1,
+    "numberOfEpisodes": 17,
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w130_and_h195_bestv2\/mmMNO8rfRBjQP6XctOXe5gGotO6.jpg",
+    "createdAt": "2021-11-10T17:15:35+01:00",
     "updatedAt": null,
     "series": {
       "id": 1,
-      "title": "Monsieur Ed, le cheval qui parle"
+      "title": "Sigmund and the Sea Monsters"
     }
   },
   {
     "id": 2,
-    "seasonNumber": 1,
-    "numberOfEpisodes": 4,
+    "seasonNumber": 2,
+    "numberOfEpisodes": 12,
     "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg",
-    "createdAt": "2021-11-09T17:10:20+01:00",
+    "createdAt": "2021-11-10T17:15:35+01:00",
     "updatedAt": null,
     "series": {
       "id": 1,
-      "title": "Mega 64"
+      "title": "Sigmund and the Sea Monsters"
     }
-  }  
+  },
+  etc...
 ]
 ```
-## URL Read: /api/v1/seasons/id {GET}
 
+## Season Read {GET}
 
 ```json
 {
+  "id": 1,
+  "seasonNumber": 1,
+  "numberOfEpisodes": 17,
+  "image": "https:\/\/www.themoviedb.org\/t\/p\/w130_and_h195_bestv2\/mmMNO8rfRBjQP6XctOXe5gGotO6.jpg",
+  "createdAt": "2021-11-10T17:15:35+01:00",
+  "updatedAt": null,
+  "series": {
     "id": 1,
-    "seasonNumber": 0,
-    "numberOfEpisodes": 4,
-    "image": "https:\/\/www.themoviedb.org\/assets\/2\/v4\/glyphicons\/basic\/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg",
-    "createdAt": "2021-11-09T17:10:20+01:00",
-    "updatedAt": null,
-    "series": {
-      "id": 1,
-      "title": "Monsieur Ed, le cheval qui parle"
-    }
+    "title": "Sigmund and the Sea Monsters"
+  }
 }
 ```
 
-# Userlist: 
-## URL Browse: /api/v1/userlists {GET}
+
+# Series
+## Series Browse {GET}
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Sigmund and the Sea Monsters",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idemne, quod iucunde? Duo Reges: constructio interrete. Haec dicuntur inconstantissime.; \n\n",
+    "releaseDate": "1973-09-08T00:00:00+01:00",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/elRBynx0PN8xUMfwEXuyAKR11Ep.jpg",
+    "director": "Marty Krofft",
+    "numberOfSeasons": 2,
+    "homeOrder": null,
+    "createdAt": "2021-11-10T17:15:35+01:00",
+    "updatedAt": null,
+    "genre": [
+      {
+        "id": 8,
+        "name": "Kids"
+      },
+      {
+        "id": 12,
+        "name": "Science-Fiction & Fantastique"
+      }
+    ],
+    "season": [
+      {
+        "id": 1,
+        "seasonNumber": 1
+      },
+      {
+        "id": 2,
+        "seasonNumber": 2
+      }
+    ],
+    "actor": [
+      {
+        "id": 1,
+        "name": "Johnny Whitaker",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/rxUX4BH5lM1We1ei9xbp4CVgSxY.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Rip Taylor",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/qqEGeLNaAXPLKJVjjLpWVyNyFIu.jpg"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Pride",
+    "synopsis": "Satonaka Halu est un joueur de hockey dans l'équipe des Scorpions dont il est capitaine. Et à cause de son engagement dans ce sport, il ne peut considérer l'a...",
+    "releaseDate": "2004-01-12T00:00:00+01:00",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/54CU1a2Wod9RCSVQ9BT0nUw5Enr.jpg",
+    "director": "Xavier Muspimerol",
+    "numberOfSeasons": 1,
+    "homeOrder": null,
+    "createdAt": "2021-11-10T17:15:35+01:00",
+    "updatedAt": null,
+    "genre": [
+      {
+        "id": 6,
+        "name": "Drame"
+      }
+    ],
+    "season": [
+      {
+        "id": 3,
+        "seasonNumber": 1
+      }
+    ],
+    "actor": [
+      {
+        "id": 6,
+        "name": "Takuya Kimura",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/rafirRSsSsZrSVV3znCUwwSGIGr.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Yuko Takeuchi",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/y3Cnoni3enouqE7UlCZ1OtIPuOn.jpg"
+      }
+    ]
+  },
+  etc...
+]
+```
+
+## Series Read {GET}
+
+```json
+{
+  "id": 1,
+  "title": "Sigmund and the Sea Monsters",
+  "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idemne, quod iucunde? Duo Reges: constructio interrete. Haec dicuntur inconstantissime. Cave putes quicquam esse verius. Minime vero, inquit ille, consentit. Immo alio genere; Fortasse id optimum, sed ubi illud: Plus semper voluptatis? Hunc vos beatum; \n\n",
+  "releaseDate": "1973-09-08T00:00:00+01:00",
+  "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/elRBynx0PN8xUMfwEXuyAKR11Ep.jpg",
+  "director": "Marty Krofft",
+  "numberOfSeasons": 2,
+  "homeOrder": null,
+  "createdAt": "2021-11-10T17:15:35+01:00",
+  "updatedAt": null,
+  "genre": [
+    {
+      "id": 8,
+      "name": "Kids"
+    },
+    {
+      "id": 12,
+      "name": "Science-Fiction & Fantastique"
+    }
+  ],
+  "season": [
+    {
+      "id": 1,
+      "seasonNumber": 1
+    },
+    {
+      "id": 2,
+      "seasonNumber": 2
+    }
+  ],
+  "actor": [
+    {
+      "id": 1,
+      "name": "Johnny Whitaker",
+      "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/rxUX4BH5lM1We1ei9xbp4CVgSxY.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Rip Taylor",
+      "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/qqEGeLNaAXPLKJVjjLpWVyNyFIu.jpg"
+    },
+  ]
+}
+```
+
+
+# Users
+## Users Browse {GET}
+
+```json
+[
+  {
+    "id": 2,
+    "email": "admin@keskonmate.me",
+    "userNickname": "admin",
+    "createdAt": "2021-11-10T17:19:04+01:00",
+    "updatedAt": null,
+    "userlist": [
+      {
+        "id": 2,
+        "series": {
+          "id": 1,
+          "title": "Sigmund and the Sea Monsters",
+          "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idemne, quod iucunde? Duo Reges: constructio interrete. \n\n",
+          "releaseDate": "1973-09-08T00:00:00+01:00",
+          "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/elRBynx0PN8xUMfwEXuyAKR11Ep.jpg",
+          "director": "Marty Krofft",
+          "numberOfSeasons": 2,
+          "createdAt": "2021-11-10T17:15:35+01:00",
+          "updatedAt": null
+        },
+        "seasonNb": 1,
+        "episodeNb": 1,
+        "createdAt": "2021-11-11T02:11:06+01:00",
+        "updatedAt": null,
+        "type": 1
+      }
+    ]
+  }
+  {
+    "id": 5,
+    "email": "test@keskonmate.me",
+    "userNickname": "test",
+    "createdAt": "2021-11-10T17:19:04+01:00",
+    "updatedAt": null,
+    "userlist": [
+      {
+        "id": 2,
+        "series": {
+          "id": 1,
+          "title": "Sigmund and the Sea Monsters",
+          "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idemne, quod iucunde? Duo Reges: constructio interrete. \n\n",
+          "releaseDate": "1973-09-08T00:00:00+01:00",
+          "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/elRBynx0PN8xUMfwEXuyAKR11Ep.jpg",
+          "director": "Marty Krofft",
+          "numberOfSeasons": 2,
+          "createdAt": "2021-11-10T17:15:35+01:00",
+          "updatedAt": null
+        },
+        "seasonNb": 1,
+        "episodeNb": 1,
+        "createdAt": "2021-11-11T02:11:06+01:00",
+        "updatedAt": null,
+        "type": 1
+      }
+    ]
+  }
+  etc...
+]
+```
+
+## Users Read {GET}
+
+```json
+
+{
+  "id": 2,
+  "email": "admin@keskonmate.me",
+  "userNickname": "admin",
+  "createdAt": "2021-11-10T17:19:04+01:00",
+  "updatedAt": null,
+  "userlist": [
+    {
+      "id": 2,
+      "series": {
+        "id": 1,
+        "title": "Sigmund and the Sea Monsters",
+        "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idemne, quod iucunde? Duo Reges: constructio interrete. \n\n",
+        "releaseDate": "1973-09-08T00:00:00+01:00",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/elRBynx0PN8xUMfwEXuyAKR11Ep.jpg",
+        "director": "Marty Krofft",
+        "numberOfSeasons": 2,
+        "createdAt": "2021-11-10T17:15:35+01:00",
+        "updatedAt": null
+      },
+      "seasonNb": 1,
+      "episodeNb": 1,
+      "createdAt": "2021-11-11T02:11:06+01:00",
+      "updatedAt": null,
+      "type": 1
+    },
+    {
+      "id": 8,
+      "series": {
+        "id": 22,
+        "title": "Une famille presque parfaite",
+        "synopsis": "Judy et Bill se sont connus au secondaire (lycée en France) dans les années 1970, à une époque où la liberté et l'ouverture d'esprit prévalaient...",
+        "releaseDate": "2002-09-30T00:00:00+02:00",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/3hCgghAAKralrDmiFtyZvsHC9aP.jpg",
+        "director": "Diane Burroughs",
+        "numberOfSeasons": 4,
+        "createdAt": "2021-11-10T17:15:35+01:00",
+        "updatedAt": null
+      },
+      "seasonNb": 1,
+      "episodeNb": 1,
+      "createdAt": "2021-10-27T12:40:34+02:00",
+      "updatedAt": null,
+      "type": 1
+    }
+  ]
+}
+```
+
+## Users Edit {PATCH}
+
+```json
+{  	
+  "email": "test2@keskonmate.me",
+	"password": "admin2",
+  "userNickname": "test2"
+}
+```
+
+# Users Add {POST}
+
+```json
+{  	
+  "email": "test@keskonmate.me",
+	"password": "admin",
+  "userNickname": "test",
+  "createdAt": "2021-10-27T15:31:06+02:00"
+}
+```
+
+
+# Userlists
+## Userlists Browse {GET}
 
 ```json
 [
@@ -331,192 +488,58 @@ etc ...
       "email": "user@keskonmate.me"
     }
   },
+  etc...
 ]
 ```
 
-## URL Read: /api/v1/userlists/id {GET}
+## Userlists Read {GET}
 
 ```json
 {
-    "id": 25,
-    "series": {
-      "id": 22,
-      "title": "Rookie Vets"
-    },
-    "seasonNb": 1,
-    "episodeNb": 1,
-    "createdAt": "2021-10-27T12:40:34+02:00",
-    "updatedAt": null,
-    "type": 1,
-    "users": {
-      "id": 1,
-      "email": "user@keskonmate.me"
-    }
-  }
-```
-
-## URL Edit: /api/v1/userlists/id {PATCH}
-
-```json
-[
-  {
-    "seasonNb": 2
-  }
-]
-``` 
-ou
-```json
-[
-  {
-    "series": 2
-  }
-]
-```
-ou
-```json
-[
-  {
-    "seriesNb": 2,
-    "seasonNb": 2,
-    "type": 2,
-  }
-]
-```
-etc....
-
-
-## URL Add: /api/v1/userlists {POST}
-
-```json
-[{
-    "id": 2,
-    "seasonNb": 2,
-    "seriesNb": 2,
-    "episodeNb": 3,
-    "createdAt": "2021-10-27T15:31:06+02:00",
-    "updatedAt": null,
-    "type": 2,
-    "series": 1,
-    "users": {}
-  }
-]
-```
-# Series:
-## URL Browse: /api/v1/series {GET}
-
-```json
-[
-  {
-    "id": 1,
-    "title": "Monsieur Ed, le cheval qui parle",
-    "synopsis": "Wilbur Post et sa femme Carol emménagent dans une belle maison. Lorsque Wilbur jette un coup d'œil dans sa nouvelle grange, il constate que l'ancien propriétaire a laissé son cheval derrière lui. Ce cheval n'est pas un cheval ordinaire... il ne peut parler qu'à Wilbur, ce qui entraîne toutes sortes de mésaventures pour Wilbur et son acolyte fauteur de troubles, Monsieur Ed.",
-    "releaseDate": "1961-01-05T00:00:00+01:00",
-    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/luppCk9XUcs0gUEf9Sv7MhiJv4H.jpg",
-    "director": "Walter R. Brooks",
-    "numberOfSeasons": 6,
-    "homeOrder": null,
-    "createdAt": "2021-11-09T17:10:20+01:00",
-    "updatedAt": null,
-    "genre": [
-      {
-        "id": 3,
-        "name": "Comédie"
-      }
-    ],
-    "season": [
-      {
-        "id": 1,
-        "seasonNumber": 0
-      },
-      {
-        "id": 2,
-        "seasonNumber": 1
-      },
-    ],
-    "actor": [
-      {
-        "id": 1,
-        "name": "Allan Lane",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg"
-      },
-    ]
+  "id": 25,
+  "series": {
+    "id": 22,
+    "title": "Rookie Vets"
   },
-  {
-    "id": 2,
-    "title": "Mega64",
-    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae diligentissime contra Aristonem dicuntur a Chryippo. Bonum incolumis acies: misera caecitas. Nam ante Aristippus, et ille melius. Si id dicis, vicimus. Quis non odit sordidos, vanos, leves, futtiles? Quod quidem iam fit etiam in Academia. Duo Reges: constructio interrete. Ex rebus enim timiditas, non ex vocabulis nascitur. \n\n",
-    "releaseDate": "2004-11-18T00:00:00+01:00",
-    "image": "https:\/\/i.ibb.co\/ySnm17G\/Keskonmate.png",
-    "director": "Derrick Acosta",
-    "numberOfSeasons": 4,
-    "homeOrder": null,
-    "createdAt": "2021-11-09T17:10:20+01:00",
-    "updatedAt": null,
-    "genre": [
-      {
-        "id": 3,
-        "name": "Comédie"
-      }
-    ],
-    "season": [
-      {
-        "id": 8,
-        "seasonNumber": 0
-      },
-    ],
-    "actor": [
-      {
-        "id": 6,
-        "name": "Rocco Botte",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/83dugHkP4Davdwnpa3VcnyiBcPY.jpg"
-      },
-      {
-        "id": 7,
-        "name": "Shawn Chatfield",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/7UWVMS79HmhnM8L16TU2XM4PFyY.jpg"
-      },
-    ]
-  },
-   
-]
+  "seasonNb": 1,
+  "episodeNb": 1,
+  "createdAt": "2021-10-27T12:40:34+02:00",
+  "updatedAt": null,
+  "type": 1,
+  "users": {
+    "id": 1,
+    "email": "user@keskonmate.me"
+  }
+}
 ```
 
-## URL Read: /api/v1/series/id {GET}
+## Userlists Edit {PATCH}
 
 ```json
-{
-    "id": 1,
-    "title": "Monsieur Ed, le cheval qui parle",
-    "synopsis": "Wilbur Post et sa femme Carol emménagent dans une belle maison. Lorsque Wilbur jette un coup d'œil dans sa nouvelle grange, il constate que l'ancien propriétaire a laissé son cheval derrière lui. Ce cheval n'est pas un cheval ordinaire... il ne peut parler qu'à Wilbur, ce qui entraîne toutes sortes de mésaventures pour Wilbur et son acolyte fauteur de troubles, Monsieur Ed.",
-    "releaseDate": "1961-01-05T00:00:00+01:00",
-    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/luppCk9XUcs0gUEf9Sv7MhiJv4H.jpg",
-    "director": "Walter R. Brooks",
-    "numberOfSeasons": 6,
-    "homeOrder": null,
-    "createdAt": "2021-11-09T17:10:20+01:00",
-    "updatedAt": null,
-    "genre": [
-      {
-        "id": 3,
-        "name": "Comédie"
-      }
-    ],
-    "season": [
-      {
-        "id": 1,
-        "seasonNumber": 0
-      },
-      {
-        "id": 2,
-        "seasonNumber": 1
-      },
-    ],
-    "actor": [
-      {
-        "id": 1,
-        "name": "Allan Lane",
-        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/8LXIG08k8q7eEOFjScFEARW2HOB.jpg"
-      },
-    ]
-  }
+{	
+  "seasonNb": 9,
+  "episodeNb": 9,
+  "type": 2,
+	"users": 5,
+	"series": 21
+}
 ```
+
+# Userlists Add {POST}
+
+```json
+{	
+  "seasonNb": 1,
+  "episodeNb": 3,
+  "createdAt": "2021-10-27T12:40:34+02:00",
+  "type": 1,
+	"users": 2,
+	"series": 22
+}
+```
+
+====================================================================================================================================
+
+
+# API V2:
+
