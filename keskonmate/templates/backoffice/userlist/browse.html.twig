@@ -18,19 +18,19 @@
 <div class="text-end">
 </a>
 </div>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="width:100%">
   {{ knp_pagination_render(userlists) }}
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">{{ knp_pagination_sortable(userlists, 'Id', 'id') }}</th>
-      <th scope="col">{{ knp_pagination_sortable(userlists, 'Utilisateur', 'usersId') }}</th>
-      <th scope="col">{{ knp_pagination_sortable(userlists, 'Série', 'serieId') }}</th>
-      <th scope="col">{{ knp_pagination_sortable(userlists, 'Saison en cours', 'seasonNb') }}</th>
-      <th scope="col">{{ knp_pagination_sortable(userlists, 'Episode en cours', 'episodeNb') }}</th>
-      <th scope="col">{{ knp_pagination_sortable(userlists, 'Type', 'type') }}</th>
-      <th scope="col"></th>
+      <th scope="col" style="width:5%">{{ knp_pagination_sortable(userlists, 'Id', 'id') }}</th>
+      <th scope="col" style="width:10%">{{ knp_pagination_sortable(userlists, 'Utilisateur', 'usersId') }}</th>
+      <th scope="col" style="width:10%">{{ knp_pagination_sortable(userlists, 'Série', 'serieId') }}</th>
+      <th scope="col" style="width:20%">{{ knp_pagination_sortable(userlists, 'Saison en cours', 'seasonNb') }}</th>
+      <th scope="col" style="width:20%">{{ knp_pagination_sortable(userlists, 'Episode en cours', 'episodeNb') }}</th>
+      <th scope="col" style="width:10%">{{ knp_pagination_sortable(userlists, 'Type', 'type') }}</th>
+      <th scope="col" style="width:20%"></th>
     </tr>
   </thead>
   <tbody>
