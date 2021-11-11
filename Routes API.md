@@ -1,11 +1,11 @@
 # Login
-http://localhost:8080/api/login
+http://keskonmate.me/api/login
 
 # API V1:
 # Actors
 ## Actors Browse {GET}
 
-http://localhost:8080/api/v1/actors
+http://keskonmate.me/api/v1/actors
 
 ```json
 [
@@ -41,7 +41,7 @@ http://localhost:8080/api/v1/actors
 
 ## Actors Read {GET}
 
-http://localhost:8080/api/v1/actors/{id}
+http://keskonmate.me/api/v1/actors/{id}
 
 ```json
 {
@@ -62,7 +62,7 @@ http://localhost:8080/api/v1/actors/{id}
 # Genres
 ## Genres Browse {GET}
 
-http://localhost:8080/api/v1/genres
+http://keskonmate.me/api/v1/genres
 
 ```json
 [
@@ -104,7 +104,7 @@ http://localhost:8080/api/v1/genres
 
 ## Genres Read {GET}
 
-http://localhost:8080/api/v1/genres/{id}
+http://keskonmate.me/api/v1/genres/{id}
 
 ```json
 {
@@ -133,7 +133,7 @@ http://localhost:8080/api/v1/genres/{id}
 # Season
 ## Season Browse {GET}
 
-http://localhost:8080/api/v1/seasons
+http://keskonmate.me/api/v1/seasons
 
 ```json
 [
@@ -167,7 +167,7 @@ http://localhost:8080/api/v1/seasons
 
 ## Season Read {GET}
 
-http://localhost:8080/api/v1/seasons/{id}
+http://keskonmate.me/api/v1/seasons/{id}
 
 ```json
 {
@@ -188,7 +188,7 @@ http://localhost:8080/api/v1/seasons/{id}
 # Series
 ## Series Browse {GET}
 
-http://localhost:8080/api/v1/series
+http://keskonmate.me/api/v1/series
 
 ```json
 [
@@ -278,7 +278,7 @@ http://localhost:8080/api/v1/series
 
 ## Series Read {GET}
 
-http://localhost:8080/api/v1/series/{id}
+http://keskonmate.me/api/v1/series/{id}
 
 ```json
 {
@@ -331,7 +331,7 @@ http://localhost:8080/api/v1/series/{id}
 # Users
 ## Users Browse {GET}
 
-http://localhost:8080/api/v1/users
+http://keskonmate.me/api/v1/users
 
 ```json
 [
@@ -397,7 +397,7 @@ http://localhost:8080/api/v1/users
 
 ## Users Read {GET}
 
-http://localhost:8080/api/v1/users/{id}
+http://keskonmate.me/api/v1/users/{id}
 
 ```json
 
@@ -452,7 +452,7 @@ http://localhost:8080/api/v1/users/{id}
 
 ## Users Edit {PATCH}
 
-http://localhost:8080/api/v1/users/{id}
+http://keskonmate.me/api/v1/users/{id}
 
 ```json
 {  	
@@ -464,7 +464,7 @@ http://localhost:8080/api/v1/users/{id}
 
 # Users Add {POST}
 
-http://localhost:8080/api/v1/users
+http://keskonmate.me/api/v1/users
 
 ```json
 {  	
@@ -479,7 +479,7 @@ http://localhost:8080/api/v1/users
 # Userlists
 ## Userlists Browse {GET}
 
-http://localhost:8080/api/v1/userlists
+http://keskonmate.me/api/v1/userlists
 
 ```json
 [
@@ -521,7 +521,7 @@ http://localhost:8080/api/v1/userlists
 
 ## Userlists Read {GET}
 
-http://localhost:8080/api/v1/userlists/{id}
+http://keskonmate.me/api/v1/userlists/{id}
 
 ```json
 {
@@ -544,7 +544,7 @@ http://localhost:8080/api/v1/userlists/{id}
 
 ## Userlists Edit {PATCH}
 
-http://localhost:8080/api/v1/userlists/{id}
+http://keskonmate.me/api/v1/userlists/{id}
 
 ```json
 {	
@@ -558,7 +558,7 @@ http://localhost:8080/api/v1/userlists/{id}
 
 # Userlists Add {POST}
 
-http://localhost:8080/api/v1/userlists
+http://keskonmate.me/api/v1/userlists
 
 ```json
 {	
