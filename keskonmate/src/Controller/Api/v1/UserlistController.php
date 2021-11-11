@@ -55,7 +55,7 @@ class UserlistController extends AbstractController
     }
 
     /**
-     * @Route("/", name="add", methods={"POST"})
+     * @Route("", name="add", methods={"POST"})
      */
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
