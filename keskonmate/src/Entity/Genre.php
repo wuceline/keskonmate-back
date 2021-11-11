@@ -43,6 +43,8 @@ class Genre
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $name;
 
@@ -71,6 +73,7 @@ class Genre
      * 
      * @Groups("api_genres_browse")
      * @Groups("api_genres_read")
+     * 
      */
     private $series;
 

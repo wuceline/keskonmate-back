@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SeriesRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,6 +11,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SeriesRepository::class)
+ * 
+ * @ApiResource(attributes={
+ *     "normalization_context"={"groups"={"series_read"}},
+ *     "denormalization_context"={"groups"={"write"}}
+ * })
  */
 class Series
 {
@@ -30,6 +36,8 @@ class Series
      * @Groups("api_users_read")
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $id;
 
@@ -48,6 +56,8 @@ class Series
      * @Groups("api_users_read")
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $title;
 
@@ -58,6 +68,8 @@ class Series
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $synopsis;
 
@@ -68,6 +80,8 @@ class Series
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $releaseDate;
 
@@ -78,6 +92,8 @@ class Series
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $image;
 
@@ -88,6 +104,8 @@ class Series
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $director;
 
@@ -116,6 +134,8 @@ class Series
      * @Groups("api_series_read")
      * @Groups("api_users_browse")
      * @Groups("api_users_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $createdAt;
 
@@ -140,6 +160,8 @@ class Series
      * 
      * @Groups("api_series_browse")
      * @Groups("api_series_read")
+     * 
+     * @Groups({"series_read"})
      */
     private $genre;
 
