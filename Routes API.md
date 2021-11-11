@@ -585,16 +585,61 @@ http://localhost:8080/api/v1/userlists
           Pour lister les series par id, croissant :        http://keskonmate.me/api/v2/series?order[id]=asc
 
 ```json
-
+{
+  "@context": "\/api\/v2\/contexts\/Series",
+  "@id": "\/api\/v2\/series",
+  "@type": "hydra:Collection",
+  "hydra:member": [
+    {
+      "@id": "\/api\/v2\/series\/1",
+      "@type": "Series",
+      "id": 1,
+      "title": "Sigmund and the Sea Monsters",
+      "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idemne, quod iucunde? Duo Reges: constructio interrete. Haec dicuntur inconstantissime. Cave putes...; \n\n",
+      "releaseDate": "1973-09-08T00:00:00+01:00",
+      "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/elRBynx0PN8xUMfwEXuyAKR11Ep.jpg",
+      "director": "Marty Krofft",
+      "createdAt": "2021-11-10T17:15:35+01:00",
+      "genre": [
+        {
+          "@id": "\/api\/v2\/genres\/8",
+          "@type": "Genre",
+          "name": "Kids"
+        },
+        {
+          "@id": "\/api\/v2\/genres\/12",
+          "@type": "Genre",
+          "name": "Science-Fiction & Fantastique"
+        }
+      ]
+    },
+    {
+      "@id": "\/api\/v2\/series\/3",
+      "@type": "Series",
+      "id": 3,
+      "title": "Pride",
+      "synopsis": "Satonaka Halu est un joueur de hockey dans l'équipe des Scorpions dont il est capitaine. Et à cause de son engagement dans ce sport, il ne peut considérer l'amo....",
+      "releaseDate": "2004-01-12T00:00:00+01:00",
+      "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/54CU1a2Wod9RCSVQ9BT0nUw5Enr.jpg",
+      "director": "Xavier Muspimerol",
+      "createdAt": "2021-11-10T17:15:35+01:00",
+      "genre": [
+        {
+          "@id": "\/api\/v2\/genres\/6",
+          "@type": "Genre",
+          "name": "Drame"
+        }
+      ]
+    },
 ```
  
 ## Genres:
 ## Routes {GET}
 
- /api/v2/genres?order[parametre]=<asc|desc>
- [parametres]: id, name
- Exemple: Pour lister les series par nom, de Z a A:   http://keskonmate.me/api/v2/series?order[name]=desc
-          Pour lister les genres par id, croissant :  http://keskonmate.me/api/v2/genres?order[id]=asc
+ ##/api/v2/genres?order[parametre]=<asc|desc>
+ ##[parametres]: id, name
+ ##Exemple: Pour lister les series par nom, de Z a A:   http://keskonmate.me/api/v2/series?order[name]=desc
+ ##         Pour lister les genres par id, croissant :  http://keskonmate.me/api/v2/genres?order[id]=asc
 
 ```json
 {
