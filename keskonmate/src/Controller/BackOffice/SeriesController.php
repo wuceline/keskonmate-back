@@ -171,7 +171,7 @@ class SeriesController extends AbstractController
         if($query) {
             $series = $seriesRepository->findSeriesByName($query);
         }
-        return $this->render('backoffice/_search/_searchBar.html.twig', [
+        return $this->render('backoffice/series/_searchBar.html.twig', [
             'series' => $series
         ]);
     }
