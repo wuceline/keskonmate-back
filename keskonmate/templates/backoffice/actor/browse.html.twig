@@ -8,6 +8,7 @@
 {{ include('_partials/_flash_messages.html.twig') }}
 
 <h1>Acteurs</h1>
+{{ form(searchBar) }}
 <div> 
     <a href="{{ url('backoffice_actors_add') }}" class="btn btn-success" title="Add" alt="Add">
         Ajouter
