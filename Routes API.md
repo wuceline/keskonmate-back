@@ -1,8 +1,11 @@
 # Login
+http://localhost:8080/api/login
 
 # API V1:
 # Actors
 ## Actors Browse {GET}
+
+http://localhost:8080/api/v1/actors
 
 ```json
 [
@@ -38,6 +41,8 @@
 
 ## Actors Read {GET}
 
+http://localhost:8080/api/v1/actors/{id}
+
 ```json
 {
   "id": 1,
@@ -56,6 +61,8 @@
 
 # Genres
 ## Genres Browse {GET}
+
+http://localhost:8080/api/v1/genres
 
 ```json
 [
@@ -97,6 +104,8 @@
 
 ## Genres Read {GET}
 
+http://localhost:8080/api/v1/genres/{id}
+
 ```json
 {
   "id": 1,
@@ -123,6 +132,8 @@
 
 # Season
 ## Season Browse {GET}
+
+http://localhost:8080/api/v1/seasons
 
 ```json
 [
@@ -156,6 +167,8 @@
 
 ## Season Read {GET}
 
+http://localhost:8080/api/v1/seasons/{id}
+
 ```json
 {
   "id": 1,
@@ -174,6 +187,8 @@
 
 # Series
 ## Series Browse {GET}
+
+http://localhost:8080/api/v1/series
 
 ```json
 [
@@ -263,6 +278,8 @@
 
 ## Series Read {GET}
 
+http://localhost:8080/api/v1/series/{id}
+
 ```json
 {
   "id": 1,
@@ -313,6 +330,8 @@
 
 # Users
 ## Users Browse {GET}
+
+http://localhost:8080/api/v1/users
 
 ```json
 [
@@ -378,6 +397,8 @@
 
 ## Users Read {GET}
 
+http://localhost:8080/api/v1/users/{id}
+
 ```json
 
 {
@@ -431,6 +452,8 @@
 
 ## Users Edit {PATCH}
 
+http://localhost:8080/api/v1/users/{id}
+
 ```json
 {  	
   "email": "test2@keskonmate.me",
@@ -440,6 +463,8 @@
 ```
 
 # Users Add {POST}
+
+http://localhost:8080/api/v1/users
 
 ```json
 {  	
@@ -453,6 +478,8 @@
 
 # Userlists
 ## Userlists Browse {GET}
+
+http://localhost:8080/api/v1/userlists
 
 ```json
 [
@@ -494,6 +521,8 @@
 
 ## Userlists Read {GET}
 
+http://localhost:8080/api/v1/userlists/{id}
+
 ```json
 {
   "id": 25,
@@ -515,6 +544,8 @@
 
 ## Userlists Edit {PATCH}
 
+http://localhost:8080/api/v1/userlists/{id}
+
 ```json
 {	
   "seasonNb": 9,
@@ -526,6 +557,8 @@
 ```
 
 # Userlists Add {POST}
+
+http://localhost:8080/api/v1/userlists
 
 ```json
 {	
@@ -541,5 +574,75 @@
 ====================================================================================================================================
 
 
-# API V2:
+# API V2: /api/v2/series
 
+## Series:
+## Routes {GET}
+
+ /api/v2/series?order[parametre]=<asc|desc>
+ [parametres]: id, title, releaseDate, director
+ Exemple: Pour lister les series par realisateur, de Z a A: http://keskonmate.me/api/v2/series?order[director]=desc
+          Pour lister les series par id, croissant :        http://keskonmate.me/api/v2/series?order[id]=asc
+
+```json
+
+```
+ 
+## Genres:
+## Routes {GET}
+
+ /api/v2/genres?order[parametre]=<asc|desc>
+ [parametres]: id, name
+ Exemple: Pour lister les series par nom, de Z a A:   http://keskonmate.me/api/v2/series?order[name]=desc
+          Pour lister les genres par id, croissant :  http://keskonmate.me/api/v2/genres?order[id]=asc
+
+```json
+{
+  "@context": "\/api\/v2\/contexts\/Genre",
+  "@id": "\/api\/v2\/genres",
+  "@type": "hydra:Collection",
+  "hydra:member": [
+    {
+      "@id": "\/api\/v2\/genres\/1",
+      "@type": "Genre",
+      "id": 1,
+      "name": "Action & Adventure",
+      "series": [
+        {
+          "@id": "\/api\/v2\/series\/8",
+          "@type": "Series",
+          "id": 8,
+          "title": "American Dragon: Jake Long"
+        },
+        {
+          "@id": "\/api\/v2\/series\/15",
+          "@type": "Series",
+          "id": 15,
+          "title": "Capitaine Scarlet"
+        }
+      ]
+    },
+    {
+      "@id": "\/api\/v2\/genres\/2",
+      "@type": "Genre",
+      "id": 2,
+      "name": "Animation",
+      "series": [
+        {
+          "@id": "\/api\/v2\/series\/6",
+          "@type": "Series",
+          "id": 6,
+          "title": "Bod"
+        },
+        {
+          "@id": "\/api\/v2\/series\/7",
+          "@type": "Series",
+          "id": 7,
+          "title": "Space Sentinels"
+        },
+      ]
+    }
+
+  ]
+}
+```
