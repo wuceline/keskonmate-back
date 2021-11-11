@@ -46,3 +46,5 @@ https://github.com/nelmio/NelmioCorsBundle
 git config --global core.autocrlf true
 
 composer require twig/intl-extra for format_datetime
+
+ composer require api
