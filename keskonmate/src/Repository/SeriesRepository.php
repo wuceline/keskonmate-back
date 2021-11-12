@@ -82,6 +82,35 @@ class SeriesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllByFilters(int $genre = null, string $column = null, string $order = null, string $keyword = null) {
+        $qb =  $this->createQueryBuilder('s');
+
+        if($order && in_array(strtoupper($order), ['ASC','DESC'])) {
+            if($column && in_array($column, ['director','numberOfSeasons'])) {
+                $qb->orderBy('s.'.$column, $order);
+            } else {
+                $qb->orderBy('s.title', $order);
+            }
+        }
+        if($keyword) {
+            if($column && in_array($column, ['director','numberOfSeasons'])) {
+                $qb->andWhere('s.'.$column. ' LIKE :keyword' );
+            }else {
+                $qb->andWhere('s.title LIKE :keyword' );
+            }
+            $qb->setParameter('keyword', '%'.$keyword.'%');
+        }
+        
+        if($genre) {
+            $qb->join('s.genre', 'g')
+            ->andWhere('g.id = :genre')
+            ->setParameter('genre', $genre);
+        }
+
+        return $qb->getQuery()
+        ->getResult();
+    }
+
     // /**
     //  * @return Series[] Returns an array of Series objects
     //  */
