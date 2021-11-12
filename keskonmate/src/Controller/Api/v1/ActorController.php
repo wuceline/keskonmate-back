@@ -19,7 +19,7 @@ class ActorController extends AbstractController
     public function browse(ActorRepository $actorRepository): Response
     {
         $allActors = $actorRepository->findAll();
-        // dd($allActors);
+        
         
         return $this->json($allActors, Response::HTTP_OK, [], ['groups' => 'api_actors_browse']);
     }

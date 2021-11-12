@@ -70,13 +70,8 @@ class SeriesController extends AbstractController
     {       
         $series = $seriesRepository->find($id); 
 
-        $seriesForm = $this->createForm(SeriesType::class, $series, [
-            'disabled' => 'disabled'
-        ]);
-
         return $this->render('backoffice/series/read.html.twig', [
-            'series_form' => $seriesForm->createView(),
-            'series' => $seriesForm,
+            'series'      => $series
         ]);
     }
 
@@ -107,8 +102,8 @@ class SeriesController extends AbstractController
 
         return $this->render('backoffice/series/add.html.twig', [
             'series_form' => $seriesForm->createView(),
-            'series' => $series,
-            'page' => 'edit',
+            'series'      => $series,
+            'page'        => 'edit',
         ]);
     }
 
@@ -142,7 +137,7 @@ class SeriesController extends AbstractController
 
         return $this->render('backoffice/series/add.html.twig', [
             'series_form' => $seriesForm->createView(),
-            'page' => 'create',
+            'page'        => 'create',
         ]);
     }
 
