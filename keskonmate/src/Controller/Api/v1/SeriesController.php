@@ -22,14 +22,13 @@ class SeriesController extends AbstractController
     // /api/v1/series/?keyword=machin&genre=2
     public function browse(SeriesRepository $seriesRepository, Request $request): Response
     {
-
-        $genre = $request->get('genre');
-        $order = $request->get('order');
         $column = $request->get('column');
+        $genre = $request->get('genre');
+        $order = $request->get('order');        
         $keyword = $request->get('keyword');
 
         if($genre || $order || $column || $keyword) {
-            $allSeries = $seriesRepository->findAllByFilters($genre, $column, $order, $keyword);
+            $allSeries = $seriesRepository->findAllByFilters($column, $genre, $keyword, $order);
         } else {
             $allSeries = $seriesRepository->findAll();
         }
@@ -43,6 +42,16 @@ class SeriesController extends AbstractController
     public function read(int $id, SeriesRepository $seriesRepository): Response
     {
         $series = $seriesRepository->find($id);
+
+        return $this->json($series, Response::HTTP_OK, [], ['groups' => 'api_series_read']);
+    }
+
+    /**
+     * @Route("/homeorder", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function homeOrder(SeriesRepository $seriesRepository): Response
+    {
+        $series = $seriesRepository->findAllByHomeOrder();
 
         return $this->json($series, Response::HTTP_OK, [], ['groups' => 'api_series_read']);
     }
