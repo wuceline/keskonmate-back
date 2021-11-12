@@ -190,6 +190,28 @@ http://keskonmate.me/api/v1/seasons/{id}
 
 http://keskonmate.me/api/v1/series
 
+### Pour filtrer:
+Par titre:
+http://keskonmate.me/api/v1/series?order=ASC ou DESC
+
+Par genre:
+http://keskonmate.me/api/v1/series?genre=id
+
+Par realisateur:
+http://keskonmate.me/api/v1/series?director=nom
+
+Par une colonne:
+http://keskonmate.me/api/v1/series?column=numberOfSeason&ordr=ASC ou DESC
+
+Rechercher une serie par mot cle (dans le titre):
+http://keskonmate.me/api/v1/series?keyword=xxxx
+
+Rechercher une serie par mot cle (dans une colonne):
+http://keskonmate.me/api/v1/series?column=xxxxx&keyword=xxxx
+
+Colonnes disponibles: id, director, numberOfSeasons, releaseDate
+
+
 ```json
 [
   {
