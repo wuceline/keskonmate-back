@@ -15,14 +15,14 @@ class HomeOrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('homeOrder', ChoiceType::class, [
+            ->add('id')
+            ->add('homeOrder', EntityType::class, [
+                'class' => Series::class,
                 'label' => ' ',
-                'multiple' => true,
             ])
             ->add('title', EntityType::class, [
                 'class' => Series::class,
                 'label' => ' ',
-                'multiple' => true,
             ])            
         ;
     }
