@@ -86,14 +86,14 @@ class SeriesRepository extends ServiceEntityRepository
         $qb =  $this->createQueryBuilder('s');
 
         if($order && in_array(strtoupper($order), ['ASC','DESC'])) {
-            if($column && in_array($column, ['director','numberOfSeasons'])) {
+            if($column && in_array($column, ['id', 'director','numberOfSeasons', 'releaseDate'])) {
                 $qb->orderBy('s.'.$column, $order);
             } else {
                 $qb->orderBy('s.title', $order);
             }
         }
         if($keyword) {
-            if($column && in_array($column, ['director','numberOfSeasons'])) {
+            if($column && in_array($column, ['id', 'director','numberOfSeasons', 'releaseDate'])) {
                 $qb->andWhere('s.'.$column. ' LIKE :keyword' );
             }else {
                 $qb->andWhere('s.title LIKE :keyword' );
