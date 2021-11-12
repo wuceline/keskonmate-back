@@ -49,21 +49,3 @@
 </form>
 </div>
 {% endblock %}
-
-
-{# public function index(Request $request, SeriesRepository $seriesRepository): Response
-    {
-        $seriesAll = $seriesRepository->findAllAlphaBetical();
-        $seriesList = $seriesRepository->findAllByHomeOrder();
-        $homeOrderForm = $this->createForm(HomeOrderType::class, $seriesList, [
-            'disabled' => 'disabled'
-        ]);
-
-        // dd($request); 
-        
-        return $this->render('backoffice/homeorder/browse.html.twig', [
-            'series_all' => $seriesAll,
-            'series_list' => $seriesList,
-            'series_form' => $homeOrderForm->createView(),
-        ]);
-    }    #}
