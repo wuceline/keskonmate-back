@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Series;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,8 +16,14 @@ class HomeOrderType extends AbstractType
     {
         $builder
             ->add('id')
-            ->add('title')
-            ->add('homeOrder')
+            ->add('homeOrder', EntityType::class, [
+                'class' => Series::class,
+                'label' => ' ',
+            ])
+            ->add('title', EntityType::class, [
+                'class' => Series::class,
+                'label' => ' ',
+            ])            
         ;
     }
 

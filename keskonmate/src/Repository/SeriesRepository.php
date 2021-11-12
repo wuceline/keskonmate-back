@@ -17,6 +17,27 @@ class SeriesRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Series::class);
+    }    
+
+    /**
+     *
+     * Récupère toutes les informations liées aux series dont home_order est definit entre 1 et 5
+     * @return Series[]
+     */
+    public function findAllAlphaBetical() :array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $dqlQuery = " SELECT s 
+                    FROM App\Entity\Series s
+                    ORDER BY s.title ASC";
+
+        $query = $entityManager->createQuery(
+            $dqlQuery
+        );
+
+        // dd($query->getResult());
+        return $query->getResult();
     }
 
     /**

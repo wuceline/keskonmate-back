@@ -12,29 +12,40 @@
 <div class="text-end">
 </a>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Emplacement</th>
-      <th scope="col">Titre</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-{% for series in series_homeOrder %}
-{% if series.homeOrder > 0 and series.homeOrder < 6 %}
-    <tr>    
-      <th scope="row">{{ series.homeOrder }}</th>      
-      <td>{{ series.title }}</td>
-      <td>
-        <button type="submit" class="btn btn-primary">
-          Mettre a jour
-        </button>
-      </td>
-{% endif %}      
-    </tr> 
-{% endfor %}
-  </tbody>
-</table>
+<form method="post">
+  {% if errors is not empty %}
+    {% for error in errors %}
+      <p>{{error}}</p>
+    {% endfor %}
+  {% endif %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Emplacement</th>
+        <th scope="col">Modifer</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for key in 0..4 %}
+          <tr>    
+            <th scope="row">{{ key + 1 }}</th>      
+            <td>      
+              <label for="homeOrder"></label>
+              <select name="homeOrder[{{key + 1}}]" id="homeOrder">
+                <option value="">Choisissez un flim</option>
+                {% for seriess in series_all %}
+                  <option value="{{ seriess.id }}" {{ series_list[key] is defined and seriess.id == series_list[key].id ? ' selected="selected"' : '' }}>{{ seriess.title }}</option>
+                {% endfor %}
+              </select>
+            </td>
+          </tr> 
+      {% endfor %} 
+      
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-primary">
+    Mettre a jour
+  </button>
+</form>
 </div>
 {% endblock %}
