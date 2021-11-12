@@ -28,7 +28,7 @@ class SeriesController extends AbstractController
         $keyword = $request->get('keyword');
 
         if($genre || $order || $column || $keyword) {
-            $allSeries = $seriesRepository->findAllByFilters($column, $genre, $keyword, $order);
+            $allSeries = $seriesRepository->findAllByFilters($column, $genre, $order, $keyword);
         } else {
             $allSeries = $seriesRepository->findAll();
         }
