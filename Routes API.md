@@ -348,7 +348,94 @@ http://keskonmate.me/api/v1/series/{id}
   ]
 }
 ```
+## Series Homeorder {GET}
 
+http://keskonmate.me/api/v1/series/homeorder
+
+```json
+[
+  {
+    "id": 5,
+    "title": "Sigmund and the Sea Monsters",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idemne, quod iucunde? Duo Reges: constructio interrete. Haec dicuntur inconstantissime.; \n\n",
+    "releaseDate": "1973-09-08T00:00:00+01:00",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/elRBynx0PN8xUMfwEXuyAKR11Ep.jpg",
+    "director": "Marty Krofft",
+    "numberOfSeasons": 2,
+    "homeOrder": 1,
+    "createdAt": "2021-11-10T17:15:35+01:00",
+    "updatedAt": null,
+    "genre": [
+      {
+        "id": 8,
+        "name": "Kids"
+      },
+      {
+        "id": 12,
+        "name": "Science-Fiction & Fantastique"
+      }
+    ],
+    "season": [
+      {
+        "id": 1,
+        "seasonNumber": 1
+      },
+      {
+        "id": 2,
+        "seasonNumber": 2
+      }
+    ],
+    "actor": [
+      {
+        "id": 1,
+        "name": "Johnny Whitaker",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/rxUX4BH5lM1We1ei9xbp4CVgSxY.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Rip Taylor",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/qqEGeLNaAXPLKJVjjLpWVyNyFIu.jpg"
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "title": "Pride",
+    "synopsis": "Satonaka Halu est un joueur de hockey dans l'équipe des Scorpions dont il est capitaine. Et à cause de son engagement dans ce sport, il ne peut considérer l'a...",
+    "releaseDate": "2004-01-12T00:00:00+01:00",
+    "image": "https:\/\/www.themoviedb.org\/t\/p\/w1920_and_h800_multi_faces\/54CU1a2Wod9RCSVQ9BT0nUw5Enr.jpg",
+    "director": "Xavier Muspimerol",
+    "numberOfSeasons": 1,
+    "homeOrder": 2,
+    "createdAt": "2021-11-10T17:15:35+01:00",
+    "updatedAt": null,
+    "genre": [
+      {
+        "id": 6,
+        "name": "Drame"
+      }
+    ],
+    "season": [
+      {
+        "id": 3,
+        "seasonNumber": 1
+      }
+    ],
+    "actor": [
+      {
+        "id": 6,
+        "name": "Takuya Kimura",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/rafirRSsSsZrSVV3znCUwwSGIGr.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Yuko Takeuchi",
+        "image": "https:\/\/www.themoviedb.org\/t\/p\/w138_and_h175_face\/y3Cnoni3enouqE7UlCZ1OtIPuOn.jpg"
+      }
+    ]
+  },
+  etc...
+]```
 
 # Users
 ## Users Browse {GET}
