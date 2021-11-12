@@ -35,6 +35,16 @@ class SeriesController extends AbstractController
        
         return $this->json($allSeries, Response::HTTP_OK, [], ['groups' => 'api_series_browse']);
     }
+    
+    /**
+     * @Route("/homeorder", name="read", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function homeOrder(SeriesRepository $seriesRepository): Response
+    {
+        $series = $seriesRepository->findAllByHomeOrder();
+
+        return $this->json($series, Response::HTTP_OK, [], ['groups' => 'api_series_read']);
+    }
 
     /**
      * @Route("/{id}", name="read", methods={"GET"}, requirements={"id"="\d+"})
@@ -46,14 +56,5 @@ class SeriesController extends AbstractController
         return $this->json($series, Response::HTTP_OK, [], ['groups' => 'api_series_read']);
     }
 
-    /**
-     * @Route("/homeorder", name="read", methods={"GET"}, requirements={"id"="\d+"})
-     */
-    public function homeOrder(SeriesRepository $seriesRepository): Response
-    {
-        $series = $seriesRepository->findAllByHomeOrder();
-
-        return $this->json($series, Response::HTTP_OK, [], ['groups' => 'api_series_read']);
-    }
 }
 
