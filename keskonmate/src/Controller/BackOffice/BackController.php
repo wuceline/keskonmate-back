@@ -27,15 +27,15 @@ class BackController extends AbstractController
      */
     public function index(SeriesRepository $seriesRepository): Response
     {
-        $homeOrderAll = $seriesRepository->findAllByHomeOrder();
         $seriesList = $seriesRepository->findAllByHomeOrder();
         $homeOrderForm = $this->createForm(HomeOrderType::class, $seriesList, [
             'disabled' => 'disabled'
         ]);
 
+        // dd($seriesList); 
+        
         return $this->render('backoffice/homeorder/browse.html.twig', [
-            'series_homeOrder' => $homeOrderAll,
-            'series_list' => $seriesList,
+            'series_home' => $seriesList,
             'series_form' => $homeOrderForm->createView(),
         ]);
     }      

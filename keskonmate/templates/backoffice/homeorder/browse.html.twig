@@ -12,6 +12,8 @@
 <div class="text-end">
 </a>
 </div>
+
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -21,7 +23,26 @@
     </tr>
   </thead>
   <tbody>
-{% for series in series_homeOrder %}
+    <tr> 
+       
+    {{ form_start(series_form) }}
+      <th scope="row">{{ form_row(series_form.homeOrder) }}</th>      
+      <td>{{ form_row(series_form.title) }}</td>
+      <td>
+        <button type="submit" class="btn btn-primary">
+          Mettre a jour
+        </button>
+      </td>   
+    </tr> 
+  </tbody>
+</table>
+{{ form_end(series_form) }}
+
+</div>
+{% endblock %}
+
+
+{# {% for series in series_homeOrder %}
 {% if series.homeOrder > 0 and series.homeOrder < 6 %}
     <tr>    
       <th scope="row">{{ series.homeOrder }}</th>      
@@ -33,8 +54,4 @@
       </td>
 {% endif %}      
     </tr> 
-{% endfor %}
-  </tbody>
-</table>
-</div>
-{% endblock %}
+{% endfor %} #}
