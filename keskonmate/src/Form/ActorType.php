@@ -16,7 +16,10 @@ class ActorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('id')
+            ->add('name', TextType::class, [
+                'label' => "Nom",
+            ])
             ->add('image')
             ->add('series', EntityType::class, [
                 'class' => Series::class,
@@ -25,10 +28,12 @@ class ActorType extends AbstractType
                 'expanded' => true,
             ])
             ->add('createdAt', DateTimeType::class, [
+                'label' => "Cree le:",
                 'input'  => 'datetime_immutable',
                 'disabled' => 'disabled'
             ])
             ->add('updatedAt', DateTimeType::class, [
+                'label' => "Mise a jour le:",
                 'input'  => 'datetime_immutable',
             ])
             

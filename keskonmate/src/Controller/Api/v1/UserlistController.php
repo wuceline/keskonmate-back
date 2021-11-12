@@ -76,8 +76,13 @@ class UserlistController extends AbstractController
         $responseAsArray = [
             'message' => 'User list created',
             'id' => $user->getId(),
+            'series' => $user->getSeries(),
+            'seasonNb' => $user->getSeasonNb(),
+            'episodeNb' => $user->getEpisodeNb(),
+            'type' => $user->getType(),
+            'users' => $user->getUsers(),
         ];
 
-        return $this->json($responseAsArray, Response::HTTP_CREATED);
+        return $this->json($responseAsArray, Response::HTTP_CREATED, [], ['groups' => 'api_userlists_POST']);
     }
 }

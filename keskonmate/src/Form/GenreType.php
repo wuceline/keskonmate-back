@@ -13,13 +13,16 @@ class GenreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('id')
             ->add('name')
             ->add('series')
             ->add('createdAt', DateTimeType::class, [
+                'label' => 'Cree le:',
                 'input'  => 'datetime_immutable',
                 'disabled' => 'disabled'
             ])
             ->add('updatedAt', DateTimeType::class, [
+                'label' => 'Mis a jour le:',
                 'input'  => 'datetime_immutable',
             ])
         ;

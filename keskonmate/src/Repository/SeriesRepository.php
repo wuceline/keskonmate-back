@@ -21,7 +21,7 @@ class SeriesRepository extends ServiceEntityRepository
 
     /**
      *
-     * Récupère toutes les informations liées aux series dont home_order est definit
+     * Récupère toutes les informations liées aux series dont home_order est definit entre 1 et 5
      * @return Series[]
      */
     public function findAllByHomeOrder() :array
@@ -30,28 +30,8 @@ class SeriesRepository extends ServiceEntityRepository
 
         $dqlQuery = " SELECT s 
                     FROM App\Entity\Series s
-                    WHERE s.homeOrder BETWEEN 0 AND 5 
+                    WHERE s.homeOrder BETWEEN 1 AND 5 
                     ORDER BY s.homeOrder ASC";
-
-        $query = $entityManager->createQuery(
-            $dqlQuery
-        );
-
-        // dd($query->getResult());
-        return $query->getResult();
-    }
-
-    /**
-     *
-     * Récupère tous les ID, titres et homeOrder des series
-     * @return Series[]
-     */
-    public function findAllWithIdTitleAndHomeOrder(): array
-    {
-        $entityManager = $this->getEntityManager();
-
-        $dqlQuery = " SELECT s.id, s.title, s.homeOrder 
-                    FROM App\Entity\Series s ";
 
         $query = $entityManager->createQuery(
             $dqlQuery
@@ -80,6 +60,38 @@ class SeriesRepository extends ServiceEntityRepository
         return $qb
             ->getQuery()
             ->getResult();
+    }
+
+    public function findAllByFilters(string $column = null, int $genre = null, string $order = null, string $keyword = null) {
+        $qb =  $this->createQueryBuilder('s');
+
+        if($genre) {
+            $qb->join('s.genre', 'g')
+            ->andWhere('g.id = :genre')
+            ->setParameter('genre', $genre);
+        }
+                
+        if($order && in_array(strtoupper($order), ['ASC','DESC'])) {
+            if($column && in_array($column, ['id', 'director','numberOfSeasons', 'releaseDate'])) {
+                $qb->orderBy('s.'.$column, $order);
+            } else {
+                $qb->orderBy('s.title', $order);
+            }
+        }
+        
+        if($keyword) {
+            if($column && in_array($column, ['id', 'director','numberOfSeasons', 'releaseDate'])) {
+                $qb->andWhere('s.'.$column. ' LIKE :keyword' );
+            }else {
+                $qb->andWhere('s.title LIKE :keyword' );
+            }
+            $qb->setParameter('keyword', '%'.$keyword.'%');
+        }
+        
+        
+
+        return $qb->getQuery()
+        ->getResult();
     }
 
     // /**

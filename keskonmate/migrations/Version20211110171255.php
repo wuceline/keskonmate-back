@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * Auto-generated Migration: Please modify to your needs! 
  */
 final class Version20211110171255 extends AbstractMigration
 {
@@ -57,3 +57,4 @@ final class Version20211110171255 extends AbstractMigration
         $this->addSql('DROP TABLE user_list');
     }
 }
+
