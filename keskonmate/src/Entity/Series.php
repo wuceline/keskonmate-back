@@ -30,6 +30,8 @@ class Series
      * @Groups("api_users_read")
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     *  @Groups("api_userlists_POST")
      */
     private $id;
 
@@ -48,6 +50,8 @@ class Series
      * @Groups("api_users_read")
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     *  @Groups("api_userlists_POST")
      */
     private $title;
 

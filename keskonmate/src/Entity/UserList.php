@@ -34,6 +34,8 @@ class UserList
      * @Groups("api_users_read")
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     * @Groups("api_userlists_POST")
      */
     private $series;
 
@@ -93,6 +95,8 @@ class UserList
      * 
      * @Groups("api_userlists_browse")
      * @Groups("api_userlists_read")
+     * 
+     *  @Groups("api_userlists_POST")
      */
     private $users;
 
