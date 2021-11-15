@@ -15,13 +15,14 @@
 {{ include('_partials/_flash_messages.html.twig') }}
 <h1> 
     {% if page == 'create' %}
-        Creer un utilisateur
+        Créer un utilisateur
     {% else %}
         Mettre a jour {{ user.email }}
     {% endif %}
 </h1>
 <div> 
      <a href="{{ url('backoffice_users_browse') }}" class="btn btn-primary" alt="List" title="List">
+     Retour
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
@@ -30,19 +31,42 @@
 
 {{ form_start(user_form) }}
 
-    {{ form_errors(user_form) }}
-    {{ form_row(user_form.userNickname) }}
-    {{ form_row(user_form.email) }}    
-    {{ form_row(user_form.password) }}
-    {{ form_row(user_form.roles) }}
+<div class="d-flex justify-content-center">
+    <div class="d-flex shadow mb-5 bg-white rounded card col-5">
+        <article class="align-self-center card-body col-10">
+                <form name="user" method="post">
+                    <div class="form-group">
+                        {{ form_row(user_form.userNickname) }}  
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(user_form.email) }}  
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(user_form.password) }}
+                    </div>
+                    <div>
+                        <label>Role(s) :</label>
+                        {{ form_row(user_form.roles) }}
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-primary mt-2">
+                        {% if 'backoffice_users_add' == app.request.get('_route') %}
+                        Créer
+                        {% else %}
+                        Mettre à jour
+                        {% endif %}
+                        </button>
+                    </div>                                               
+                </form>
+        </article>
+    </div>
+</div>
 
-    <button type="submit" class="btn btn-primary mt-4">
-    {% if 'backoffice_users_add' == app.request.get('_route') %}
-    Create
-    {% else %}
-    Update
-    {% endif %}
-    </button>
+
+    {{ form_errors(user_form) }}
+
+
 
 {{ form_end(user_form) }} 
 
