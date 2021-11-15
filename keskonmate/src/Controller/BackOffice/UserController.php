@@ -4,6 +4,7 @@ namespace App\Controller\BackOffice;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserListRepository;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,9 +50,10 @@ class UserController extends AbstractController
      * 
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
      */
-    public function read(Request $request, $id, UserRepository $userRepository): Response
+    public function read(Request $request, $id, UserRepository $userRepository, UserListRepository $userListRepository): Response
     {       
         $user = $userRepository->find($id); 
+        $userLists = $userListRepository->findForId($id);
 
         $userForm = $this->createForm(UserType::class, $user, [
             'disabled' => 'disabled'
@@ -60,6 +62,7 @@ class UserController extends AbstractController
         return $this->render('backoffice/user/read.html.twig', [
             'user_form' => $userForm->createView(),
             'user' => $user,
+            'userlists' => $userLists
         ]);
     }
 

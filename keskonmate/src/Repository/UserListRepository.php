@@ -19,6 +19,27 @@ class UserListRepository extends ServiceEntityRepository
         parent::__construct($registry, UserList::class);
     }
 
+    /**
+     *
+     * Récupère toutes les informations liées aux series dont home_order est definit entre 1 et 5
+     * @return UserList[]
+     */
+    public function findForId(int $id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $dqlQuery = " SELECT ul 
+                    FROM App\Entity\UserList ul
+                    WHERE ul.id = $id";
+
+        $query = $entityManager->createQuery(
+            $dqlQuery
+        );
+
+        // dd($query->getResult());
+        return $query->getResult();
+    }
+
     // /**
     //  * @return UserList[] Returns an array of UserList objects
     //  */

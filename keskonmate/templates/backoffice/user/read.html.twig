@@ -19,7 +19,7 @@
         </svg>
     </a> 
 </div>
-
+{% dump(userlists) %}
 <div class="d-flex justify-content-center">
     <div class="d-flex shadow mb-5 bg-white rounded card col-5">
         <article class="align-self-center card-body col-10">
@@ -55,6 +55,32 @@
         </article>
     </div>
 </div>
-
+<div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col" style="width:10%">Id</th>
+      <th scope="col" style="width:10%">Series Id</th>
+      <th scope="col" style="width:20%">Season Number</th>
+      <th scope="col" style="width:20%">Episode Number</th>
+      <th scope="col" style="width:10%">List Type</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for list in userlists %}
+    <tr>
+      <th scope="row">{{ list.id }}</th>      
+      <td>
+        <a href="{{ url('backoffice_series_read', {"id": list.series.id}) }}">
+          {{ list.series.id }}
+        </a>
+      </td>
+      <td>{{ list.seasonNb }}</td>
+      <td>{{ list.episodeNb }}</td>
+      <td>{{ list.type }}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
 </div>
 {% endblock %}
