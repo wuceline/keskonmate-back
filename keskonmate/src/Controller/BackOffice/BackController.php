@@ -7,6 +7,7 @@ use App\Form\HomeOrderType;
 use App\Form\SeriesType;
 use App\Repository\SeriesRepository;
 use DateTimeImmutable;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -21,22 +22,53 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackController extends AbstractController
 {
     /**
-     * @Route("", name="homepage", methods={"GET"})
+     * @Route("", name="homepage", methods={"GET", "POST"})
      * 
      * @Security("is_granted('ROLE_CATALOGUE_MANAGER') or is_granted('ROLE_ADMIN')")
      */
-    public function index(SeriesRepository $seriesRepository): Response
+    public function index(Request $request, SeriesRepository $seriesRepository, EntityManagerInterface $entityManager): Response
     {
-        $homeOrderAll = $seriesRepository->findAllByHomeOrder();
-        $seriesList = $seriesRepository->findAllWithIdTitleAndHomeOrder();
+        $seriesAll = $seriesRepository->findAllAlphaBetical();
+        $seriesList = $seriesRepository->findAllByHomeOrder();
         $homeOrderForm = $this->createForm(HomeOrderType::class, $seriesList, [
             'disabled' => 'disabled'
         ]);
 
+        $homeOrder = $request->get('homeOrder'); 
+
+        $errors = [];
+
+        if($homeOrder) {
+            
+            foreach($seriesList as $series) {
+                $series->setHomeOrder(0);
+            }
+    
+            foreach($homeOrder as $order => $seriesId) {
+                $series = $seriesRepository->find(intval($seriesId));
+
+                if($series) {
+                    $series->setHomeOrder(intval($order));
+                }
+                else {
+                    $errors[] = 'You must select 5 series';
+                    break;
+                }            
+            }
+
+            if(empty($errors)) {
+                $entityManager->flush();
+                return $this->redirectToRoute('backoffice_homepage');
+            }
+        }
+
+       
         return $this->render('backoffice/homeorder/browse.html.twig', [
-            'series_homeOrder' => $homeOrderAll,
+            'series_all' => $seriesAll,
             'series_list' => $seriesList,
             'series_form' => $homeOrderForm->createView(),
+            'home_orders_count' => 5 - count($seriesList),
+            'errors' => $errors        
         ]);
     }      
 
