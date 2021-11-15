@@ -43,7 +43,7 @@ class UserType extends AbstractType
                 'choices' => [
                     'SuperAdmin' => 'ROLE_SUPER_ADMIN',
                     'Admin' => 'ROLE_ADMIN',
-                    'Catalogue Manager' => 'ROLE_CATALOGUE_MANAGER ',
+                    'Catalogue Manager' => 'ROLE_CATALOGUE_MANAGER',
                     'User' => 'ROLE_USER',
                 ],
                 'multiple' => true,
