@@ -59,7 +59,7 @@ class UserController extends AbstractController
 
         return $this->render('backoffice/user/read.html.twig', [
             'user_form' => $userForm->createView(),
-            'user' => $userForm,
+            'user' => $user,
         ]);
     }
 

@@ -29,12 +29,12 @@
     </a>  
 </div>
 
-{{ form_start(user_form) }}
 
 <div class="d-flex justify-content-center">
     <div class="d-flex shadow mb-5 bg-white rounded card col-5">
         <article class="align-self-center card-body col-10">
                 <form name="user" method="post">
+            {{ form_start(user_form) }}
                     <div class="form-group">
                         {{ form_row(user_form.userNickname) }}  
                     </div>
@@ -48,8 +48,8 @@
                         <label>Role(s) :</label>
                         {{ form_row(user_form.roles) }}
                     </div>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    <div class="form-group mt-2">
+
+                   <div class="form-group mt-2">
                         <button type="submit" class="btn btn-primary mt-2">
                         {% if 'backoffice_users_add' == app.request.get('_route') %}
                         Créer
@@ -58,17 +58,17 @@
                         {% endif %}
                         </button>
                     </div>                                               
+                    {{ form_errors(user_form) }}
+            {{ form_end(user_form) }} 
                 </form>
         </article>
     </div>
 </div>
 
 
-    {{ form_errors(user_form) }}
 
 
 
-{{ form_end(user_form) }} 
 
 </div>
 {% endblock %}
