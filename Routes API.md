@@ -579,8 +579,7 @@ http://keskonmate.me/api/v1/users
 {  	
   "email": "test@keskonmate.me",
 	"password": "admin",
-  "userNickname": "test",
-  "createdAt": "2021-10-27T15:31:06+02:00"
+  "userNickname": "test"
 }
 ```
 
