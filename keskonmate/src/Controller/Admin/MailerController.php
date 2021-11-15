@@ -32,12 +32,11 @@ class MailerController extends AbstractController
      * @Security("is_granted('ROLE_USER')")
      */
     public function verifyUserEmail(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
-    {     
+    { 
         $id = $request->get('id'); // retrieve the user id from the url
  
         // Verify the user id exists and is not null
         if (null === $id) {
-            dd('id doesnt exist');
             return $this->redirectToRoute('nouser');
         }
  
@@ -56,11 +55,10 @@ class MailerController extends AbstractController
             $this->addFlash('danger', $e->getReason());
             return $this->redirectToRoute('login');
         }
-        
+    
         $user->setVerified(1);
         $entityManager->persist($user);
         $entityManager->flush();
-
         $this->addFlash('success', 'Your e-mail address has been verified, please log in.');
 
         return $this->redirectToRoute('login');
