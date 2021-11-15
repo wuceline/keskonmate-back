@@ -70,19 +70,5 @@ class MailerController extends AbstractController
     public function confirmed(): Response
     {
         return $this->render('admin\registration\user_confirmed.html.twig');
-    }     
-    /**
-     * @Route("/nouser", name="nouser")
-     */
-    public function nouser(): Response
-    {
-        return $this->render('admin\registration\user_no.html.twig');
-    }     
-    /**
-     * @Route("/nouserpers", name="nouserpers")
-     */
-    public function nouserpers(): Response
-    {
-        return $this->render('admin\registration\user_pers.html.twig');
-    }     
+    }
 }
