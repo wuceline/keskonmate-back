@@ -19,25 +19,35 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'label' => 'Email :',
+                'attr' => ['class' => 'form-control',
+                'placeholder' => 'exemple@gmail.com']
+            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class, 
                 'required' => true,
                 'mapped' => false,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options'  => ['label' => 'Mot de passe :',
+                                     'attr' => ['class' => 'form-control',],],
+                'second_options' => ['label' => 'Répéter le mot de passe :',
+                                     'attr' => ['class' => 'form-control',],],
             ])
-            ->add('userNickname', TextType::class)
+            ->add('userNickname', TextType::class, [
+                'label' => 'Pseudo :',
+                'attr' => ['class' => 'form-control',
+                'placeholder' => 'jblebest']
+            ])
             ->add('roles', ChoiceType::class, [
-                "label" => "Roles",
+                "label" => false,
                 'choices' => [
                     'SuperAdmin' => 'ROLE_SUPER_ADMIN',
                     'Admin' => 'ROLE_ADMIN',
-                    'Catalogue Manager' => 'ROLE_CATALOGUE',
+                    'Catalogue Manager' => 'ROLE_CATALOGUE_MANAGER ',
                     'User' => 'ROLE_USER',
                 ],
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
             ])
             ->add('createdAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',

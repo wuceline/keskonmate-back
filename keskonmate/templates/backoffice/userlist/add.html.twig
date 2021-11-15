@@ -29,24 +29,53 @@
     </a>  
 </div>
 
+
+
+<div class="d-flex col-lg-12 col-sm-6">
+    <div class="card col-4 my-1 bg-white align-self-start">
+        <form name="userlist" method="post">
 {{ form_start(userlist_form) }}
+            <div class="card-header" >
+                <label >Utilisateur :</label>
+                {{ form_row(userlist_form.users) }}
+            </div>
 
-    {{ form_errors(userlist_form) }}
-    {{ form_row(userlist_form.series) }}
-    {{ form_row(userlist_form.seasonNb) }}    
-    {{ form_row(userlist_form.episodeNb) }}
-    {{ form_row(userlist_form.type) }}
-    {{ form_row(userlist_form.users) }}
+            <div class="card-header bg-white">
+                <label >Série :</label>
+                {{ form_row(userlist_form.series) }}
+            </div>
 
-    <button type="submit" class="btn btn-primary mt-4">
-    {% if 'backoffice_userlists_add' == app.request.get('_route') %}
-    Create
-    {% else %}
-    Update
-    {% endif %}
-    </button>
+            <div class="card-footer d-flex justify-content-around flex-column">
+                {{ form_row(userlist_form.seasonNb) }}   
+                {{ form_row(userlist_form.episodeNb) }}
+                {{ form_row(userlist_form.type) }}
+            </div>
 
-{{ form_end(userlist_form) }} 
+            {% if page != 'create' %}
+            <div class="card-footer d-flex justify-content-between bg-white">
+                <div>
+                    <p class="my-0 h6">Ajouté le : {{ userlist.createdAt|date("d/m/Y") }}</p> 
+                </div>
+                <div>
+                    <p class="my-0 h6">Mis à jour le : {{ userlist.updatedAt|date("d/m/Y") }}</p>
+                </div>
+            </div>
+            {% endif %}
+            {{ form_errors(userlist_form) }}
+            <button type="submit" class="btn btn-primary mt-2">
+            {% if 'backoffice_userlists_add' == app.request.get('_route') %}
+            Create
+            {% else %}
+            Update
+            {% endif %}
+            </button>
+        {{ form_end(userlist_form) }} 
+        </form>
+    </div>
+
+</div>
+
+
 
 </div>
 {% endblock %}

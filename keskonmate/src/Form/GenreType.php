@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Genre;
+use App\Entity\Series;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,9 +15,13 @@ class GenreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id')
             ->add('name')
-            ->add('series')
+            ->add('series', EntityType::class, [
+                'class' => Series::class,
+                'label' => false,
+                'multiple' => true,
+                'expanded' => false,
+            ])
             ->add('createdAt', DateTimeType::class, [
                 'label' => 'Cree le:',
                 'input'  => 'datetime_immutable',

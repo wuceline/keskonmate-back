@@ -20,7 +20,28 @@
     </a>  
 </div>
 
-{{ form(actor_form) }}
+{% dump(actor) %}
+
+<div class="card col-3 my-1 bg-white align-self-start">
+    <div class="bg-dark hover-overlay ripple text-center" data-mdb-ripple-color="light">
+        <img style="height: 175px" src="{{ actor.image }}" class="img-fluid" />
+    </div>
+    <h4 class="card-header">{{ actor.name }}</h4>
+    <div class="card-footer d-flex flex-column justify-content-between bg-white">
+        <div class="mb-1">
+            <p class="my-0 h6">Ajouté le : {{ actor.createdAt|date("d/m/Y") }}</p>
+        </div>
+        {% if actor.updatedAt != null %}
+        <div>
+            <p class="my-0 h6">Mis à jour le : {{ actor.updatedAt|date("d/m/Y") }}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<div>  
+    <p>Séries :</p>
+    {{ form_row(actor_form.series) }}
+<div>
 
 </div>
 {% endblock %}
