@@ -71,6 +71,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     /**
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
      */
     private $verified;
 
