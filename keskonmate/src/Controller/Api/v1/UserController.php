@@ -99,7 +99,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("", name="add", methods={"POST"})
+     * @Route("/add", name="add", methods={"POST"})
      */
     public function add(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator, UserPasswordHasherInterface $passwordHasher): Response
     {
