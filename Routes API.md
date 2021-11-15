@@ -448,6 +448,7 @@ http://keskonmate.me/api/v1/users
     "id": 2,
     "email": "admin@keskonmate.me",
     "userNickname": "admin",
+    "verified": 1,
     "createdAt": "2021-11-10T17:19:04+01:00",
     "updatedAt": null,
     "userlist": [
@@ -476,6 +477,7 @@ http://keskonmate.me/api/v1/users
     "id": 5,
     "email": "test@keskonmate.me",
     "userNickname": "test",
+    "verified": 0,
     "createdAt": "2021-11-10T17:19:04+01:00",
     "updatedAt": null,
     "userlist": [
@@ -514,6 +516,7 @@ http://keskonmate.me/api/v1/users/{id}
   "id": 2,
   "email": "admin@keskonmate.me",
   "userNickname": "admin",
+  "verified": 1,
   "createdAt": "2021-11-10T17:19:04+01:00",
   "updatedAt": null,
   "userlist": [
