@@ -41,9 +41,11 @@
     <div class="card col-12 bg-white border-0">
 
         <div class="card col-12 d-flex flex-row">
-            <div class="bg-image col-4 my-auto" data-mdb-ripple-color="light">
+        {% if page == 'edit' %}
+            <div class="bg-dark col-4 my-auto" data-mdb-ripple-color="light">
                 <img src="{{ series.image }}" class="img-fluid" />
             </div>
+        {% endif %}
             <div class="col-8 p-2">
                 <p class="card-text">{{ form_row(series_form.synopsis) }}</p>
             </div>
@@ -72,6 +74,7 @@
             <div>
                 <div class="my-0 h6">{{ form_row(series_form.homeOrder) }}</div>
             </div>
+            {% if page == 'edit' %}
             <div class="my-auto">
                 <div class="my-0 h6">Ajouté le :</div>
                 <div class="my-0 h6">{{ series.createdAt|date("d/m/Y") }}</div>
@@ -80,6 +83,7 @@
                 <div class="my-0 h6">Mis à jour le :</div>
                 <div class="my-0 h6">{{ series.updatedAt|date("d/m/Y à H:i") }}</div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
