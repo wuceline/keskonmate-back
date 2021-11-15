@@ -87,6 +87,8 @@ class SeriesController extends AbstractController
             ->remove('createdAt')
             ->remove('updatedAt');
 
+        
+
         $seriesForm->handleRequest($request);
 
         if ($seriesForm->isSubmitted() && $seriesForm->isValid()) {

@@ -9,6 +9,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,31 +21,70 @@ class SeriesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('synopsis', TextType::class, [
+            ->add('title', TextType::class, [
+                'required'   => false,
+                "label" => "Titre :",
+                'empty_data' => '',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('synopsis', TextareaType::class, [
                 'required'   => false,
                 "label" => "Synopsis",
                 'empty_data' => '',
+                'attr' => [
+                    'class' => 'form-control',
+                    'rows' => '3'
+                ],
             ])
             ->add('releaseDate', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'Sorti le :',
                 'format' => 'yyyy-MM-dd',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
-            ->add('image')
+            ->add('image', TextType::class, [
+                'required'   => false,
+                "label" => "Affiche :",
+                'empty_data' => '',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
             ->add('director', TextType::class, [
                 'required'   => false,
-                "label" => "Director",
+                "label" => "Réalisateur :",
                 'empty_data' => '',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])                
-            ->add('numberOfSeasons')
+            ->add('numberOfSeasons', TextType::class, [
+                'required'   => false,
+                "label" => "Nombre de saisons :",
+                'empty_data' => '',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ]) 
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,
-                'label' => "Genres",
+                'label' => false,
                 'multiple' => true,
                 'expanded' => true,
+                
             ])
             ->add('actor')
-            ->add('homeOrder')
+            ->add('homeOrder', IntegerType::class, [
+                'required'   => false,
+                "label" => "Ordre en en page d'accueil :",
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
             ->add('createdAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',
                 'disabled' => 'disabled'
@@ -57,6 +99,7 @@ class SeriesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Series::class,
+            'allow_extra_fields' => true
         ]);
     }
 }

@@ -31,17 +31,74 @@
 
 {{ form_start(series_form) }}
 
-    {{ form_errors(series_form) }}
-    {{ form_row(series_form.title) }}
-    {{ form_row(series_form.synopsis) }}
-    {{ form_row(series_form.releaseDate) }}
-    {{ form_row(series_form.image) }}
-    {{ form_row(series_form.director) }}
-    {{ form_row(series_form.numberOfSeasons) }}
-    {{ form_row(series_form.actor) }}
-    {{ form_row(series_form.genre) }}
-    {{ form_row(series_form.homeOrder) }}
+<div class="card col-9 my-1 bg-white flex-wrap">
 
+    <h6 class="card-header bg-white col-12">Description de la série :</h6>
+
+    <div class="card col-12 bg-white border-0">
+
+        <div class="card col-12 d-flex flex-row">
+            <div class="bg-image col-4 my-auto" data-mdb-ripple-color="light">
+                <img src="{{ series.image }}" class="img-fluid" />
+            </div>
+            <div class="col-8 p-2">
+                <p class="card-text">{{ form_row(series_form.synopsis) }}</p>
+            </div>
+        </div>
+
+        <div class="card d-flex flex-row">
+            <h6 class="card-header col-4 border-0">{{ form_row(series_form.image) }}</h6>
+            <div class="col-8 m-auto px-2">
+                {% for genre in series.genre %}
+                <a class="text-decoration-none text-reset" href="{{ url('backoffice_genres_read', {"id": genre.id}) }}">
+                    <button class="btn btn-primary my-1 bg-info border-0">
+                        {{ genre.name }}
+                    </button>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="d-flex flex-row">
+            <div class="card-footer d-flex justify-content-between flex-row col-12 border-0">
+                <div>{{ form_row(series_form.title) }}</div>
+                <div>{{ form_row(series_form.releaseDate) }}</div>
+                <div>{{ form_row(series_form.director) }}</div>
+                <div>{{ form_row(series_form.numberOfSeasons) }}</div>
+            </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-between bg-white">
+            <div>
+                <div class="my-0 h6">{{ form_row(series_form.homeOrder) }}</div>
+            </div>
+            <div class="my-auto">
+                <div class="my-0 h6">Ajouté le :</div>
+                <div class="my-0 h6">{{ series.createdAt|date("d/m/Y") }}</div>
+            </div>
+            <div class="my-auto">
+                <div class="my-0 h6">Mis à jour le :</div>
+                <div class="my-0 h6">{{ series.updatedAt|date("d/m/Y à H:i") }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for genre in series_form.genre.children %}
+    <label for="{{ genre.vars.id }}" class="btn btn-info">{{genre.vars.label}}
+        <input type="checkbox" id="{{ genre.vars.id }}" class="badgebox" value="{{ genre.vars.value }}">
+        <span class="badge">&check;</span>
+    </label>
+
+    {% dump(genre.vars.value) %} 
+    {% dump(genre.vars.label) %} 
+    {% dump(genre.vars) %} 
+{% endfor %}
+
+    {{ form_errors(series_form) }}
+    {{ form_row(series_form.actor) }}
+
+    
 
     <button type="submit" class="btn btn-primary mt-4">
     {% if 'backoffice_series_add' == app.request.get('_route') %}
