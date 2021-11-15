@@ -48,14 +48,11 @@
 
         <div class="card d-flex flex-row">
             <h6 class="card-header col-4 border-0">{{ form_row(series_form.image) }}</h6>
-            <div class="col-8 m-auto px-2">
-                {% for genre in series.genre %}
-                <a class="text-decoration-none text-reset" href="{{ url('backoffice_genres_read', {"id": genre.id}) }}">
-                    <button class="btn btn-primary my-1 bg-info border-0">
-                        {{ genre.name }}
-                    </button>
-                </a>
-                {% endfor %}
+            <div class="col-4 p-2">
+                {{ form_row(series_form.genre) }}
+            </div>
+            <div class="col-4 p-2">
+                {{ form_row(series_form.actor) }}
             </div>
         </div>
 
@@ -84,19 +81,7 @@
     </div>
 </div>
 
-{% for genre in series_form.genre.children %}
-    <label for="{{ genre.vars.id }}" class="btn btn-info">{{genre.vars.label}}
-        <input type="checkbox" id="{{ genre.vars.id }}" class="badgebox" value="{{ genre.vars.value }}">
-        <span class="badge">&check;</span>
-    </label>
-
-    {% dump(genre.vars.value) %} 
-    {% dump(genre.vars.label) %} 
-    {% dump(genre.vars) %} 
-{% endfor %}
-
     {{ form_errors(series_form) }}
-    {{ form_row(series_form.actor) }}
 
     
 

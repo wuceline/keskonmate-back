@@ -74,10 +74,14 @@ class SeriesType extends AbstractType
                 'class' => Genre::class,
                 'label' => false,
                 'multiple' => true,
-                'expanded' => true,
-                
+                'expanded' => false,
             ])
-            ->add('actor')
+            ->add('actor', EntityType::class, [
+                'class' => Actor::class,
+                'label' => false,
+                'multiple' => true,
+                'expanded' => false,
+            ])
             ->add('homeOrder', IntegerType::class, [
                 'required'   => false,
                 "label" => "Ordre en en page d'accueil :",
