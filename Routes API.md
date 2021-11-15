@@ -576,7 +576,7 @@ http://keskonmate.me/api/v1/users/{id}
 
 # Users Add {POST}
 
-http://keskonmate.me/api/v1/users
+http://keskonmate.me/api/v1/users/add
 
 ```json
 {  	
