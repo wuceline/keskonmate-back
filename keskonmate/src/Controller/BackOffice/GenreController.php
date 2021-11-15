@@ -55,7 +55,7 @@ class GenreController extends AbstractController
 
         return $this->render('backoffice/genre/read.html.twig', [
             'genre_form' => $genreForm->createView(),
-            'genre' => $genreForm,
+            'genre' => $genre,
         ]);
     }
 
@@ -81,7 +81,7 @@ class GenreController extends AbstractController
 
             $this->addFlash('success', "'{$genre->getName()}' a été mis à jour");
 
-            return $this->redirectToRoute('backoffice_genre_browse');
+            return $this->redirectToRoute('backoffice_genres_browse');
         }
 
         return $this->render('backoffice/genre/add.html.twig', [
@@ -116,7 +116,7 @@ class GenreController extends AbstractController
             $this->addFlash('success', "'{$genre->getName()}' a été créé");
 
             // redirection
-            return $this->redirectToRoute('backoffice_actor_browse');
+            return $this->redirectToRoute('backoffice_actors_browse');
         }
 
         return $this->render('backoffice/genre/add.html.twig', [

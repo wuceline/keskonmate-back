@@ -87,7 +87,7 @@ class UserlistController extends AbstractController
 
             $this->addFlash('success', "La liste `{$userlist->getId()}` a été mis à jour");
 
-            return $this->redirectToRoute('backoffice_userlist_browse');
+            return $this->redirectToRoute('backoffice_userlists_browse');
         }
 
         return $this->render('backoffice/userlist/add.html.twig', [
@@ -125,7 +125,7 @@ class UserlistController extends AbstractController
             $this->addFlash('success', "La liste '{$userlist->getId()}' a été créé");
 
             // redirection
-            return $this->redirectToRoute('backoffice_userlist_browse');
+            return $this->redirectToRoute('backoffice_userlists_browse');
         }
 
         return $this->render('backoffice/userlist/add.html.twig', [
@@ -146,6 +146,6 @@ class UserlistController extends AbstractController
         $entityManager->remove($userlist);
         $entityManager->flush();
 
-        return $this->redirectToRoute('backoffice_userlist_browse');
+        return $this->redirectToRoute('backoffice_userlists_browse');
     }
 }

@@ -20,16 +20,28 @@ class UserlistType extends AbstractType
     {
         $builder
             ->add('users', EntityType::class, [
-                'class' => User::class
+                'class' => User::class,
+                'label' => false,
+                'attr'  => ['class' => "form-control"]
             ])
             ->add('series', EntityType::class, [
                 'class' => Series::class,
-                'label' => "Série",
+                'label' => false,
                 'multiple' => false,
+                'attr'  => ['class' => "form-control"]
             ])
-            ->add('seasonNb', TextType::class)
-            ->add('episodeNb', TextType::class)
-            ->add('type', TextType::class)
+            ->add('seasonNb', TextType::class, [
+                'label' => "Saison :",
+                'attr'  => ['class' => "form-control"]
+            ])
+            ->add('episodeNb', TextType::class, [
+                'label' => "Episode :",
+                'attr'  => ['class' => "form-control"]
+            ])
+            ->add('type', TextType::class, [
+                'label' => "Type :",
+                'attr'  => ['class' => "form-control"]
+            ])
             ->add('createdAt', DateTimeType::class, [
                 'input'  => 'datetime_immutable',
                 'disabled' => 'disabled',
