@@ -23,9 +23,9 @@ class ActorType extends AbstractType
             ->add('image')
             ->add('series', EntityType::class, [
                 'class' => Series::class,
-                'label' => "Series",
+                'label' => false,
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
             ])
             ->add('createdAt', DateTimeType::class, [
                 'label' => "Cree le:",
