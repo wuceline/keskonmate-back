@@ -15,8 +15,6 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 
 class MailerController extends AbstractController
 {
@@ -36,7 +34,6 @@ class MailerController extends AbstractController
  
         // Verify the user id exists and is not null
         if (null === $id) {
-            dd('id doesnt exist');
             return $this->redirectToRoute('nouser');
         }
  
