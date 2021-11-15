@@ -71,8 +71,10 @@ class UserController extends AbstractController
      * 
      * @Security("is_granted('ROLE_SUPER_ADMIN')")
      */
-    public function edit(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
+    public function edit($id, Request $request, User $user, UserPasswordHasherInterface $passwordHasher, UserListRepository $userListRepository): Response
     {
+        $userLists = $userListRepository->findForId($id);
+
         $userForm = $this->createForm(UserType::class, $user);
         $userForm
             ->remove('createdAt')
@@ -102,6 +104,7 @@ class UserController extends AbstractController
             'user_form' => $userForm->createView(),
             'user' => $user,
             'page' => 'edit',
+            'userlists' => $userLists
         ]);
     }
 
