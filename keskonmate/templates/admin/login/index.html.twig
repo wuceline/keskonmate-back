@@ -7,6 +7,8 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
+    {{ include('_partials/_flash_messages.html.twig') }}
+
     {# <form action="{{ path('login') }}" method="post">
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}

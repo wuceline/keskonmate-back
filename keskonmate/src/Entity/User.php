@@ -68,6 +68,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups("api_users_new")
      */
     private $userNickname;
+    
+    /**
+     * @ORM\Column(type="integer")
+     * 
+     * @Groups("api_users_browse")
+     * @Groups("api_users_read")
+     */
+    private $verified;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -93,6 +101,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * 
      */
     private $userlist;
+
 
 
     public function __construct()
@@ -257,6 +266,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserNickname(string $userNickname): self
     {
         $this->userNickname = $userNickname;
+
+        return $this;
+    }
+
+    public function getVerified(): ?int
+    {
+        return $this->verified;
+    }
+
+    public function setVerified(int $verified): self
+    {
+        $this->verified = $verified;
 
         return $this;
     }

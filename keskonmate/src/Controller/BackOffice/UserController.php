@@ -111,6 +111,7 @@ class UserController extends AbstractController
     {
         $user = new User();
         $user->setCreatedAt(new DateTimeImmutable());
+        $user->setVerified(0);
         
         $userForm = $this->createForm(UserType::class, $user);
         $userForm
