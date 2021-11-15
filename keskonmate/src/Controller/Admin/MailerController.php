@@ -29,7 +29,6 @@ class MailerController extends AbstractController
 
     /**
      * @Route("/verify", name="registration_confirmation_route")
-     * @Security("is_granted('ROLE_USER')")
      */
     public function verifyUserEmail(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {     
