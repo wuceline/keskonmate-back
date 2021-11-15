@@ -6,21 +6,33 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-
 /**
  * @Route("/api/v1/users", name="api_v1_users_")
  */
 class UserController extends AbstractController
 {
+    private $verifyEmailHelper;
+    private $mailer;
+    
+    public function __construct(VerifyEmailHelperInterface $helper, MailerInterface $mailer)
+    {
+        $this->verifyEmailHelper = $helper;
+        $this->mailer = $mailer;
+    }
+
     /**
      * @Route("", name="browse", methods={"GET"}, requirements={"id"="\d+"})
      */
@@ -89,18 +101,22 @@ class UserController extends AbstractController
     /**
      * @Route("", name="add", methods={"POST"})
      */
-    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator, UserPasswordHasherInterface $passwordHasher): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
         $role = ["ROLE_USER"];
 
-        $jsonContent = $request->getContent();   
+        $jsonContent = $request->getContent();
         $jsonContent = json_decode($jsonContent);
 
+        // $id =  $jsonContent->userNickname;
+        // $email = $jsonContent->email;
+        
         $user->setEmail($jsonContent->email);
         $user->setRoles($role);
         $user->setUserNickname($jsonContent->userNickname);
         $user->setCreatedAt(new DateTimeImmutable());
+        $user->setVerified(0);       
         
         $clearPassword = $jsonContent->password;
         if (! empty($clearPassword)) {
@@ -124,7 +140,23 @@ class UserController extends AbstractController
             'id' => $user->getId(),
         ];
 
+        $signatureComponents = $this->verifyEmailHelper->generateSignature(
+            'registration_confirmation_route',
+            $user->getId(),
+            $user->getEmail(),
+            ['id' => $user->getId()] // add the user's id as an extra query param
+        );
+
+        $email = new TemplatedEmail();
+        $email->from('keskonmate@gmail.com');
+        $email->to($user->getEmail());
+        $email->htmlTemplate('admin/registration/confirmation_email.html.twig');
+        $email->context(['signedUrl' => $signatureComponents->getSignedUrl()]);
+        
+        $this->mailer->send($email);
+        
         return $this->json($responseAsArray, Response::HTTP_CREATED);
+        
     }
 
      /**
@@ -148,8 +180,6 @@ class UserController extends AbstractController
         return $this->json($reponseAsArray);
     } */
 
-    
-
     private function getNotFoundResponse() {
 
         $responseArray = [
@@ -161,3 +191,11 @@ class UserController extends AbstractController
         return $this->json($responseArray, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
+
+
+// $signatureComponents = $this->verifyEmailHelper->generateSignature(
+//     'registration_confirmation_route',
+//     $id,
+//     $email,
+//     ['userNickname' => $user->getUserNickname()] // add the user's id as an extra query param            
+// );

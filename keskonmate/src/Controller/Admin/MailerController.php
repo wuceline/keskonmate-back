@@ -2,31 +2,87 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
-
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class MailerController extends AbstractController
 {
-    /**
-     * @Route("/email")
-     */
-    public function sendEmail(MailerInterface $mailer): Response
+    private $verifyEmailHelper;
+    
+    public function __construct(VerifyEmailHelperInterface $helper)
     {
-        $email = (new Email())
-            ->from('keskonmate@gmail.com')
-            ->to('keskonmate@gmail.com')
-            // ->cc('alexisbertell@gmail.com', 'dorian.lalanne@yahoo.fr', 'wuwuceline@gmail.com', 'eddyzsoma@gmail.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('COUCOU!!!!!');
+        $this->verifyEmailHelper = $helper;
+    }    
 
-        $mailer->send($email);
-    }
+    /**
+     * @Route("/verify", name="registration_confirmation_route")
+     */
+    public function verifyUserEmail(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+    {     
+        $id = $request->get('id'); // retrieve the user id from the url
+ 
+        // Verify the user id exists and is not null
+        if (null === $id) {
+            dd('id doesnt exist');
+            return $this->redirectToRoute('nouser');
+        }
+ 
+        $user = $userRepository->find($id);
+ 
+        // Ensure the user exists in persistence
+        if (null === $user) {
+            dd('user doesnt exist');
+            return $this->redirectToRoute('nouserpers');
+        }
+        
+
+        // Do not get the User's Id or Email Address from the Request object
+        try {
+            $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
+        } catch (VerifyEmailExceptionInterface $e) {
+            $this->addFlash('verify_email_error', $e->getReason());
+            dd('catch');
+            return $this->redirectToRoute('confirmed');
+        }
+        
+        $user->setVerified(1);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Your e-mail address has been verified.');
+
+        return $this->redirectToRoute('confirmed');
+    }   
+    
+    /**
+     * @Route("/confirmed", name="confirmed")
+     */
+    public function confirmed(): Response
+    {
+        return $this->render('admin\registration\user_confirmed.html.twig');
+    }     
+    /**
+     * @Route("/nouser", name="nouser")
+     */
+    public function nouser(): Response
+    {
+        return $this->render('admin\registration\user_no.html.twig');
+    }     
+    /**
+     * @Route("/nouserpers", name="nouserpers")
+     */
+    public function nouserpers(): Response
+    {
+        return $this->render('admin\registration\user_pers.html.twig');
+    }     
 }
