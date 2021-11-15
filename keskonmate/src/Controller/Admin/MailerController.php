@@ -15,6 +15,9 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
+
 class MailerController extends AbstractController
 {
     private $verifyEmailHelper;
@@ -26,6 +29,7 @@ class MailerController extends AbstractController
 
     /**
      * @Route("/verify", name="registration_confirmation_route")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function verifyUserEmail(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {     
@@ -59,16 +63,8 @@ class MailerController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Your e-mail address has been verified.');
+        $this->addFlash('success', 'Your e-mail address has been verified, please log in.');
 
-        return $this->redirectToRoute('confirmed');
-    }   
-    
-    /**
-     * @Route("/confirmed", name="confirmed")
-     */
-    public function confirmed(): Response
-    {
-        return $this->render('admin\registration\user_confirmed.html.twig');
-    }
+        return $this->redirectToRoute('login');
+    }  
 }

@@ -139,10 +139,9 @@ class UserController extends AbstractController
             'message' => 'User created',
             'id' => $user->getId(),
         ];
-
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             'registration_confirmation_route',
-            $user->getId(),
+            $user->getId(),            
             $user->getEmail(),
             ['id' => $user->getId()] // add the user's id as an extra query param
         );
