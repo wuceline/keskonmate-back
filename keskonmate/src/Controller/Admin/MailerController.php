@@ -45,7 +45,6 @@ class MailerController extends AbstractController
  
         // Ensure the user exists in persistence
         if (null === $user) {
-            dd('user doesnt exist');
             return $this->redirectToRoute('nouserpers');
         }
         
@@ -54,9 +53,8 @@ class MailerController extends AbstractController
         try {
             $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
         } catch (VerifyEmailExceptionInterface $e) {
-            $this->addFlash('verify_email_error', $e->getReason());
-            dd('catch');
-            return $this->redirectToRoute('confirmed');
+            $this->addFlash('danger', $e->getReason());
+            return $this->redirectToRoute('login');
         }
         
         $user->setVerified(1);
