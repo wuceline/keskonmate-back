@@ -15,8 +15,6 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 
 class MailerController extends AbstractController
 {
