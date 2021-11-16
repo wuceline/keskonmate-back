@@ -46,12 +46,22 @@
       </td>
       <td>
         <a href="{{ url('backoffice_series_read', {"id": list.series.id}) }}">
-          {{ list.series.id }}
+          {{ list.series.title }}
         </a>
       </td>
       <td>{{ list.seasonNb }}</td>
       <td>{{ list.episodeNb }}</td>
-      <td>{{ list.type }}</td>
+      <td>
+      {% if list.type == 1 %}
+        Déjà vu
+      {% elseif list.type == 2 %}
+        En cours
+      {% elseif list.type == 3 %}
+        A voir
+      {% else %}
+        Dans aucune liste
+      {% endif %}
+      </td>
       <td>
         <a class="btn btn-success" href="{{ url('backoffice_userlists_read', {"id": list.id}) }}" title="Read" alt="Read">
           {# images récupérées sur bootstrap icons https://icons.getbootstrap.com/ #}
