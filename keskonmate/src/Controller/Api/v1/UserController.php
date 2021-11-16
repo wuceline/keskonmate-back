@@ -149,6 +149,7 @@ class UserController extends AbstractController
         $email = new TemplatedEmail();
         $email->from('keskonmate@gmail.com');
         $email->to($user->getEmail());
+        $email->subject('Bienvenue chez Keskonmate!');
         $email->htmlTemplate('admin/registration/confirmation_email.html.twig');
         $email->context(['signedUrl' => $signatureComponents->getSignedUrl()]);
         
