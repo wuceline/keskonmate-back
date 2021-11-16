@@ -36,7 +36,13 @@
   <tbody>
 
 {% for list in userlists %}
-    <tr>
+
+{% dump(list) %}
+    <tr 
+    {% if list.type == 0 %}
+    class="bg-danger bg-opacity-25"
+    {% endif %}
+    >
       <th scope="row">{{ list.id }}</th>
       <td>
         <a href="{{ url('backoffice_users_read', {"id": list.users.id}) }}">
