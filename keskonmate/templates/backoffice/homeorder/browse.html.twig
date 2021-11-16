@@ -32,7 +32,7 @@
             <td>      
               <label for="homeOrder"></label>
               <select name="homeOrder[{{key + 1}}]" id="homeOrder">
-                <option value="">Choisissez un flim</option>
+                <option value="">Choisissez une série</option>
                 {% for seriess in series_all %}
                   <option value="{{ seriess.id }}" {{ series_list[key] is defined and seriess.id == series_list[key].id ? ' selected="selected"' : '' }}>{{ seriess.title }}</option>
                 {% endfor %}
