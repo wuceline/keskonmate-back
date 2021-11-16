@@ -41,7 +41,7 @@
   <tbody>
 {% for series in series %}
     <tr>
-      <th scope="row">{{ series.title }}</th>
+      <th scope="row"><a class="btn btn-success" href="{{ url('backoffice_series_read', {"id": series.id}) }}" title="Read" alt="Read"> {{ series.title }} </a></th>
       <td>{{ series.id }}</td>
       <td>{{ series.synopsis|slice(0, 70) }}...</td>
       <td>{{ series.releaseDate|date }}</td>
