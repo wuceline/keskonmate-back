@@ -42,7 +42,7 @@ class ActorController extends AbstractController
                 'label' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Entrez un mot-clé'
+                    'placeholder' => 'Rechercher un acteur'
                 ]
             ])
             ->add('recherche', SubmitType::class, [
