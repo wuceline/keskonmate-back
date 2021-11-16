@@ -45,7 +45,7 @@ class SeriesController extends AbstractController
                 'label' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Entrez un mot-clé'
+                    'placeholder' => 'Recherchez une série ou un réalisateur'
                 ]
             ])
             ->add('recherche', SubmitType::class, [
