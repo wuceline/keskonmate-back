@@ -34,7 +34,9 @@
     </tr>
   </thead>
   <tbody>
+
 {% for list in userlists %}
+{% dump(list) %}
     <tr>
       <th scope="row">{{ list.id }}</th>
       <td>
