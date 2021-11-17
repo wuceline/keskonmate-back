@@ -58,6 +58,6 @@ class MailerController extends AbstractController
         $entityManager->flush();
         $this->addFlash('success', 'Your e-mail address has been verified, please log in.');
 
-        return $this->redirectToRoute('http://keskonmate.surge.sh/');
+        return $this->redirect('http://keskonmate.surge.sh/');
     }  
 }
