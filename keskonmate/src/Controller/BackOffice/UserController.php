@@ -148,13 +148,13 @@ class UserController extends AbstractController
      * 
      * @Security("is_granted('ROLE_SUPER_ADMIN')")
      */
-    public function delete(User $user, EntityManagerInterface $entityManager): Response
-    {
-        $this->addFlash('success', "User {$user->getUserIdentifier()} deleted");
+    // public function delete(User $user, EntityManagerInterface $entityManager): Response
+    // {
+    //     $this->addFlash('success', "User {$user->getUserIdentifier()} deleted");
 
-        $entityManager->remove($user);
-        $entityManager->flush();
+    //     $entityManager->remove($user);
+    //     $entityManager->flush();
 
-        return $this->redirectToRoute('backoffice_users_browse');
-    }
+    //     return $this->redirectToRoute('backoffice_users_browse');
+    // }
 }
